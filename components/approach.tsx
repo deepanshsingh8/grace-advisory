@@ -3,9 +3,9 @@ import { SectionHead } from "@/components/section";
 import { IMG } from "@/lib/imagery";
 
 const PILLARS = [
-  { num: "i.",   title: "Deep regulatory expertise", body: "Across AFSL and AUSTRAC. We work in the text of the rules — RG 105, the AML/CTF Act, the Tranche 2 amendments — so you don't have to." },
-  { num: "ii.",  title: "End-to-end support",         body: "Not just paperwork. From application through to ongoing monitoring and independent review, we stay alongside the business as it grows." },
-  { num: "iii.", title: "Trusted across all stages",  body: "Our framework scales to the nature, size and complexity of your business — whether you're applying for your first AFSL or maintaining a mature program." },
+  { num: "i.",   title: "Deep regulatory expertise", body: "Across AFSL and AUSTRAC. We work in the text of the rules — RG 105, the AML/CTF Act, Tranche 2 — so you don't have to." },
+  { num: "ii.",  title: "End-to-end support",         body: "From application through to ongoing monitoring and independent review — we stay alongside the business as it grows." },
+  { num: "iii.", title: "Trusted across all stages",  body: "Our framework scales to your business — first AFSL or mature program." },
 ];
 
 export function Approach() {
@@ -24,7 +24,7 @@ export function Approach() {
         <SectionHead
           eyebrow="No. V · Why Grace"
           title={<>A boutique discipline,<br/>at every stage of compliance.</>}
-          lede="Three principles shape every engagement. Together, they describe a way of working that values precision over volume, and partnership over transaction."
+          lede="Three principles shape every engagement — precision over volume, partnership over transaction."
         />
 
         {/* Editorial split: framed photograph + numbered pillars */}

@@ -20,7 +20,7 @@ const AFSL: PillarProps = {
   eyebrow: "Pillar I",
   title: "AFSL Compliance",
   lede:
-    "For organisations providing financial products and services in Australia. From the application itself through to the responsible-manager framework, policies, monitoring and external review.",
+    "For firms providing financial products and services in Australia — from the application itself through to the responsible-manager framework, policies, monitoring and external review.",
   items: [
     { title: "AFSL Application", body: "RM selection, proof documents, ASIC liaison." },
     { title: "Compliance Policies Drafting", body: "Manuals aligned to the nature, size and complexity of your business." },
@@ -38,7 +38,7 @@ const AML: PillarProps = {
   eyebrow: "Pillar II",
   title: "AML/CTF Compliance",
   lede:
-    "The Australian AML/CTF regime is risk-based at heart. We translate that principle into programs that work in practice — from AUSTRAC enrolment through to the independent review.",
+    "Australia&rsquo;s AML/CTF regime is risk-based. We turn that principle into programs that work in practice — from AUSTRAC enrolment to independent review.",
   items: [
     { title: "AML/CTF Program", body: "Standard, Joint and Special programs, Part A and Part B." },
     { title: "AUSTRAC Registration", body: "For remittance providers and crypto exchanges." },
@@ -68,7 +68,7 @@ export function Pillars() {
         <SectionHead
           eyebrow="No. II · Service Pillars"
           title={<>Two regulatory regimes.<br />One advisory.</>}
-          lede="Whether you are seeking an AFSL, designing an AML/CTF Program, or maintaining ongoing oversight, our work is shaped to fit the way your business actually runs — not the other way around."
+          lede="AFSL, AML/CTF Program or ongoing oversight — shaped to how your business actually runs."
         />
 
         <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">

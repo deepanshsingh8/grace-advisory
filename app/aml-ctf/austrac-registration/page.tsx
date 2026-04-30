@@ -32,9 +32,9 @@ export default function AustracPage() {
         </ol>
         <h2>Additional support</h2>
         <p>
-          We can facilitate communication between you and your banking partners regarding your
-          compliance framework — addressing the well-known challenges remittance and crypto
-          businesses face when securing banking relationships.
+          We facilitate communication between you and your banking partners on your compliance
+          framework — addressing the challenges remittance and crypto businesses face securing
+          banking relationships.
         </p>
       </PageBody>
       <CTABand />

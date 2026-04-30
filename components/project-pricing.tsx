@@ -24,7 +24,7 @@ export function ProjectPricing() {
         <SectionHead
           eyebrow="No. II · Project Engagements"
           title={<>Fixed-fee project work.</>}
-          lede="One-off engagements quoted on scope — not the hour. The ranges below cover most clients; we confirm the exact figure in writing after a 30-minute scoping call."
+          lede="One-off engagements quoted on scope, not the hour. Ranges cover most clients; exact figures confirmed after a 30-minute scoping call."
         />
 
         <div className="reveal border-t border-[var(--color-line)]">

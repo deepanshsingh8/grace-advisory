@@ -19,18 +19,16 @@ const POSTS = {
     body: (
       <>
         <p>
-          One of Australia&rsquo;s biggest regulatory changes in decades is about to begin. The
-          Anti-Money Laundering and Counter-Terrorism Financing (AML/CTF) Amendment Act has been
-          updated. Thousands of Australian companies will have to comply starting on 1 July 2026.
-          AML regulations did not previously apply to these companies.
+          One of Australia&rsquo;s biggest regulatory shifts in decades begins on 1 July 2026.
+          The AML/CTF Amendment Act extends compliance to thousands of companies that previously
+          fell outside the regime.
         </p>
         <h2>What are the AML/CTF reforms and why now?</h2>
         <p>
-          Australia has had an AML/CTF system in existence since 2006. However, for nearly twenty
-          years the framework was never applied to certain high-risk professional and service
-          sectors. These industries are the &ldquo;Tranche 2&rdquo; enterprises — lawyers,
-          accountants, real-estate professionals, trust providers, and dealers in precious metals
-          and stones. The Financial Action Task Force (FATF) consistently criticised their exclusion.
+          Australia&rsquo;s AML/CTF system has run since 2006, but key high-risk sectors stayed
+          out for nearly twenty years. These &ldquo;Tranche 2&rdquo; sectors — lawyers, accountants,
+          real-estate, trust providers, and dealers in precious metals and gemstones — were
+          repeatedly criticised by the Financial Action Task Force (FATF) for their exclusion.
         </p>
         <h2>Who is captured?</h2>
         <ul>

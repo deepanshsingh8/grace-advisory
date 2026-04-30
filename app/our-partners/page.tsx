@@ -16,12 +16,12 @@ export default function OurPartnersPage() {
       <PageHero
         eyebrow="Our Partners"
         title="Built on long-lasting relationships."
-        lede="We collaborate with a network of legal, accounting and audit professionals to deliver compliance outcomes that hold up across the broader regulatory perimeter."
+        lede="We collaborate with legal, accounting and audit professionals to deliver outcomes across the regulatory perimeter."
       />
       <PageBody>
         <p>
-          We aim to foster long-lasting client relationships and partnerships on the basis of
-          mutual respect and trust. Strategic alliance details will be added in due course.
+          We build long-lasting partnerships on mutual respect and trust. Strategic alliance
+          details to follow.
         </p>
       </PageBody>
       <CTABand />

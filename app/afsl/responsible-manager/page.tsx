@@ -34,9 +34,8 @@ export default function RmPage() {
         </ul>
         <h2>AFSL variations</h2>
         <p>
-          Businesses expanding their services or changing direction may need new authorisations,
-          requiring variation applications that update business descriptions and organisational
-          competence documentation.
+          Expanding services or changing direction may require new authorisations — variation
+          applications update business descriptions and organisational competence documentation.
         </p>
       </PageBody>
       <CTABand />

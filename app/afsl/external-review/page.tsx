@@ -21,9 +21,8 @@ export default function ExternalReviewPage() {
       <PageBody>
         <h2>Scope and purpose</h2>
         <p>
-          A defined scope ensures the review addresses the licensee&rsquo;s core questions. Some
-          prefer comprehensive framework assessments; others target specific areas like
-          representative monitoring.
+          A defined scope ensures the review addresses your core questions. Some prefer full
+          framework assessments; others target specific areas like representative monitoring.
         </p>
         <h2>Frequency</h2>
         <p>
@@ -38,9 +37,8 @@ export default function ExternalReviewPage() {
         </ul>
         <h2>Output</h2>
         <p>
-          A formal, detailed report documenting the review, the findings and recommendations.
-          Clients then decide internally whether to implement the suggestions and document the
-          rationale either way.
+          A formal report covering review, findings and recommendations. You decide internally
+          whether to implement, and document the rationale either way.
         </p>
       </PageBody>
       <CTABand />

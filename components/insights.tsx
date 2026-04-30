@@ -18,7 +18,7 @@ const POSTS: Post[] = [
   {
     cat: "AML/CTF Reforms", date: "30 Apr 2026",
     title: "Tranche 2 Compliance Explained: What Has Changed Under AUSTRAC Reform?",
-    excerpt: "From 1 July 2026, around 90,000 newly regulated firms — lawyers, accountants, real-estate agents, trust providers, precious-metal dealers — come under AML/CTF supervision. Here's what changed and what to do before the deadline.",
+    excerpt: "From 1 July 2026, ~90,000 newly regulated firms — lawyers, accountants, real estate, trust providers, dealers — come under AML/CTF. What changed, and what to do.",
     href: "/blog/tranche-2-aml-ctf-reforms-australia-2026",
     cover: IMG.insight_tranche2,
     coverAlt: "Architectural facade — a metaphor for new structural compliance obligations.",
@@ -26,7 +26,7 @@ const POSTS: Post[] = [
   {
     cat: "AFSL", date: "30 Apr 2026",
     title: "Complete Guide to Applying for an AFSL in Australia (Step-by-Step)",
-    excerpt: "Eight steps from defining your services to deploying compliance systems after approval — including realistic timelines (4–8 months) and ASIC fee ranges.",
+    excerpt: "Eight steps from scoping services to deploying compliance — with realistic timelines (4–8 months) and ASIC fees.",
     href: "/blog/australian-financial-services-licence-afsl-application-guide",
     cover: IMG.insight_afsl,
     coverAlt: "Hands signing a contract — the AFSL application process.",
@@ -34,7 +34,7 @@ const POSTS: Post[] = [
   {
     cat: "AML/CTF Reforms", date: "30 Apr 2026",
     title: "AML/CTF Reforms 2026: A Complete Guide for Australian Businesses",
-    excerpt: "A practical guide to the modernised AML/CTF regime — what's in scope, what your program must include, and the immediate actions to take now.",
+    excerpt: "A practical guide — what's in scope, what your program needs, and the actions to take now.",
     href: "/blog/aml-ctf-reforms-2026-australian-business-guide",
     cover: IMG.insight_reforms,
     coverAlt: "Modern office building — institutional landscape under reform.",
@@ -57,7 +57,7 @@ export function Insights() {
         <SectionHead
           eyebrow="No. VI · From the Practice"
           title={<>Notes on the regulation<br/>that shapes your business.</>}
-          lede="Plain-English commentary on the rules you actually have to follow — from the Tranche 2 reforms to the AFSL application process."
+          lede="Plain-English commentary on the rules you actually have to follow."
         />
 
         <div className="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -103,10 +103,11 @@ export function Insights() {
               {/* Body */}
               <div className="p-7 lg:p-8 flex flex-col gap-4 flex-1">
                 <div className="font-sans font-bold text-[0.7rem] tracking-[0.18em] uppercase text-[var(--color-ink-600)]">{p.date}</div>
-                <h3 className="font-display font-medium leading-[1.2] tracking-[-0.005em] m-0 text-[1.4rem]">
+                <h3 className="font-display font-medium leading-[1.2] tracking-[-0.005em] m-0"
+                    style={{ fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)" }}>
                   {p.title}
                 </h3>
-                <p className="text-[var(--color-ink-700)] text-[0.95rem] leading-[1.65] m-0 flex-1">{p.excerpt}</p>
+                <p className="text-[var(--color-ink-700)] text-[0.95rem] leading-[1.6] m-0 flex-1">{p.excerpt}</p>
                 <span className="btn-ghost mt-2 self-start">
                   Read article
                   <ArrowRight className="w-3 h-3" />

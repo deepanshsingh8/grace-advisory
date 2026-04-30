@@ -16,7 +16,7 @@ export default function ProgramPage() {
       <PageHero
         eyebrow="AML/CTF Program"
         title="Practical, flexible, fit for purpose."
-        lede="We take time to understand your business in detail, then tailor your AML/CTF Program to suit how you actually operate — with a focus on practicality."
+        lede="We learn how your business actually operates, then tailor your AML/CTF Program around it — with a focus on practicality."
       />
       <PageBody>
         <h2>Three program categories</h2>

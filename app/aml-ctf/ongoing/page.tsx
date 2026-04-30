@@ -16,7 +16,7 @@ export default function OngoingAmlPage() {
       <PageHero
         eyebrow="Ongoing AML/CTF Compliance"
         title="The program is the start, not the end."
-        lede="Implementing your AML/CTF Program is foundational. Continuous compliance with its obligations is what actually keeps you on the right side of the rules."
+        lede="Implementing the program is the start. Continuous compliance with its obligations is what keeps you on the right side of the rules."
       />
       <PageBody>
         <h2>ML/TF risk assessment</h2>

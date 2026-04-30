@@ -12,12 +12,12 @@ interface Sector {
 }
 
 const SECTORS: Sector[] = [
-  { num: "i",   name: "Accounting",            body: "The easy access and wide geographic spread of accounting services, coupled with accountants' gatekeeper role and use in every phase of ML/TF.", Ill: IllAccounting },
-  { num: "ii",  name: "Financial Services",    body: "Financial institutions face heightened ML/TF exposure. The Act and regulations place obligations on Australian institutions to detect and deter.", Ill: IllFinance },
-  { num: "iii", name: "Law",                   body: "The easy access and wide geographic spread of legal services, coupled with lawyers' gatekeeper role across every phase of ML/TF.", Ill: IllLaw },
-  { num: "iv",  name: "Real Estate",           body: "The use of real estate in ML/TF is well-known and demonstrable. FIU research indicates real estate is the ML asset of choice.", Ill: IllRealEstate },
-  { num: "v",   name: "Virtual Assets & Crypto", body: "The wide reach of VASP services, coupled with their pseudo-anonymous nature and use in every phase of ML/TF, attracts heightened scrutiny.", Ill: IllCrypto },
-  { num: "vi",  name: "Other Captured Sectors", body: "Industries widely spread and easy to access; their nature lends itself to all stages of ML/TF — and to the new Tranche 2 obligations.", Ill: IllOther },
+  { num: "i",   name: "Accounting",              body: "Wide reach and gatekeeper role — accountants feature in every phase of ML/TF.", Ill: IllAccounting },
+  { num: "ii",  name: "Financial Services",      body: "Heightened ML/TF exposure. The Act sets clear obligations to detect and deter.", Ill: IllFinance },
+  { num: "iii", name: "Law",                     body: "Wide reach and gatekeeper role — lawyers feature in every phase of ML/TF.", Ill: IllLaw },
+  { num: "iv",  name: "Real Estate",             body: "FIU research indicates real estate is the ML asset of choice.", Ill: IllRealEstate },
+  { num: "v",   name: "Virtual Assets & Crypto", body: "Pseudo-anonymous, wide-reach services — VASPs attract heightened scrutiny.", Ill: IllCrypto },
+  { num: "vi",  name: "Other Captured Sectors",  body: "Easy-access industries that lend themselves to ML/TF — now in scope under Tranche 2.", Ill: IllOther },
 ];
 
 export function SectorGrid() {
@@ -43,8 +43,9 @@ export function SectorGrid() {
                 <s.Ill className="text-[var(--color-gold-500)] transition-transform duration-700 group-hover:rotate-[6deg]" />
                 <span className="font-display italic text-[0.9rem] text-[var(--color-ink-400)]">{s.num}.</span>
               </div>
-              <h3 className="font-display font-semibold text-[1.35rem] tracking-[-0.005em] mb-2 m-0 text-[var(--color-navy-900)]">{s.name}</h3>
-              <p className="font-display italic text-[var(--color-ink-700)] text-[1rem] leading-[1.55] m-0">{s.body}</p>
+              <h3 className="font-display font-semibold tracking-[-0.005em] mb-2 m-0 text-[var(--color-navy-900)]"
+                  style={{ fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)" }}>{s.name}</h3>
+              <p className="font-display italic text-[var(--color-ink-700)] text-[0.95rem] leading-[1.6] m-0">{s.body}</p>
 
               {/* Subtle hairline corner accent on hover */}
               <div

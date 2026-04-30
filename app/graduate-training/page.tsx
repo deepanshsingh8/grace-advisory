@@ -16,15 +16,15 @@ export default function GradPage() {
       <PageHero
         eyebrow="Graduate Training"
         title="Kickstart your career with practical experience."
-        lede="Landing your first opportunity in the market after graduation can be challenging — especially without the right experience. Our program is built to bridge that gap."
+        lede="Breaking into the market after graduation is hard without experience. Our program bridges that gap."
       />
       <PageBody>
         <h2>What we offer</h2>
         <ul>
           <li><strong>Industry-specific training</strong> — market trends and best practices.</li>
           <li><strong>Hands-on experience</strong> — real-world scenarios.</li>
-          <li><strong>Career development</strong> — focused on job-search strategy.</li>
-          <li><strong>Networking opportunities</strong> — connections with industry professionals.</li>
+          <li><strong>Career development</strong> — job-search strategy.</li>
+          <li><strong>Networking</strong> — connections with industry professionals.</li>
         </ul>
       </PageBody>
       <CTABand />

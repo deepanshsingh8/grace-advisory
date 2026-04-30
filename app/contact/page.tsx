@@ -15,7 +15,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Speak to a compliance specialist."
-        lede="Whether you're applying for an AFSL, designing an AML/CTF Program or maintaining ongoing oversight — we'd be glad to hear from you."
+        lede="AFSL applications, AML/CTF Programs, ongoing oversight — we&rsquo;d be glad to hear from you."
       />
       <ContactSection />
     </main>

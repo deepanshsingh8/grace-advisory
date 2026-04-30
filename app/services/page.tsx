@@ -16,7 +16,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="What we do, in detail."
-        lede="A practical menu of engagements — each tailored, each grounded in the regulatory text, each delivered with your commercial interests in mind."
+        lede="A practical menu of engagements — each tailored and grounded in the regulatory text."
       />
       <ServiceGrid />
       <CTABand />

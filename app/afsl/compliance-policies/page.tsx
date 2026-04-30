@@ -16,12 +16,12 @@ export default function PoliciesPage() {
       <PageHero
         eyebrow="AFSL Policies & Procedures"
         title="Manuals built for the way your business actually runs."
-        lede="An AFS licensee has various regulatory compliance obligations. We draft policies that align to the nature, size and complexity of your operations — not boilerplate."
+        lede="AFS licensees carry many compliance obligations. We draft policies that fit your operations — not boilerplate."
       />
       <PageBody>
         <p>
-          Non-compliance with the financial services laws or your AFSL conditions can have
-          serious consequences, including suspension or cancellation of the AFSL.
+          Non-compliance with financial services laws or AFSL conditions can mean suspension
+          or cancellation of the licence.
         </p>
         <h2>When to consider new or updated policies</h2>
         <ul>

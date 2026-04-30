@@ -24,7 +24,7 @@ export function PricingTiers() {
         <SectionHead
           eyebrow="No. I · Retainer Tiers"
           title={<>Compliance, on retainer.</>}
-          lede="Three monthly subscriptions covering ongoing compliance work — picked to match the regulatory load of your business at every stage of growth. All amounts are AUD, excl. GST."
+          lede="Three monthly subscriptions for ongoing compliance — matched to your regulatory load at every stage. AUD, excl. GST."
         />
 
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
@@ -136,10 +136,11 @@ function TierCard({ tier }: { tier: Tier }) {
           ))}
         </ul>
 
-        {/* CTA */}
+        {/* CTA — full-card-width so all three tier buttons match exactly,
+            regardless of label length ("Talk to a partner" vs "Start a conversation"). */}
         <Link
           href="/contact"
-          className={"btn magnetic mt-8 self-start " + (featured ? "btn-primary" : "btn-outline")}
+          className={"btn magnetic mt-8 w-full justify-center " + (featured ? "btn-primary" : "btn-outline")}
         >
           {tier.cta ?? "Start a conversation"}
           <ArrowRight className="arrow" />

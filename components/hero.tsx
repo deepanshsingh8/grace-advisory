@@ -94,9 +94,8 @@ export function Hero() {
               className="font-display italic text-[var(--color-ivory-50)]/80 max-w-[580px] mb-10"
               style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.3rem)", lineHeight: 1.55 }}
             >
-              Tailored AFSL and AML/CTF advisory for Australia&rsquo;s regulated firms — from
-              licence application to ongoing monitoring, calibrated to the nature, size and
-              complexity of your business.
+              Tailored AFSL and AML/CTF advisory — from licence application to ongoing
+              monitoring, scaled to your business.
             </p>
 
             <div className="flex flex-wrap gap-4 items-center">

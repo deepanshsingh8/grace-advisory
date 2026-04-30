@@ -29,8 +29,7 @@ export function Footer() {
               />
             </Link>
             <p className="mt-6 max-w-[340px] font-display italic text-[rgba(251,248,241,0.70)] text-[0.95rem] m-0">
-              Committed, through our words and actions, to ethical conduct and always
-              putting clients&rsquo; interest first.
+              Ethical conduct, clients&rsquo; interests first — in our words and actions.
             </p>
           </div>
 
@@ -56,9 +55,9 @@ export function Footer() {
         <div className="mt-16 pt-7 border-t border-[rgba(255,255,255,0.1)] flex flex-wrap justify-between gap-4 font-sans text-[0.78rem] tracking-[0.06em] text-[rgba(251,248,241,0.55)]">
           <span>© {new Date().getFullYear()} Grace Advisory · ABN {SITE.abn}</span>
           <div className="flex gap-3" aria-label="Social links">
-            <SocialLink href="#" label="LinkedIn"><LinkedInIcon className="w-3.5 h-3.5"/></SocialLink>
-            <SocialLink href="#" label="Facebook"><FacebookIcon className="w-3.5 h-3.5"/></SocialLink>
-            <SocialLink href="#" label="YouTube"><YouTubeIcon className="w-3.5 h-3.5"/></SocialLink>
+            <SocialLink href="https://www.linkedin.com/company/grace-advisory" label="LinkedIn"><LinkedInIcon className="w-3.5 h-3.5"/></SocialLink>
+            <SocialLink href="https://www.facebook.com/graceadvisory" label="Facebook"><FacebookIcon className="w-3.5 h-3.5"/></SocialLink>
+            <SocialLink href="https://www.youtube.com/@graceadvisory" label="YouTube"><YouTubeIcon className="w-3.5 h-3.5"/></SocialLink>
           </div>
         </div>
       </div>

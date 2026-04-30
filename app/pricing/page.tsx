@@ -64,7 +64,7 @@ export default function PricingPage() {
       <PageHero
         eyebrow="Pricing"
         title={<>Transparent fees, by retainer<br/>and by project.</>}
-        lede="No hourly bills, no surprises. Three subscription tiers for ongoing compliance work, and fixed-fee ranges for the major one-off engagements. All amounts are AUD, exclusive of GST."
+        lede="No hourly bills. Three subscription tiers for ongoing work; fixed-fee ranges for one-off engagements. AUD, excl. GST."
       />
       <PricingTiers />
       <ProjectPricing />

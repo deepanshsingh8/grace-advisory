@@ -17,14 +17,14 @@ export default function AfslPage() {
       <PageHero
         eyebrow="Pillar I"
         title="AFSL Compliance."
-        lede="For organisations providing financial products and services in Australia. From the application itself through to the responsible-manager framework, policies, monitoring and external review."
+        lede="For firms providing financial products and services in Australia — from application through to the responsible-manager framework, policies, monitoring and external review."
         image={IMG.pillar_afsl}
         imageAlt="Pen on document — the substance of an AFSL application."
       />
       <PageBody>
         <p>
-          Organisations that wish to provide financial products and services in Australia are
-          generally required to have an Australian Financial Services Licence (AFSL).
+          Firms providing financial products and services in Australia generally require an
+          Australian Financial Services Licence (AFSL).
         </p>
 
         <h2>Policies and procedures drafting</h2>

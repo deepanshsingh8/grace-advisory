@@ -16,12 +16,12 @@ export default function AfslApplicationPage() {
       <PageHero
         eyebrow="AFSL Application"
         title="From scoping to grant — and beyond."
-        lede="We assist licensees through every step of the AFSL application process — and remain alongside them as the post-grant obligations come into effect."
+        lede="We support licensees through every step of the application — and stay alongside as post-grant obligations kick in."
       />
       <PageBody>
         <p>
-          Organisations that wish to provide financial products and services in Australia are
-          generally required to obtain an Australian Financial Services Licence (AFSL).
+          Firms providing financial products and services in Australia generally need an
+          Australian Financial Services Licence (AFSL).
         </p>
 
         <h2>1. The application process — how we can assist</h2>

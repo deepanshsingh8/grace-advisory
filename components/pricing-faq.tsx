@@ -18,7 +18,7 @@ export function PricingFAQ() {
         <SectionHead
           eyebrow="No. III · Frequently asked"
           title={<>The questions we<br/>are most often asked.</>}
-          lede="Plain-language answers on engagement structure, billing and what's covered. Anything else — just ask."
+          lede="Plain-language answers on structure, billing and scope. Anything else — just ask."
         />
 
         <div className="reveal max-w-[820px] mx-auto border-t border-[var(--color-line)]">

@@ -27,9 +27,8 @@ export default function IndependentReviewPage() {
         </p>
         <h2>Part B review</h2>
         <p>
-          Covers customer identification and verification. The review can examine secondary
-          policies including customer onboarding manuals, application forms and related
-          procedures to identify inconsistencies.
+          Covers customer identification and verification — and may examine secondary policies
+          (onboarding manuals, application forms, related procedures) to identify inconsistencies.
         </p>
       </PageBody>
       <CTABand />

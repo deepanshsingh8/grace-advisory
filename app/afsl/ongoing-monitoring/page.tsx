@@ -20,9 +20,8 @@ export default function OngoingMonitoringPage() {
       />
       <PageBody>
         <p>
-          We can replace your in-house compliance function or supplement an existing team —
-          ideal for businesses without resources for dedicated compliance staff, or those
-          needing extra capacity during peak workload.
+          Replace your in-house compliance function or supplement an existing team — ideal when
+          dedicated staff aren&rsquo;t viable, or when you need peak-load capacity.
         </p>
         <h2>Examples of ongoing support</h2>
         <ul>

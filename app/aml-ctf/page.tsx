@@ -17,12 +17,12 @@ export default function AmlCtfPage() {
       <PageHero
         eyebrow="Pillar II"
         title="AML/CTF Compliance."
-        lede="The Australian AML/CTF regime is risk-based at heart. We translate that principle into programs that work in practice — from AUSTRAC enrolment through to the independent review."
+        lede="Australia&rsquo;s AML/CTF regime is risk-based. We turn that principle into programs that work in practice — from AUSTRAC enrolment to independent review."
         image={IMG.pillar_aml}
         imageAlt="Signing a contract — the formality of compliance, made tractable."
       />
       <PageBody>
-        <p>AUSTRAC is the administrator of the AML/CTF regime and the Financial Intelligence Unit (FIU) in Australia.</p>
+        <p>AUSTRAC administers the AML/CTF regime and serves as Australia&rsquo;s Financial Intelligence Unit (FIU).</p>
 
         <h2>Key obligations for reporting entities</h2>
         <ul>

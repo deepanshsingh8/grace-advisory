@@ -12,11 +12,11 @@ interface Service {
 }
 
 const SERVICES: Service[] = [
-  { num: "01.", title: "AFSL Application", body: "Assistance in obtaining an Australian Financial Services Licence — proof documents, RM selection, ASIC liaison.", href: "/afsl/application", Icon: HexCheck },
-  { num: "02.", title: "Credit Licence Applications", body: "End-to-end support to obtain an Australian Credit Licence, including responsible-lending obligations.", href: "/services", Icon: HexLines },
-  { num: "03.", title: "Compliance Services", body: "Ongoing compliance monitoring to ensure your business meets its regulatory obligations as it grows.", href: "/afsl/ongoing-monitoring", Icon: HexCircle },
+  { num: "01.", title: "AFSL Application", body: "Australian Financial Services Licence — proof documents, RM selection, ASIC liaison.", href: "/afsl/application", Icon: HexCheck },
+  { num: "02.", title: "Credit Licence Applications", body: "End-to-end support for an Australian Credit Licence, including responsible-lending.", href: "/services", Icon: HexLines },
+  { num: "03.", title: "Compliance Services", body: "Ongoing monitoring so your business stays on top of its regulatory obligations as it grows.", href: "/afsl/ongoing-monitoring", Icon: HexCircle },
   { num: "04.", title: "AML/CTF", body: "Programs, ongoing compliance, AUSTRAC registration and independent reviews — Part A and Part B.", href: "/aml-ctf", Icon: HexShield },
-  { num: "05.", title: "Legal Services", body: "General corporate and commercial legal services that complement your compliance framework.", href: "/services", Icon: HexDoc },
+  { num: "05.", title: "Legal Services", body: "Corporate and commercial legal support to complement your compliance framework.", href: "/services", Icon: HexDoc },
   { num: "06.", title: "AUSTRAC Registration", body: "For remittance providers and crypto exchanges — registration, program development and AUSTRAC liaison.", href: "/aml-ctf/austrac-registration", Icon: HexBadge },
 ];
 
@@ -36,7 +36,7 @@ export function ServiceGrid() {
         <SectionHead
           eyebrow="No. III · Engagements"
           title={<>What we do<br/>to serve you best.</>}
-          lede="A practical menu of engagements. Each tailored, each grounded in the regulatory text — and each delivered with your commercial interests in mind."
+          lede="A practical menu of engagements — each tailored and grounded in the regulatory text."
         />
 
         <div className="reveal reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-[var(--color-line)]">
