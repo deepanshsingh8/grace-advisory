@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 /**
@@ -9,35 +10,51 @@ import { useEffect } from "react";
  *   • Cursor spotlight on .has-spotlight cards → sets --cx, --cy locally
  *   • Magnetic CTAs   → translates .magnetic elements toward the cursor
  *   • Custom dot cursor (gold)
- *   • Scroll reveal observer
+ *   • Scroll reveal observer (re-binds on route change)
  *
  * Gracefully degrades for prefers-reduced-motion and touch devices.
  */
 export function InteractiveLayer() {
+  const pathname = usePathname();
+
+  /* ── Reveal observer — re-runs on every route change ─────────────
+     Critical: client-side navigation does NOT remount the layout, so
+     a route-change effect must re-bind the IntersectionObserver to
+     elements on the new page. Without this, .reveal elements on any
+     non-initial page stay at opacity:0 forever. */
+  useEffect(() => {
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!("IntersectionObserver" in window) || reduce) {
+      document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => el.classList.add("in"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.06 }
+    );
+    // Defer one frame so newly-rendered route content is in the DOM.
+    const id = requestAnimationFrame(() => {
+      document.querySelectorAll(".reveal:not(.in), .reveal-stagger:not(.in)").forEach((el) => io.observe(el));
+    });
+    return () => {
+      cancelAnimationFrame(id);
+      io.disconnect();
+    };
+  }, [pathname]);
+
+  /* ── Pointer-driven layer — set up once at mount ────────────────── */
   useEffect(() => {
     const root = document.documentElement;
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isTouch = matchMedia("(hover: none)").matches || matchMedia("(pointer: coarse)").matches;
     const cleanups: (() => void)[] = [];
-
-    /* ── Reveal on scroll ─────────────────────────────────────────── */
-    if (!("IntersectionObserver" in window) || reduce) {
-      document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => el.classList.add("in"));
-    } else {
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("in");
-              io.unobserve(entry.target);
-            }
-          });
-        },
-        { rootMargin: "0px 0px -8% 0px", threshold: 0.06 }
-      );
-      document.querySelectorAll(".reveal, .reveal-stagger").forEach((el) => io.observe(el));
-      cleanups.push(() => io.disconnect());
-    }
 
     if (reduce) return () => cleanups.forEach((c) => c());
 
@@ -86,27 +103,28 @@ export function InteractiveLayer() {
     document.addEventListener("mousemove", onCardMove, { passive: true });
     cleanups.push(() => document.removeEventListener("mousemove", onCardMove));
 
-    /* ── Magnetic CTAs ───────────────────────────────────────────── */
+    /* ── Magnetic CTAs (delegated, so it survives client-side navigation) ── */
     if (!isTouch) {
       const strength = 14;
-      const handlers = new WeakMap<HTMLElement, { mv: (e: MouseEvent) => void; ml: () => void }>();
-      document.querySelectorAll<HTMLElement>(".magnetic").forEach((btn) => {
-        const mv = (e: MouseEvent) => {
+      let active: HTMLElement | null = null;
+      const onMagneticMove = (e: MouseEvent) => {
+        const btn = (e.target as HTMLElement | null)?.closest<HTMLElement>(".magnetic") ?? null;
+        if (btn) {
+          if (active && active !== btn) active.style.transform = "";
+          active = btn;
           const r = btn.getBoundingClientRect();
           const dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
           const dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
           btn.style.transform = `translate3d(${(dx * strength).toFixed(1)}px, ${(dy * strength).toFixed(1)}px, 0)`;
-        };
-        const ml = () => { btn.style.transform = ""; };
-        btn.addEventListener("mousemove", mv);
-        btn.addEventListener("mouseleave", ml);
-        handlers.set(btn, { mv, ml });
-      });
+        } else if (active) {
+          active.style.transform = "";
+          active = null;
+        }
+      };
+      document.addEventListener("mousemove", onMagneticMove, { passive: true });
       cleanups.push(() => {
-        document.querySelectorAll<HTMLElement>(".magnetic").forEach((btn) => {
-          const h = handlers.get(btn);
-          if (h) { btn.removeEventListener("mousemove", h.mv); btn.removeEventListener("mouseleave", h.ml); }
-        });
+        document.removeEventListener("mousemove", onMagneticMove);
+        if (active) active.style.transform = "";
       });
     }
 
