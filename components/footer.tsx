@@ -16,7 +16,7 @@ export function Footer() {
         }}
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.2fr_1fr_1fr_1fr] gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] gap-12">
           <div>
             <Link href="/" aria-label="Grace Advisory home" className="inline-flex">
               <Image
@@ -36,6 +36,7 @@ export function Footer() {
 
           <FootCol heading="AFSL" items={NAV.AFSL} />
           <FootCol heading="AML/CTF" items={NAV.AML} />
+          <FootCol heading="Engage" items={NAV.ENGAGE} />
 
           <div>
             <h4 className="font-sans font-bold text-[0.72rem] tracking-[0.22em] uppercase text-[var(--color-gold-200)] mb-4">Contact</h4>

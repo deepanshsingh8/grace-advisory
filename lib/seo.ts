@@ -85,6 +85,12 @@ export const NAV = {
     { label: "Our Partners", href: "/our-partners" },
     { label: "Graduate Training", href: "/graduate-training" },
   ],
+  ENGAGE: [
+    { label: "Retainer Tiers", href: "/pricing#tiers" },
+    { label: "Project Engagements", href: "/pricing#projects" },
+    { label: "Insights", href: "/blog" },
+    { label: "Contact", href: "/contact" },
+  ],
 } as const;
 
 export const SITE = {
@@ -97,3 +103,18 @@ export const SITE = {
   },
   abn: "89 661 414 197",
 };
+
+/* ─── Mail routing ────────────────────────────────────────────────────
+   Contact form submissions are delivered to BOTH addresses.
+   To change recipients, edit this list (or override at runtime by
+   passing `to` to sendMail()). */
+export const CONTACT_RECIPIENTS = [
+  "Raj@graceadvisory.com.au",
+  "Info@graceadvisory.com.au",
+] as const;
+
+/** From-address used when MAIL_FROM env is not set. Defaults to a real
+ *  monitored mailbox (info@) since that's what's actually provisioned;
+ *  swap to noreply@ via the MAIL_FROM env var if/when that mailbox exists. */
+export const MAIL_FROM_DEFAULT = "info@graceadvisory.com.au";
+export const MAIL_FROM_NAME = "Grace Advisory";

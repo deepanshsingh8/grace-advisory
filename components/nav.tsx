@@ -63,6 +63,7 @@ export function Nav() {
             <NavMenu label="AFSL" items={NAV.AFSL} />
             <NavMenu label="AML/CTF" items={NAV.AML} />
             <NavMenu label="About" items={NAV.ABOUT} />
+            <Link href="/pricing" className="nav-link-flat">Pricing</Link>
             <Link href="/blog" className="nav-link-flat">Insights</Link>
           </nav>
 
@@ -226,6 +227,7 @@ function MobileSheet({ open, onClose }: { open: boolean; onClose: () => void }) 
             <MobileSection title="AFSL" items={NAV.AFSL} onClose={onClose} />
             <MobileSection title="AML/CTF" items={NAV.AML} onClose={onClose} />
             <MobileSection title="About" items={NAV.ABOUT} onClose={onClose} />
+            <MobileSection title="Pricing" items={[{ label: "Retainers & Projects", href: "/pricing" }]} onClose={onClose} />
             <MobileSection title="Insights" items={[{ label: "Blog", href: "/blog" }]} onClose={onClose} />
           </nav>
 

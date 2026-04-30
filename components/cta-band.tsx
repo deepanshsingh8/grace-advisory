@@ -46,7 +46,7 @@ export function CTABand() {
             </h2>
           </div>
           <div className="flex flex-col gap-4 md:items-end">
-            <Link href={`mailto:${SITE.email}`} className="btn btn-primary magnetic">
+            <Link href="/contact" className="btn btn-primary magnetic">
               Book a consultation
               <ArrowRight className="arrow" />
             </Link>

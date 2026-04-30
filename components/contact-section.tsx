@@ -1,25 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { ArrowRight } from "@/components/icons";
 import { SITE } from "@/lib/seo";
+import { submitContact, type ContactState } from "@/app/actions/contact";
+
+const INITIAL: ContactState = { status: "idle" };
 
 /**
  * Contact section — split: brand-tinted detail panel on the left,
- * editorial form on the right. The form is currently a no-op (logs);
- * wire to Resend / SendGrid via a server action when SMTP creds land.
+ * editorial form on the right. Uses a Next.js server action so the form
+ * works without JS; with JS it gets pending state, inline validation
+ * messages and an in-place success notice.
  */
 export function ContactSection() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "ok">("idle");
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("submitting");
-    const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    // TODO: wire to /api/contact (server action) when mail provider is set
-    console.log("[contact]", data);
-    setTimeout(() => setStatus("ok"), 600);
-  }
+  const [state, formAction] = useActionState(submitContact, INITIAL);
 
   return (
     <section className="relative bg-[var(--color-ivory-50)]">
@@ -55,26 +51,18 @@ export function ContactSection() {
                 Let&rsquo;s connect.
               </h2>
               <dl className="space-y-5">
-                <div>
-                  <dt className="font-display italic text-[rgba(251,248,241,0.6)] text-sm">Phone</dt>
-                  <dd className="m-0 mt-1 font-sans font-bold tracking-[0.04em] text-lg">
-                    <a href={`tel:${SITE.phoneTel}`} className="hover:text-[var(--color-gold-200)] transition-colors">{SITE.phone}</a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-display italic text-[rgba(251,248,241,0.6)] text-sm">Email</dt>
-                  <dd className="m-0 mt-1 font-display italic text-lg">
-                    <a href={`mailto:${SITE.email}`} className="hover:text-[var(--color-gold-200)] transition-colors">{SITE.email}</a>
-                  </dd>
-                </div>
-                <div>
-                  <dt className="font-display italic text-[rgba(251,248,241,0.6)] text-sm">Address</dt>
-                  <dd className="m-0 mt-1 font-display italic text-lg">{SITE.address.line1}<br/>{SITE.address.line2}</dd>
-                </div>
-                <div>
-                  <dt className="font-display italic text-[rgba(251,248,241,0.6)] text-sm">ABN</dt>
-                  <dd className="m-0 mt-1 font-sans tracking-[0.06em] text-base">{SITE.abn}</dd>
-                </div>
+                <Item label="Phone">
+                  <a href={`tel:${SITE.phoneTel}`} className="hover:text-[var(--color-gold-200)] transition-colors font-sans font-bold tracking-[0.04em]">{SITE.phone}</a>
+                </Item>
+                <Item label="Email">
+                  <a href={`mailto:${SITE.email}`} className="hover:text-[var(--color-gold-200)] transition-colors font-display italic">{SITE.email}</a>
+                </Item>
+                <Item label="Address">
+                  <span className="font-display italic">{SITE.address.line1}<br/>{SITE.address.line2}</span>
+                </Item>
+                <Item label="ABN">
+                  <span className="font-sans tracking-[0.06em]">{SITE.abn}</span>
+                </Item>
               </dl>
             </div>
           </aside>
@@ -87,27 +75,44 @@ export function ContactSection() {
               Tell us about your engagement.
             </h3>
 
-            {status === "ok" ? (
-              <div className="border border-[var(--color-gold-300)] bg-[var(--color-gold-50)] p-6 font-display italic text-[var(--color-navy-900)]">
-                Thank you. We&rsquo;ll be in touch shortly.
+            {state.status === "ok" ? (
+              <div className="border border-[var(--color-gold-300)] bg-[var(--color-gold-50)] p-7">
+                <div className="eyebrow no-rule mb-2">Message sent</div>
+                <p className="font-display italic text-[var(--color-navy-900)] m-0 text-[1.1rem]">
+                  {state.message}
+                </p>
               </div>
             ) : (
-              <form onSubmit={onSubmit} className="space-y-5">
-                <Field label="Full name" name="name" required />
+              <form action={formAction} className="space-y-5" noValidate>
+                {/* Honeypot — hidden from sighted users + screen readers */}
+                <input
+                  type="text"
+                  name="company_website"
+                  autoComplete="off"
+                  tabIndex={-1}
+                  aria-hidden="true"
+                  className="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
+                />
+
+                <Field label="Full name" name="name" error={state.errors?.name} required />
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <Field label="Email" name="email" type="email" required />
-                  <Field label="Phone" name="phone" type="tel" />
+                  <Field label="Email" name="email" type="email" error={state.errors?.email} required />
+                  <Field label="Phone" name="phone" type="tel" error={state.errors?.phone} />
                 </div>
-                <Field label="Subject" name="subject" />
-                <Field label="Your message" name="message" textarea required />
-                <button
-                  type="submit"
-                  disabled={status === "submitting"}
-                  className="btn btn-primary magnetic disabled:opacity-60"
-                >
-                  {status === "submitting" ? "Sending…" : "Send message"}
-                  <ArrowRight className="arrow" />
-                </button>
+                <Field label="Subject" name="subject" error={state.errors?.subject} />
+                <Field label="Your message" name="message" textarea error={state.errors?.message} required />
+
+                {state.status === "error" && state.message && (
+                  <div role="alert" className="border-l-2 border-[var(--color-gold-500)] bg-[var(--color-ivory-100)] px-4 py-3 text-[var(--color-ink-900)] text-[0.95rem] font-display italic">
+                    {state.message}
+                  </div>
+                )}
+
+                <SubmitButton />
+
+                <p className="text-[0.78rem] text-[var(--color-ink-600)] font-sans m-0">
+                  Your message is sent directly to our team — replies come from a real person, not an autoresponder.
+                </p>
               </form>
             )}
           </div>
@@ -117,22 +122,81 @@ export function ContactSection() {
   );
 }
 
+/* ─── Field ──────────────────────────────────────────────────────────── */
+
 function Field({
-  label, name, type = "text", required, textarea,
-}: { label: string; name: string; type?: string; required?: boolean; textarea?: boolean }) {
+  label, name, type = "text", required, textarea, error,
+}: { label: string; name: string; type?: string; required?: boolean; textarea?: boolean; error?: string }) {
+  const id = `field-${name}`;
+  const errorId = `${id}-error`;
+
   const base =
-    "w-full px-4 py-3.5 bg-[var(--color-ivory-50)] border border-[var(--color-line)] " +
+    "w-full px-4 py-3.5 bg-[var(--color-ivory-50)] border " +
     "font-sans text-[var(--color-ink-900)] placeholder:text-[var(--color-ink-600)] " +
     "focus:outline-none focus:border-[var(--color-navy-700)] focus:shadow-[0_0_0_3px_rgba(230,182,55,0.25)] " +
-    "transition-[border-color,box-shadow] duration-200";
+    "transition-[border-color,box-shadow] duration-200 " +
+    (error ? "border-[var(--color-gold-600)]" : "border-[var(--color-line)]");
+
   return (
-    <label className="block">
-      <span className="block font-sans text-[0.7rem] tracking-[0.18em] uppercase text-[var(--color-ink-600)] font-bold mb-2">{label}{required && <span className="text-[var(--color-gold-600)] ml-1">*</span>}</span>
-      {textarea ? (
-        <textarea name={name} required={required} rows={5} className={base} />
-      ) : (
-        <input name={name} type={type} required={required} className={base} />
+    <div>
+      <label htmlFor={id} className="block">
+        <span className="block font-sans text-[0.7rem] tracking-[0.18em] uppercase text-[var(--color-ink-600)] font-bold mb-2">
+          {label}
+          {required && <span className="text-[var(--color-gold-600)] ml-1" aria-hidden>*</span>}
+          {required && <span className="sr-only"> (required)</span>}
+        </span>
+        {textarea ? (
+          <textarea
+            id={id}
+            name={name}
+            required={required}
+            rows={5}
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? errorId : undefined}
+            className={base}
+          />
+        ) : (
+          <input
+            id={id}
+            name={name}
+            type={type}
+            required={required}
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? errorId : undefined}
+            className={base}
+          />
+        )}
+      </label>
+      {error && (
+        <p id={errorId} className="mt-2 text-[0.82rem] font-display italic text-[var(--color-gold-700)]">{error}</p>
       )}
-    </label>
+    </div>
+  );
+}
+
+/* ─── Submit ─────────────────────────────────────────────────────────── */
+
+function SubmitButton() {
+  const { pending } = useFormStatus();
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className="btn btn-primary magnetic disabled:opacity-60 disabled:cursor-wait"
+    >
+      {pending ? "Sending…" : "Send message"}
+      {!pending && <ArrowRight className="arrow" />}
+    </button>
+  );
+}
+
+/* ─── DL row helper for the contact panel ──────────────────────────── */
+
+function Item({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div>
+      <dt className="font-display italic text-[rgba(251,248,241,0.6)] text-sm">{label}</dt>
+      <dd className="m-0 mt-1 text-lg">{children}</dd>
+    </div>
   );
 }
