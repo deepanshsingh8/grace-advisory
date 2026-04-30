@@ -35,7 +35,7 @@ export function CTABand() {
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr] items-end gap-12"
              style={{ paddingBlock: "clamp(72px, 9vw, 128px)" }}>
           <div>
-            <span className="eyebrow on-dark">No. VII · Get in touch</span>
+            <span className="eyebrow on-dark">No. VIII · Get in touch</span>
             <h2
               className="font-display font-medium leading-[1.05] tracking-[-0.012em] mt-6 max-w-[720px] m-0"
               style={{ fontSize: "clamp(2rem, 4.2vw, 3.4rem)" }}

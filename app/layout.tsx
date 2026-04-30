@@ -104,8 +104,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU" className={`${ebGaramond.variable} ${lato.variable}`}>
       <body>
+        {/* Skip-to-content for keyboard users — visible only on focus */}
+        <a
+          href="#main"
+          className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-3 focus-visible:left-3 focus-visible:z-[100]
+                     focus-visible:px-4 focus-visible:py-2 focus-visible:bg-[var(--color-navy-900)] focus-visible:text-[var(--color-ivory-50)]
+                     focus-visible:font-sans focus-visible:font-bold focus-visible:text-sm focus-visible:tracking-[0.14em] focus-visible:uppercase
+                     focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-gold-500)] focus-visible:outline-offset-2"
+        >
+          Skip to content
+        </a>
         <Nav />
-        {children}
+        <div id="main" tabIndex={-1} className="outline-none">{children}</div>
         <Footer />
         <InteractiveLayer />
         <Script

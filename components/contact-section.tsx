@@ -94,13 +94,13 @@ export function ContactSection() {
                   className="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
                 />
 
-                <Field label="Full name" name="name" error={state.errors?.name} required />
+                <Field label="Full name" name="name" autoComplete="name" error={state.errors?.name} required />
                 <div className="grid sm:grid-cols-2 gap-5">
-                  <Field label="Email" name="email" type="email" error={state.errors?.email} required />
-                  <Field label="Phone" name="phone" type="tel" error={state.errors?.phone} />
+                  <Field label="Email" name="email" type="email" autoComplete="email" inputMode="email" error={state.errors?.email} required />
+                  <Field label="Phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" error={state.errors?.phone} />
                 </div>
-                <Field label="Subject" name="subject" error={state.errors?.subject} />
-                <Field label="Your message" name="message" textarea error={state.errors?.message} required />
+                <Field label="Subject" name="subject" autoComplete="off" error={state.errors?.subject} />
+                <Field label="Your message" name="message" textarea autoComplete="off" error={state.errors?.message} required />
 
                 {state.status === "error" && state.message && (
                   <div role="alert" className="border-l-2 border-[var(--color-gold-500)] bg-[var(--color-ivory-100)] px-4 py-3 text-[var(--color-ink-900)] text-[0.95rem] font-display italic">
@@ -125,8 +125,17 @@ export function ContactSection() {
 /* ─── Field ──────────────────────────────────────────────────────────── */
 
 function Field({
-  label, name, type = "text", required, textarea, error,
-}: { label: string; name: string; type?: string; required?: boolean; textarea?: boolean; error?: string }) {
+  label, name, type = "text", required, textarea, error, autoComplete, inputMode,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  textarea?: boolean;
+  error?: string;
+  autoComplete?: string;
+  inputMode?: "text" | "email" | "tel" | "url" | "numeric" | "decimal" | "search" | "none";
+}) {
   const id = `field-${name}`;
   const errorId = `${id}-error`;
 
@@ -151,12 +160,15 @@ function Field({
             name={name}
             required={required}
             rows={5}
+            autoComplete={autoComplete}
             aria-invalid={Boolean(error)}
             aria-describedby={error ? errorId : undefined}
             className={base}
           />
         ) : (
           <input
+            autoComplete={autoComplete}
+            inputMode={inputMode}
             id={id}
             name={name}
             type={type}
