@@ -59,7 +59,7 @@ export const siteSchema = {
       "@type": "Person",
       "@id": "https://graceadvisory.com.au/#raj-kumar",
       name: "Raj Kumar",
-      jobTitle: "Founder & Chief Executive Officer",
+      jobTitle: "Founder & Managing Director",
       worksFor: { "@id": "https://graceadvisory.com.au/#organization" },
       image: "https://graceadvisory.com.au/brand/raj-kumar.jpg",
       sameAs: ["https://au.linkedin.com/in/raj-kumar-0a5a3170"],

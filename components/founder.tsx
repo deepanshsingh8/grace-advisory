@@ -23,7 +23,7 @@ const RECOGNITION: { year: string; body: string }[] = [
 ];
 
 /**
- * Founder / CEO profile section.
+ * Founder / Managing Director profile section.
  *
  * Editorial split — large framed portrait on the left, name + credentials
  * + recognition on the right. Mirrors the WhiteLight About-page treatment,
@@ -112,7 +112,7 @@ export function Founder({ noHead = false }: FounderProps) {
             </h3>
             <p className="font-sans font-bold tracking-[0.16em] uppercase text-[var(--color-gold-700)] mt-3 mb-7"
                style={{ fontSize: "0.78rem" }}>
-              Chief Executive Officer · Grace Advisory
+              Managing Director · Grace Advisory
             </p>
 
             {/* Pull quote */}
