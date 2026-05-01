@@ -11,7 +11,6 @@ import { InteractiveLayer } from "@/components/interactive-layer";
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
   variable: "--font-eb-garamond",
   display: "swap",
 });
@@ -24,7 +23,7 @@ const lato = Lato({
 });
 
 export const viewport: Viewport = {
-  themeColor: "#141B3C",
+  themeColor: "#0B1230",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

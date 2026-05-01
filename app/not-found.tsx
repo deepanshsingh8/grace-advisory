@@ -40,11 +40,11 @@ export default function NotFound() {
           className="font-display font-medium leading-[1.05] tracking-[-0.012em] mt-5 text-[var(--color-navy-900)]"
           style={{ fontSize: "clamp(2.4rem, 5.4vw, 4.4rem)" }}
         >
-          This page is <em className="not-italic font-normal italic text-[var(--color-gold-600)]">out of scope.</em>
+          This page is <span className="text-[var(--color-gold-600)]">out of scope.</span>
         </h1>
         <p
-          className="font-display italic text-[var(--color-ink-700)] mt-6 mx-auto max-w-[58ch]"
-          style={{ fontSize: "clamp(1.05rem, 1.5vw, 1.2rem)", lineHeight: 1.6 }}
+          className="font-sans text-[var(--color-ink-700)] mt-6 mx-auto max-w-[58ch]"
+          style={{ fontSize: "clamp(1rem, 1.25vw, 1.15rem)", lineHeight: 1.65 }}
         >
           The page you&rsquo;re looking for either moved, was renamed, or never existed.
           Try one of the routes below — or get in touch and we&rsquo;ll point you in the right direction.

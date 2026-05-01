@@ -61,13 +61,13 @@ export function PageBody({ children }: { children: React.ReactNode }) {
         .prose-grace ol li::marker { color: var(--color-gold-600); font-family: var(--font-display); font-weight: 600; }
         .prose-grace blockquote {
           font-family: var(--font-display);
-          font-style: italic;
-          font-size: 1.25rem;
-          line-height: 1.5;
+          font-weight: 500;
+          font-size: 1.2rem;
+          line-height: 1.55;
           color: var(--color-navy-900);
           border-left: 2px solid var(--color-gold-500);
           padding-left: 1.4em;
-          margin: 2em 0;
+          margin: 1.8em 0;
         }
       `}</style>
     </section>

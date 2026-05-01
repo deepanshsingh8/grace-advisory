@@ -171,7 +171,7 @@ function NavMenu({
                   role="menuitem"
                   className="group flex items-center justify-between gap-4 px-5 py-3 text-[0.92rem] text-[var(--color-ink-900)] hover:bg-[var(--color-ivory-100)] transition-colors"
                 >
-                  <span className="font-display">{item.label}</span>
+                  <span className="font-sans">{item.label}</span>
                   <ArrowRight className="h-3.5 w-3.5 text-[var(--color-gold-600)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                 </Link>
               </li>
@@ -236,8 +236,8 @@ function MobileSheet({ open, onClose }: { open: boolean; onClose: () => void }) 
               Book a consultation
               <ArrowRight className="arrow" />
             </Link>
-            <a href={`tel:${SITE.phoneTel}`} className="block text-sm text-[var(--color-ink-700)] font-display italic">
-              Or call <strong className="not-italic font-sans tracking-wider text-[var(--color-navy-900)] ml-1">{SITE.phone}</strong>
+            <a href={`tel:${SITE.phoneTel}`} className="block text-[0.78rem] tracking-[0.18em] uppercase font-sans font-bold text-[var(--color-ink-600)]">
+              Or call <strong className="font-sans tracking-[0.04em] text-[var(--color-navy-900)] ml-1 normal-case text-[0.95rem]">{SITE.phone}</strong>
             </a>
           </div>
         </div>
@@ -264,7 +264,7 @@ function MobileSection({
             <Link
               href={item.href}
               onClick={onClose}
-              className="block py-2 text-[1.05rem] font-display text-[var(--color-ink-900)] hover:text-[var(--color-navy-700)] transition-colors"
+              className="block py-2 text-[1rem] font-sans text-[var(--color-ink-900)] hover:text-[var(--color-navy-700)] transition-colors"
             >
               {item.label}
             </Link>

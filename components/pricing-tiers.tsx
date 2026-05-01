@@ -10,7 +10,7 @@ import { TIERS, type Tier } from "@/lib/pricing";
  */
 export function PricingTiers() {
   return (
-    <section id="tiers" className="relative py-[clamp(72px,10vw,144px)] bg-warm-mesh scroll-mt-24">
+    <section id="tiers" className="relative py-[clamp(56px,7vw,96px)] bg-warm-mesh scroll-mt-24">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -33,7 +33,7 @@ export function PricingTiers() {
           ))}
         </div>
 
-        <p className="reveal mt-10 text-center font-display italic text-[var(--color-ink-600)] text-[0.95rem]">
+        <p className="reveal mt-10 text-center font-sans text-[var(--color-ink-600)] text-[0.95rem]">
           All retainers are 12-month engagements.
           Need something bespoke? <Link href="/contact" className="text-[var(--color-navy-700)] border-b border-[var(--color-gold-500)] hover:text-[var(--color-gold-600)] transition-colors">Speak to a partner</Link>.
         </p>
@@ -89,14 +89,14 @@ function TierCard({ tier }: { tier: Tier }) {
         >
           {tier.name}
         </h3>
-        <p className={"mt-3 font-display italic leading-[1.5] " + (featured ? "text-[rgba(251,248,241,0.78)]" : "text-[var(--color-ink-700)]")}>
+        <p className={"mt-3 font-sans leading-[1.55] text-[1rem] " + (featured ? "text-[rgba(251,248,241,0.78)]" : "text-[var(--color-ink-700)]")}>
           {tier.tagline}
         </p>
 
         {/* Price block */}
         <div className={"mt-7 pt-6 border-t " + (featured ? "border-[rgba(255,255,255,0.15)]" : "border-[var(--color-line)]")}>
           <div className="flex items-baseline gap-2">
-            <span className={"font-display italic text-[0.9rem] " + (featured ? "text-[rgba(251,248,241,0.55)]" : "text-[var(--color-ink-400)]")}>from</span>
+            <span className={"font-sans font-bold tracking-[0.18em] uppercase text-[0.7rem] " + (featured ? "text-[rgba(241,203,107,0.7)]" : "text-[var(--color-gold-700)]")}>from</span>
             <span
               className={"font-display font-medium tracking-[-0.02em] " + (featured ? "text-[var(--color-gold-200)]" : "text-[var(--color-navy-900)]")}
               style={{ fontSize: "clamp(2.6rem, 4.4vw, 3.4rem)", lineHeight: 1 }}

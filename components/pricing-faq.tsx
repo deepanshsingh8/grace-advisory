@@ -13,7 +13,7 @@ export function PricingFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="relative py-[clamp(72px,10vw,144px)] bg-cream-mesh">
+    <section className="relative py-[clamp(56px,7vw,96px)] bg-cream-mesh">
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
           eyebrow="No. III · Frequently asked"
@@ -58,7 +58,7 @@ export function PricingFAQ() {
                   }
                 >
                   <div className="overflow-hidden">
-                    <p className="pb-7 lg:pb-8 max-w-[640px] text-[var(--color-ink-700)] text-[1rem] leading-[1.7] m-0 font-display italic">
+                    <p className="pb-7 lg:pb-8 max-w-[640px] text-[var(--color-ink-700)] text-[1rem] leading-[1.7] m-0 font-sans">
                       {faq.a}
                     </p>
                   </div>

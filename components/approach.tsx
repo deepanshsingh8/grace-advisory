@@ -10,7 +10,7 @@ const PILLARS = [
 
 export function Approach() {
   return (
-    <section id="approach" className="relative py-[clamp(72px,10vw,144px)] bg-[var(--color-ivory-100)]">
+    <section id="approach" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-100)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -22,7 +22,7 @@ export function Approach() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. V · Why Grace"
+          eyebrow="No. VI · Why Grace"
           title={<>A boutique discipline,<br/>at every stage of compliance.</>}
           lede="Three principles shape every engagement — precision over volume, partnership over transaction."
         />
@@ -80,9 +80,9 @@ export function Approach() {
                 <div key={p.title} className="p-8 lg:p-10 relative group">
                   {/* Numeral badge */}
                   <div className="flex items-baseline gap-4 mb-3">
-                    <span className="font-display italic text-[var(--color-gold-600)] text-[1.05rem] leading-none">{p.num}</span>
-                    <h3 className="font-display font-medium leading-[1.1] tracking-[-0.008em] m-0 flex-1"
-                        style={{ fontSize: "clamp(1.4rem, 2vw, 1.85rem)" }}>{p.title}</h3>
+                    <span className="font-sans font-bold text-[var(--color-gold-700)] text-[0.7rem] tracking-[0.18em] uppercase leading-none">{p.num}</span>
+                    <h3 className="font-display font-medium leading-[1.1] tracking-[-0.008em] m-0 flex-1 text-[var(--color-navy-900)]"
+                        style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.7rem)" }}>{p.title}</h3>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden
                          className="w-5 h-5 text-[var(--color-gold-500)] opacity-30 group-hover:opacity-100 transition-opacity duration-500 shrink-0">
                       <path d="M12 2 L21 7 V17 L12 22 L3 17 V7 Z" stroke="currentColor" strokeWidth="1.4" />
@@ -98,7 +98,7 @@ export function Approach() {
         {/* Pull quote */}
         <figure className="reveal mt-[clamp(48px,8vw,96px)] text-center max-w-[880px] mx-auto">
           <blockquote
-            className="font-display italic font-normal leading-[1.4] tracking-[-0.005em] text-[var(--color-navy-900)] m-0"
+            className="font-display font-medium leading-[1.3] tracking-[-0.008em] text-[var(--color-navy-900)] m-0"
             style={{ fontSize: "clamp(1.35rem, 2.4vw, 2.1rem)" }}
           >
             <span className="text-[var(--color-gold-500)] mr-1">“</span>

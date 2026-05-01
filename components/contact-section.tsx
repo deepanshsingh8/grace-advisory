@@ -29,7 +29,7 @@ export function ContactSection() {
         }}
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12"
-           style={{ paddingBlock: "clamp(56px, 7vw, 112px)" }}>
+           style={{ paddingBlock: "clamp(48px, 6vw, 88px)" }}>
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-0 border border-[var(--color-line)] bg-[var(--color-ivory-50)]">
           {/* Detail panel */}
           <aside className="relative bg-[var(--color-navy-900)] text-[var(--color-ivory-50)] p-10 sm:p-12 overflow-hidden">
@@ -55,10 +55,10 @@ export function ContactSection() {
                   <a href={`tel:${SITE.phoneTel}`} className="hover:text-[var(--color-gold-200)] transition-colors font-sans font-bold tracking-[0.04em]">{SITE.phone}</a>
                 </Item>
                 <Item label="Email">
-                  <a href={`mailto:${SITE.email}`} className="hover:text-[var(--color-gold-200)] transition-colors font-display italic">{SITE.email}</a>
+                  <a href={`mailto:${SITE.email}`} className="hover:text-[var(--color-gold-200)] transition-colors font-sans">{SITE.email}</a>
                 </Item>
                 <Item label="Address">
-                  <span className="font-display italic">{SITE.address.line1}<br/>{SITE.address.line2}</span>
+                  <span className="font-sans leading-[1.6]">{SITE.address.line1}<br/>{SITE.address.line2}</span>
                 </Item>
                 <Item label="ABN">
                   <span className="font-sans tracking-[0.06em]">{SITE.abn}</span>
@@ -78,7 +78,7 @@ export function ContactSection() {
             {state.status === "ok" ? (
               <div className="border border-[var(--color-gold-300)] bg-[var(--color-gold-50)] p-7">
                 <div className="eyebrow no-rule mb-2">Message sent</div>
-                <p className="font-display italic text-[var(--color-navy-900)] m-0 text-[1.1rem]">
+                <p className="font-sans text-[var(--color-navy-900)] m-0 text-[1.05rem] leading-[1.6]">
                   {state.message}
                 </p>
               </div>
@@ -103,7 +103,7 @@ export function ContactSection() {
                 <Field label="Your message" name="message" textarea autoComplete="off" error={state.errors?.message} required />
 
                 {state.status === "error" && state.message && (
-                  <div role="alert" className="border-l-2 border-[var(--color-gold-500)] bg-[var(--color-ivory-100)] px-4 py-3 text-[var(--color-ink-900)] text-[0.95rem] font-display italic">
+                  <div role="alert" className="border-l-2 border-[var(--color-gold-500)] bg-[var(--color-ivory-100)] px-4 py-3 text-[var(--color-ink-900)] text-[0.95rem] font-sans">
                     {state.message}
                   </div>
                 )}
@@ -180,7 +180,7 @@ function Field({
         )}
       </label>
       {error && (
-        <p id={errorId} className="mt-2 text-[0.82rem] font-display italic text-[var(--color-gold-700)]">{error}</p>
+        <p id={errorId} className="mt-2 text-[0.82rem] font-sans text-[var(--color-gold-700)]">{error}</p>
       )}
     </div>
   );
@@ -207,7 +207,7 @@ function SubmitButton() {
 function Item({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <dt className="font-display italic text-[rgba(251,248,241,0.6)] text-sm">{label}</dt>
+      <dt className="font-sans font-bold tracking-[0.18em] uppercase text-[var(--color-gold-300)] text-[0.7rem]">{label}</dt>
       <dd className="m-0 mt-1 text-lg">{children}</dd>
     </div>
   );

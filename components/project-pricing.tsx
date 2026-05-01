@@ -10,7 +10,7 @@ import { PROJECTS, type Project } from "@/lib/pricing";
  */
 export function ProjectPricing() {
   return (
-    <section id="projects" className="relative py-[clamp(72px,10vw,144px)] bg-[var(--color-ivory-50)] scroll-mt-24">
+    <section id="projects" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)] scroll-mt-24">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -65,7 +65,7 @@ function ProjectRow({ project: p }: { project: Project }) {
 
       {/* Middle — fee range */}
       <div className="md:text-right md:min-w-[200px]">
-        <div className="font-display italic text-[0.78rem] text-[var(--color-ink-400)] hidden md:block">range</div>
+        <div className="font-sans font-bold tracking-[0.18em] uppercase text-[0.66rem] text-[var(--color-ink-600)] hidden md:block">Range</div>
         <div className="mt-0.5 font-display font-medium tracking-[-0.005em] text-[var(--color-navy-900)] tabular-nums"
              style={{ fontSize: "clamp(1.1rem, 1.5vw, 1.3rem)" }}>
           ${p.from.toLocaleString("en-AU")}{p.to ? ` – $${p.to.toLocaleString("en-AU")}` : "+"}
@@ -75,7 +75,7 @@ function ProjectRow({ project: p }: { project: Project }) {
       {/* Right — timeline + arrow (desktop) */}
       <div className="hidden md:flex items-center gap-5 md:min-w-[200px] justify-end">
         <div className="text-right">
-          <div className="font-display italic text-[0.78rem] text-[var(--color-ink-400)]">typical timeline</div>
+          <div className="font-sans font-bold tracking-[0.18em] uppercase text-[0.66rem] text-[var(--color-ink-600)]">Timeline</div>
           <div className="mt-0.5 font-sans font-bold text-[0.78rem] tracking-[0.14em] uppercase text-[var(--color-navy-700)]">{p.timeline}</div>
         </div>
         <ArrowRight className="w-4 h-4 text-[var(--color-gold-600)] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />

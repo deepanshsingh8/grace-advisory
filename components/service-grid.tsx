@@ -22,7 +22,7 @@ const SERVICES: Service[] = [
 
 export function ServiceGrid() {
   return (
-    <section id="services" className="relative py-[clamp(72px,10vw,144px)] bg-[var(--color-ivory-50)]">
+    <section id="services" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -34,7 +34,7 @@ export function ServiceGrid() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. III · Engagements"
+          eyebrow="No. IV · Engagements"
           title={<>What we do<br/>to serve you best.</>}
           lede="A practical menu of engagements — each tailored and grounded in the regulatory text."
         />
@@ -43,12 +43,12 @@ export function ServiceGrid() {
           {SERVICES.map((s) => (
             <article
               key={s.title}
-              className="has-spotlight relative bg-[var(--color-ivory-50)] hover:bg-[var(--color-ivory-100)] transition-colors duration-500 border-r border-b border-[var(--color-line)] p-9"
+              className="has-spotlight relative bg-[var(--color-ivory-50)] hover:bg-[var(--color-ivory-100)] transition-colors duration-500 border-r border-b border-[var(--color-line)] p-7 lg:p-8"
             >
-              <div className="font-display italic text-[0.82rem] text-[var(--color-ink-400)] mb-4">{s.num}</div>
-              <s.Icon className="w-11 h-11 text-[var(--color-gold-500)] mb-6" />
-              <h3 className="font-display font-semibold leading-[1.2] mb-2.5"
-                  style={{ fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)" }}>
+              <div className="font-sans font-bold tracking-[0.18em] uppercase text-[0.7rem] text-[var(--color-gold-700)] mb-3">{s.num}</div>
+              <s.Icon className="w-10 h-10 text-[var(--color-gold-500)] mb-5" />
+              <h3 className="font-display font-semibold leading-[1.2] mb-2.5 text-[var(--color-navy-900)]"
+                  style={{ fontSize: "clamp(1.2rem, 1.5vw, 1.45rem)" }}>
                 {s.title}
               </h3>
               <p className="text-[0.95rem] leading-[1.6] text-[var(--color-ink-700)] m-0 mb-6">{s.body}</p>

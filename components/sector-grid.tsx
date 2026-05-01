@@ -22,10 +22,10 @@ const SECTORS: Sector[] = [
 
 export function SectorGrid() {
   return (
-    <section id="sectors" className="relative py-[clamp(72px,10vw,144px)] bg-cream-mesh">
+    <section id="sectors" className="relative py-[clamp(56px,7vw,96px)] bg-cream-mesh">
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. IV · Reporting Entities"
+          eyebrow="No. V · Reporting Entities"
           title={<>Qualified to consult for<br/>Phase 1 &amp; 2 entities.</>}
           lede="From financial services and law to real estate and virtual assets — we work across every sector captured by Australia's AML/CTF regime."
         />
@@ -41,11 +41,11 @@ export function SectorGrid() {
               {/* Top row: illustration + Roman numeral */}
               <div className="flex items-start justify-between mb-5">
                 <s.Ill className="text-[var(--color-gold-500)] transition-transform duration-700 group-hover:rotate-[6deg]" />
-                <span className="font-display italic text-[0.9rem] text-[var(--color-ink-400)]">{s.num}.</span>
+                <span className="font-sans font-bold tracking-[0.18em] uppercase text-[0.7rem] text-[var(--color-gold-700)]">{s.num}</span>
               </div>
               <h3 className="font-display font-semibold tracking-[-0.005em] mb-2 m-0 text-[var(--color-navy-900)]"
-                  style={{ fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)" }}>{s.name}</h3>
-              <p className="font-display italic text-[var(--color-ink-700)] text-[0.95rem] leading-[1.6] m-0">{s.body}</p>
+                  style={{ fontSize: "clamp(1.2rem, 1.5vw, 1.4rem)" }}>{s.name}</h3>
+              <p className="font-sans text-[var(--color-ink-700)] text-[0.95rem] leading-[1.6] m-0">{s.body}</p>
 
               {/* Subtle hairline corner accent on hover */}
               <div

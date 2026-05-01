@@ -44,7 +44,7 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative py-[clamp(72px,10vw,144px)] bg-[var(--color-ivory-50)] overflow-hidden"
+      className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)] overflow-hidden"
     >
       {/* Background atmosphere */}
       <div
@@ -71,7 +71,7 @@ export function Process() {
 
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. VI · The Engagement"
+          eyebrow="No. VIII · The Engagement"
           title={<>How we work,<br/>step by step.</>}
           lede="Five stages from first call to ongoing support — clearly scoped, fixed-fee, and senior-led throughout."
         />

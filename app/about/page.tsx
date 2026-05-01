@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { CTABand } from "@/components/cta-band";
+import { Founder } from "@/components/founder";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
+import { Results } from "@/components/results";
 import { IMG } from "@/lib/imagery";
 
 export const metadata: Metadata = {
@@ -48,6 +50,9 @@ export default function AboutPage() {
           layer. We measure success by the longevity of our client relationships.
         </p>
       </PageBody>
+
+      <Founder noHead />
+      <Results />
 
       <CTABand />
     </main>

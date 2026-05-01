@@ -25,6 +25,10 @@ export const IMG = {
   insight_tranche2: u("1556761175-b413da4baf72", 1200),  // architecture
   insight_afsl:     u("1454165804606-c3d57bc86b40", 1200), // pen on document
   insight_reforms:  u("1551836022-deb4988cc6c0", 1200),  // building
+
+  // Founder portrait — drop the LinkedIn-sourced image at this path
+  // (public/brand/raj-kumar.jpg). Falls back to a placeholder if absent.
+  founder_portrait: "/brand/raj-kumar.jpg",
 } as const;
 
 export type ImgKey = keyof typeof IMG;

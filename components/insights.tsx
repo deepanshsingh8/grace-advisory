@@ -43,7 +43,7 @@ const POSTS: Post[] = [
 
 export function Insights() {
   return (
-    <section id="insights" className="relative py-[clamp(72px,10vw,144px)] bg-[var(--color-ivory-50)]">
+    <section id="insights" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -55,7 +55,7 @@ export function Insights() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. VII · From the Practice"
+          eyebrow="No. IX · From the Practice"
           title={<>Notes on the regulation<br/>that shapes your business.</>}
           lede="Plain-English commentary on the rules you actually have to follow."
         />

@@ -22,8 +22,8 @@ export function Marquee() {
         {[...ITEMS, ...ITEMS].map((item, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-6 whitespace-nowrap font-display italic text-[var(--color-ink-700)]"
-            style={{ fontSize: "clamp(1.05rem, 1.6vw, 1.4rem)" }}
+            className="inline-flex items-center gap-6 whitespace-nowrap font-sans font-bold tracking-[0.16em] uppercase text-[var(--color-navy-700)]"
+            style={{ fontSize: "clamp(0.78rem, 1vw, 0.92rem)" }}
           >
             {item}
             <span className="w-1.5 h-1.5 bg-[var(--color-gold-500)] rotate-45 shrink-0" />

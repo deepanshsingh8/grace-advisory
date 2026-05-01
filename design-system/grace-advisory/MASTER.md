@@ -7,210 +7,145 @@
 ---
 
 **Project:** Grace Advisory
-**Generated:** 2026-04-30 13:07:15
+**Updated:** 2026-05-01
 **Category:** Consulting Firm
+**Voice:** Trust & Authority — Modern Royal Professional
 
 ---
 
 ## Global Rules
 
-### Color Palette — Brand-Anchored
+### Color Palette — Refreshed (deeper navy · richer gold · cooler ivory)
 
-Sampled from the Grace Advisory logo (deep indigo-navy "G" wordmark + warm goldenrod hexagon frame). Logo art lives at `brand/grace-advisory-logo.png` (drop the file there before building).
+The palette was rebalanced May 2026 to reduce reliance on cream and push gold + deep navy as the dominant brand signals. Cream surfaces were reading "dull" against a navy/gold logo; the new tokens cool the page surface and let gold sing.
 
 | Role | Hex | Tailwind Token | Usage |
 |------|-----|----------------|-------|
-| **Brand Navy (Primary)** | `#1E2A56` | `navy-700` | Wordmark color, headings, primary buttons, footer bg, hero base |
-| Navy Deep | `#141B3C` | `navy-900` | Footer background, dark hero overlay, body text on light bg |
-| Navy Soft | `#2E3A6B` | `navy-600` | Secondary surfaces, hover states on dark bg |
-| **Brand Gold (CTA/Accent)** | `#E6B637` | `gold-500` | Hexagon frame, CTAs, accent rules, badge backgrounds, key icons |
-| Gold Deep | `#C99A1F` | `gold-600` | CTA hover, deep accent (icons on light bg) |
-| Gold Soft | `#F4D27A` | `gold-300` | Subtle highlights, gradient stops, hover wash |
-| Ivory (Background) | `#FBF8F1` | `ivory-50` | Section backgrounds — warmer than pure slate, complements gold |
-| Cloud (Surface) | `#F4F1E8` | `ivory-100` | Cards, alt-section bg |
-| Charcoal (Body Text) | `#1A1F33` | `ink-900` | Body copy on light backgrounds |
-| Slate (Muted Text) | `#4A5170` | `ink-600` | Secondary text, captions, labels |
-| Hairline (Borders) | `#E5E0CF` | `line-200` | Dividers, input borders, subtle frames |
+| **Brand Navy (Primary)** | `#182148` | `navy-700` | Wordmark colour, headings on dark, primary buttons text, footer/banner gradient mid-stop |
+| Navy Deep | `#0B1230` | `navy-900` | Banner gradient base, body text on light bg |
+| Navy Black | `#060920` | `navy-950` | Hero gradient deep stop |
+| Navy Soft | `#2A3460` | `navy-500` | Secondary surfaces, hover states on dark bg |
+| **Brand Gold (CTA/Accent)** | `#D29A1A` | `gold-500` | Hexagon frame, CTAs, accent rules, badge backgrounds, key icons |
+| Gold Deep | `#B58013` | `gold-600` | CTA hover, accent on light bg |
+| Gold Bright | `#E8B947` | `gold-300` | Inline highlight in headlines, hex glyph fills, gradient stops |
+| Gold Pale | `#F1CB6B` | `gold-200` | On-dark eyebrows, soft highlights |
+| Ivory (Background) | `#FAFAF6` | `ivory-50` | Default page background — cooler, lighter than the old cream |
+| Cloud (Surface) | `#F3F2EC` | `ivory-100` | Alt-section bg, cards on warm surfaces |
+| Charcoal (Body Text) | `#0F1430` | `ink-900` | Body copy on light backgrounds |
+| Slate (Muted Text) | `#404663` | `ink-600` | Secondary text, captions, labels |
+| Hairline (Borders) | `#E1DDCF` | `line-200` | Dividers, input borders |
 
-**Color Notes:** Brand-true navy + goldenrod sampled from logo. Warmer and richer than generic slate/yellow-600. The ivory background (vs pure slate-50) is intentional — it gives the gold room to breathe and reads "royal" rather than "tech-startup."
+**Atmosphere classes (use on sections):**
+- `.bg-warm-mesh` — light, gold-washed page surface for editorial sections
+- `.bg-cream-mesh` — alternate light surface for tonal variation
+- `.bg-ink-mesh` — full navy section base
+- `.bg-navy-banner` — the canonical Hero / PageHero / CTABand background (deepest navy + strong gold sweep top-right + bottom gold rule)
 
-**Gradients permitted:**
-- `bg-gradient-to-b from-navy-900 via-navy-700 to-navy-900` (hero)
-- `bg-gradient-to-r from-gold-500 to-gold-300` (accent rules, hexagon glows)
-- Subtle radial gold-300/10 wash behind hero copy
-
-**Forbidden:** Purple/pink gradients, neon, slate-only palette (loses the brand warmth).
+**Forbidden:** Purple/pink gradients, neon, mid-tone navy (#1E2A56 — the old shade). The new navy is closer to `#0B1230 → #182148`.
 
 ### Typography
 
-- **Display / Headings:** **EB Garamond** (400, 500, 600, 700) — refined serif for H1–H3; carries the "royal/authoritative" register without feeling stuffy.
-- **Body / UI:** **Lato** (300, 400, 700) — clean humanist sans, very legible at small sizes.
-- **Eyebrow / Wordmark accents:** Use Lato 700 in **uppercase + tracking-[0.2em]** — mirrors the logo wordmark's chunky condensed feel without licensing a custom face. (If we later license Oswald or a similar condensed sans for hero display, the system can absorb it as a third family.)
+- **Display / Headings:** **EB Garamond** (400, 500, 600, 700) — UPRIGHT ONLY. Reserved for H1, H2, H3, page-hero titles, blockquotes.
+- **Body / UI / leads / captions / numerals:** **Lato** (300, 400, 700, 900). Anything that is not a heading is Lato.
+- **Eyebrows / labels / metadata:** Lato 700 in **uppercase + tracking-[0.18em–0.22em]**, in `gold-700` on light or `gold-300/200` on dark.
 
-**Google Fonts CSS Import:**
-```css
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap');
-```
-
-**Tailwind config:**
-```js
-fontFamily: {
-  serif: ['"EB Garamond"', 'serif'],
-  sans:  ['Lato', 'system-ui', 'sans-serif'],
-}
-```
+**❌ NO ITALIC ANYWHERE.** Italic was used previously as a "voice" device on leads, footnotes, sector cards, FAQ answers, etc. — it read as decorative blog/editorial and weakened the authority signal. All emphasis now uses:
+- `text-[var(--color-gold-300)]` — colour highlight inside a heading
+- `<strong>` — semantic emphasis in body copy
+- Eyebrows (uppercase Lato bold) — for metadata
+- Serif weight 600 — for sub-headings inside cards
 
 **Type scale (mobile → desktop):**
 
 | Token | Mobile | Desktop | Use |
 |-------|--------|---------|-----|
-| display | 40 / 1.05 | 72 / 1.0  | Hero H1 (serif, 500) |
-| h1      | 32 / 1.1  | 56 / 1.05 | Page H1 (serif, 500) |
-| h2      | 26 / 1.15 | 40 / 1.1  | Section heading (serif, 500) |
-| h3      | 22 / 1.2  | 28 / 1.2  | Sub-heading (serif, 600) |
-| eyebrow | 12 / 1.4  | 13 / 1.4  | UPPER, tracking-[0.2em], gold-500 |
-| body-lg | 18 / 1.6  | 19 / 1.65 | Lead paragraphs |
-| body    | 16 / 1.65 | 16 / 1.7  | Default copy |
+| display | 38 / 1.04 | 76 / 1.04 | Hero H1 (serif, 500) |
+| h1      | 35 / 1.06 | 60 / 1.06 | Page H1 (serif, 500) |
+| h2      | 30 / 1.06 | 48 / 1.06 | Section H2 (serif, 500) |
+| h3      | 22 / 1.2  | 26 / 1.2  | Sub-heading (serif, 600) |
+| eyebrow | 12 / 1.4  | 13 / 1.4  | UPPER, tracking-[0.18em], gold-700 (light) / gold-200 (dark) |
+| body-lg | 16 / 1.65 | 19 / 1.65 | Lead paragraphs |
+| body    | 16 / 1.65 | 16 / 1.7  | Default copy (Lato 400) |
 | body-sm | 14 / 1.55 | 14 / 1.55 | Captions, labels |
 
-### Spacing Variables
+### Spacing — Tightened (May 2026)
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `--space-xs` | `4px` / `0.25rem` | Tight gaps |
-| `--space-sm` | `8px` / `0.5rem` | Icon gaps, inline spacing |
-| `--space-md` | `16px` / `1rem` | Standard padding |
-| `--space-lg` | `24px` / `1.5rem` | Section padding |
-| `--space-xl` | `32px` / `2rem` | Large gaps |
-| `--space-2xl` | `48px` / `3rem` | Section margins |
-| `--space-3xl` | `64px` / `4rem` | Hero padding |
+The previous tokens used `clamp(72px, 10vw, 144px)` for every section, leaving visible "marketing splash" gaps between content. The new scale is denser without feeling cramped — appropriate for a content-rich consultancy site.
+
+| Token / utility | Value | Usage |
+|-----------------|-------|-------|
+| `.section-pad-sm` | `clamp(40px, 5vw, 72px)` | Tight band sections (trust strips, marquees) |
+| `.section-pad`    | `clamp(56px, 6.5vw, 96px)` | **Default** for content sections |
+| `.section-pad-lg` | `clamp(72px, 8vw, 112px)` | Reserved for the longest editorial sections |
+| Hero paddingBlock | `clamp(72px, 9vw, 116px) / clamp(60px, 7vw, 88px)` | Top / bottom |
+| PageHero paddingBlock | `clamp(72px, 8.5vw, 112px) / clamp(40px, 5vw, 64px)` | Top / bottom |
+| CTABand paddingBlock | `clamp(56px, 7vw, 96px)` | |
+| SectionHead margin-bottom | `mb-9 md:mb-14` | (was `mb-12 md:mb-20`) |
+| Card padding | `p-7 lg:p-8` for service cards, `p-8 lg:p-10` for pillar/tier cards | |
+
+### Banners
+
+All three banner components share the **`.bg-navy-banner`** class for consistency:
+
+- **Hero (`components/hero.tsx`)** — full hero: deep navy gradient `#060920 → #111939 → #0B1230`, top-right gold radial sweep at 0.34 opacity, paper grain overlay at 25% opacity, parallax hex pattern in gold @ 0.16 opacity, **bottom gold rule** at 0.85 opacity for visual anchor.
+- **PageHero (`components/page-hero.tsx`)** — compact version of Hero for inner pages. Same banner background. Heading + sans-serif lede + optional split image with gold corner triangle.
+- **CTABand (`components/cta-band.tsx`)** — the footer-band navy banner. Same gradient + hex pattern, same gold rule. Strong gold sweep top-right.
+
+Each banner uses `.banner-rule-top` + a manually placed bottom rule (~2px gold gradient) so the section is bookended by gold and feels intentional.
+
+### Eyebrows + Roman numerals
+
+The Roman numeral / "No. X" prefix on every section title was dropped from CTABand and de-emphasised across the site. The `.roman` utility was redefined from "italic serif" to **uppercase bold Lato in gold-700** so it reads as a label, not a decoration.
 
 ### Shadow Depths
 
 | Level | Value | Usage |
 |-------|-------|-------|
 | `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.05)` | Subtle lift |
-| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.1)` | Cards, buttons |
-| `--shadow-lg` | `0 10px 15px rgba(0,0,0,0.1)` | Modals, dropdowns |
-| `--shadow-xl` | `0 20px 25px rgba(0,0,0,0.15)` | Hero images, featured cards |
+| `--shadow-md` | `0 4px 6px rgba(0,0,0,0.08)` | Cards, buttons |
+| `--shadow-lg` | `0 14px 28px -10px rgba(11,18,48,0.18)` | Hover-lifted cards |
+| `--shadow-xl` | `0 24px 60px -20px rgba(11,18,48,0.30)` | Featured / hero panels |
 
 ---
 
 ## Component Specs
 
-### Buttons
+### Buttons (unchanged in shape, refreshed in colour)
 
 ```css
-/* Primary — gold, filled. Use for "Book a consultation" everywhere. */
 .btn-primary {
-  background: #E6B637;       /* gold-500 */
-  color: #141B3C;            /* navy-900 — gold needs dark text for contrast */
-  padding: 14px 28px;
-  border-radius: 6px;        /* slightly tighter radius reads more "professional" than 12px */
-  font-family: Lato, sans-serif;
+  background: #D29A1A;       /* gold-500 */
+  color: #0B1230;            /* navy-900 — gold needs deep text */
+  padding: 14px 26px;
+  border-radius: 2px;        /* tight, formal */
+  font-family: Lato;
   font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: background 200ms ease, transform 200ms ease, box-shadow 200ms ease;
-  cursor: pointer;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
-.btn-primary:hover { background: #C99A1F; box-shadow: 0 6px 18px rgba(230, 182, 55, 0.35); }
-.btn-primary:focus-visible { outline: 2px solid #1E2A56; outline-offset: 3px; }
+.btn-primary:hover { background: #B58013; box-shadow: 0 12px 32px -10px rgba(210,154,26,0.55); }
 
-/* Secondary — navy outline on light bg */
-.btn-secondary {
+.btn-outline {
   background: transparent;
-  color: #1E2A56;            /* navy-700 */
-  border: 1.5px solid #1E2A56;
-  padding: 12.5px 26.5px;
-  border-radius: 6px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: all 200ms ease;
-  cursor: pointer;
+  color: #182148;
+  border: 1.5px solid #182148;
 }
-.btn-secondary:hover { background: #1E2A56; color: #FBF8F1; }
-
-/* Ghost — for tertiary links (e.g. "Read more →") */
-.btn-ghost {
-  color: #1E2A56;
-  font-weight: 600;
-  border-bottom: 1.5px solid transparent;
-  transition: border-color 200ms ease;
-}
-.btn-ghost:hover { border-color: #E6B637; }
+.btn-outline:hover { background: #182148; color: #FAFAF6; }
 ```
 
 ### Cards
 
 ```css
-/* Service / sector card — light surface */
 .card {
-  background: #FBF8F1;                   /* ivory-50 */
-  border: 1px solid #E5E0CF;             /* line-200 hairline */
-  border-top: 3px solid #E6B637;         /* gold accent rule on top */
-  border-radius: 4px;                    /* tight, formal radius */
+  background: #FAFAF6;
+  border: 1px solid #E1DDCF;
+  border-top: 3px solid #D29A1A; /* gold accent rule */
   padding: 28px;
-  box-shadow: 0 1px 2px rgba(20, 27, 60, 0.04);
-  transition: box-shadow 220ms ease, border-color 220ms ease;
-  cursor: pointer;
+  border-radius: 4px;
 }
 .card:hover {
-  box-shadow: 0 14px 32px -12px rgba(20, 27, 60, 0.18);
-  border-color: #C99A1F;
-}
-
-/* Pillar card — used for AFSL vs AML twin pillars on home */
-.card-pillar {
-  background: linear-gradient(180deg, #FBF8F1 0%, #F4F1E8 100%);
-  border: 1px solid #E5E0CF;
-  padding: 40px;
-  border-radius: 4px;
-  position: relative;
-}
-.card-pillar::before {                    /* hexagon corner mark */
-  content: ""; position: absolute; top: -1px; right: -1px;
-  width: 56px; height: 56px;
-  background: url("/brand/hex-gold.svg") no-repeat center / contain;
-  opacity: 0.9;
-}
-```
-
-### Inputs
-
-```css
-.input {
-  padding: 14px 16px;
-  background: #FBF8F1;
-  border: 1px solid #E5E0CF;
-  border-radius: 4px;
-  font-family: Lato, sans-serif;
-  font-size: 16px;
-  color: #1A1F33;
-  transition: border-color 200ms ease, box-shadow 200ms ease;
-}
-.input:focus {
-  border-color: #1E2A56;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(230, 182, 55, 0.25);  /* gold focus ring */
-}
-.input::placeholder { color: #4A5170; opacity: 0.7; }
-```
-
-### Modals
-
-```css
-.modal-overlay {
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-}
-
-.modal {
-  background: white;
-  border-radius: 16px;
-  padding: 32px;
-  box-shadow: var(--shadow-xl);
-  max-width: 500px;
-  width: 90%;
+  box-shadow: 0 14px 32px -12px rgba(11,18,48,0.18);
+  border-color: #B58013;
 }
 ```
 
@@ -222,84 +157,57 @@ fontFamily: {
 
 **Voice:** Confident, precise, regulator-aware. Short sentences. Avoid jargon-soup; explain in plain English then add the regulatory term. Never breathless or salesy.
 
-**Keywords:** Certificates/badges displayed, expert credentials, regulatory references (RG 105, AUSTRAC, AML/CTF Act), sector chips, sober metrics.
-
 **Best For:** Financial services, legal services, enterprise compliance.
 
 **Key Effects:**
-- Hexagon mark (lifted from logo) used as a recurring motif: bullet glyphs, badge frames, divider ornaments, section anchors.
+- Hexagon mark (lifted from logo) used as recurring motif: bullet glyphs, badge frames, divider ornaments, section anchors.
 - Slow gold underline draw on hover for primary nav.
-- Metric counter "tick-up" on scroll into view (respect `prefers-reduced-motion`).
-- Soft gold glow behind hero headline.
+- Gold rule across the bottom of every dark banner.
 - Card lift on hover via shadow only (no scale — avoids layout shift).
-
-### Hexagon Motif (Brand Signature)
-
-Lift directly from the logo. Use as:
-- Bullet glyphs in service lists (small filled gold hex, 8px).
-- Frames around small KPI numbers and certifications.
-- A subtle outlined hex pattern (5–8% opacity, navy on ivory) as a hero background texture.
-- Section dividers: a single centred hex with a hairline rule extending each side.
-
-SVG snippet (24×24 viewBox, regular hex):
-```svg
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M12 2 L21 7 V17 L12 22 L3 17 V7 Z" stroke="currentColor" stroke-width="1.5"/>
-</svg>
-```
 
 ### Page Pattern
 
-**Pattern Name:** Trust & Authority — extended for a multi-service consultancy
-
 **Default section order (Home):**
-1. Hero with brand-anchored navy gradient + gold glow + primary CTA "Book a consultation"
-2. Trust strip (regulators referenced: ASIC · AUSTRAC · AFCA · FATF) — sober logo/word row, no fake client logos
-3. Twin pillars: AFSL Compliance | AML/CTF Compliance — two large cards, each links to parent service page
-4. Six-service grid ("What We Do to Service Your Best") with hex bullet
-5. Sectors served (six chips with the existing site's sector copy) — Phase 1 & 2 reporting entities
-6. Process / Why Grace (3 pillars: Deep Expertise · End-to-End · Boutique Trust)
-7. Latest insights (3 blog cards)
-8. Final CTA band (navy, gold CTA): "Speak to a compliance specialist"
-9. Footer (navy-900, gold accent rule, hex motif)
-
-**Section order (service pages):** Page hero → Overview paragraph → Sub-sections (deep dive lists) → Adjacent services → CTA band.
-
-**CTA hierarchy:**
-- Primary CTA: filled gold button with navy text — "Book a consultation"
-- Secondary CTA: navy outline / ghost button — "Read our approach"
-- Phone link visible in header on desktop, sticky bottom-bar on mobile.
+1. **Hero** — `.bg-navy-banner` with strong gold sweep + credentials grid
+2. **Marquee** — practice areas in uppercase Lato, gold hex separator
+3. **Trust strip** — regulator references (ASIC · AUSTRAC · AFCA · FATF)
+4. **Twin pillars** — AFSL / AML/CTF cards
+5. **Service grid** — six-card grid with hex bullets
+6. **Sectors served** — six chips
+7. **Approach** — three principles + framed image + pull quote
+8. **Process** — five-step horizontal timeline
+9. **Insights** — three blog cards
+10. **CTA Band** — `.bg-navy-banner` final call to action
+11. **Footer** — navy-900 with gold rule top + gold-300 column headings
 
 ---
 
 ## Anti-Patterns (Do NOT Use)
 
-- ❌ Generic content
-- ❌ No credentials
-- ❌ AI purple/pink gradients
-
-### Additional Forbidden Patterns
-
-- ❌ **Emojis as icons** — Use SVG icons (Heroicons, Lucide, Simple Icons)
-- ❌ **Missing cursor:pointer** — All clickable elements must have cursor:pointer
-- ❌ **Layout-shifting hovers** — Avoid scale transforms that shift layout
-- ❌ **Low contrast text** — Maintain 4.5:1 minimum contrast ratio
-- ❌ **Instant state changes** — Always use transitions (150-300ms)
-- ❌ **Invisible focus states** — Focus states must be visible for a11y
+- ❌ **Italic anywhere** (was the dominant anti-pattern; ALL italics removed May 2026)
+- ❌ **Cream-heavy backgrounds** (we now alternate cooler ivory + navy banners)
+- ❌ Generic content / no credentials / AI purple-pink gradients
+- ❌ Emojis as icons — Use SVG icons (Heroicons, Lucide)
+- ❌ Missing cursor:pointer on clickable elements
+- ❌ Layout-shifting hovers (avoid scale transforms)
+- ❌ Low contrast text (4.5:1 minimum)
+- ❌ Instant state changes (always use 150–300ms transitions)
+- ❌ Invisible focus states
+- ❌ Section padding above `clamp(56px, 7vw, 96px)` unless content explicitly needs the breathing room
 
 ---
 
 ## Pre-Delivery Checklist
 
-Before delivering any UI code, verify:
-
-- [ ] No emojis used as icons (use SVG instead)
-- [ ] All icons from consistent icon set (Heroicons/Lucide)
-- [ ] `cursor-pointer` on all clickable elements
-- [ ] Hover states with smooth transitions (150-300ms)
+- [ ] No italic classes anywhere (`font-display italic`, `italic`, `style="font-style: italic"`)
+- [ ] Headings use upright EB Garamond, body uses Lato
+- [ ] All section paddings ≤ `clamp(56px, 7vw, 96px)` unless justified
+- [ ] All clickable elements have `cursor-pointer`
+- [ ] Hover states with smooth transitions (150–300ms)
 - [ ] Light mode: text contrast 4.5:1 minimum
 - [ ] Focus states visible for keyboard navigation
 - [ ] `prefers-reduced-motion` respected
-- [ ] Responsive: 375px, 768px, 1024px, 1440px
+- [ ] Responsive at 375px, 768px, 1024px, 1440px
 - [ ] No content hidden behind fixed navbars
-- [ ] No horizontal scroll on mobile
+- [ ] Banners (Hero/PageHero/CTABand) all use `.bg-navy-banner`
+- [ ] Eyebrows are uppercase Lato 700 (gold-700 on light, gold-300 on dark)

@@ -7,42 +7,45 @@
 
 @theme {
   /* ── Colour scales (brand-anchored to logo) ───────────────────────────── */
-  --color-navy-50:  #E7EAF4;
-  --color-navy-100: #C7CEE5;
-  --color-navy-200: #9AA4CC;
-  --color-navy-300: #6E7BB2;
-  --color-navy-400: #4A578F;
-  --color-navy-500: #2E3A6B;
-  --color-navy-600: #243057;
-  --color-navy-700: #1E2A56;
-  --color-navy-800: #182146;
-  --color-navy-900: #141B3C;
-  --color-navy-950: #0B0F25;
+  /* Navy — deepened for richer authority; was #1E2A56 / #141B3C */
+  --color-navy-50:  #E5E8F2;
+  --color-navy-100: #C2C8DF;
+  --color-navy-200: #95A0C2;
+  --color-navy-300: #6975A4;
+  --color-navy-400: #455183;
+  --color-navy-500: #2A3460;
+  --color-navy-600: #1F2850;
+  --color-navy-700: #182148;
+  --color-navy-800: #111939;
+  --color-navy-900: #0B1230;
+  --color-navy-950: #060920;
 
-  --color-gold-50:  #FBF4DA;
-  --color-gold-100: #F8EAB6;
-  --color-gold-200: #F4D27A;
-  --color-gold-300: #F0C152;
-  --color-gold-400: #E6B637;
-  --color-gold-500: #E6B637;
-  --color-gold-600: #C99A1F;
-  --color-gold-700: #A07816;
-  --color-gold-800: #735611;
-  --color-gold-900: #4A360A;
+  /* Gold — slightly richer/warmer; the brand's CTA + accent colour */
+  --color-gold-50:  #FBEFCC;
+  --color-gold-100: #F8E2A1;
+  --color-gold-200: #F1CB6B;
+  --color-gold-300: #E8B947;
+  --color-gold-400: #DAA82C;
+  --color-gold-500: #D29A1A;
+  --color-gold-600: #B58013;
+  --color-gold-700: #8E640F;
+  --color-gold-800: #6A4B0B;
+  --color-gold-900: #443006;
 
-  --color-ivory-50:  #FBF8F1;
-  --color-ivory-100: #F4F1E8;
-  --color-ivory-200: #EBE6D2;
-  --color-ivory-300: #DDD4B5;
+  /* Page surfaces — cooler, lighter than the old cream ivory */
+  --color-ivory-50:  #FAFAF6;
+  --color-ivory-100: #F3F2EC;
+  --color-ivory-200: #E8E6DA;
+  --color-ivory-300: #D4D0BC;
 
-  --color-ink-400:  #8C92AB;
-  --color-ink-500:  #6F7591;
-  --color-ink-600:  #4A5170;
-  --color-ink-700:  #313752;
-  --color-ink-900:  #1A1F33;
+  --color-ink-400:  #7E849E;
+  --color-ink-500:  #5F657F;
+  --color-ink-600:  #404663;
+  --color-ink-700:  #252B47;
+  --color-ink-900:  #0F1430;
 
-  --color-line:      #E5E0CF;
-  --color-line-soft: #EFEAD8;
+  --color-line:      #E1DDCF;
+  --color-line-soft: #EDE9DA;
 
   /* Brand semantic aliases */
   --color-bg:        var(--color-ivory-50);
@@ -71,8 +74,8 @@
   /* ── Atmospheric layers — used by section backgrounds ──────────────────── */
   --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>");
 
-  --hex-pattern-gold: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23E6B637' stroke-opacity='0.10' stroke-width='1'/></svg>");
-  --hex-pattern-navy: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%231E2A56' stroke-opacity='0.06' stroke-width='1'/></svg>");
+  --hex-pattern-gold: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23D29A1A' stroke-opacity='0.14' stroke-width='1'/></svg>");
+  --hex-pattern-navy: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23182148' stroke-opacity='0.08' stroke-width='1'/></svg>");
 }
 
 /* ─── Mouse parallax custom properties (set by InteractiveLayer) ────────── */
@@ -122,23 +125,32 @@ button { font: inherit; cursor: pointer; }
 
 .bg-warm-mesh {
   background:
-    radial-gradient(900px 520px at 12% -10%, rgba(230,182,55,0.10), transparent 60%),
-    radial-gradient(700px 600px at 90% 10%,  rgba(30,42,86,0.06),  transparent 60%),
-    radial-gradient(1100px 800px at 60% 110%, rgba(244,210,122,0.08), transparent 70%),
-    linear-gradient(180deg, #FBF8F1 0%, #F4F1E8 100%);
+    radial-gradient(900px 520px at 12% -10%, rgba(210,154,26,0.14), transparent 60%),
+    radial-gradient(700px 600px at 90% 10%,  rgba(24,33,72,0.08),  transparent 60%),
+    radial-gradient(1100px 800px at 60% 110%, rgba(232,185,71,0.10), transparent 70%),
+    linear-gradient(180deg, #FAFAF6 0%, #F3F2EC 100%);
 }
 
 .bg-cream-mesh {
   background:
-    radial-gradient(700px 500px at 90% -10%, rgba(244,210,122,0.18), transparent 65%),
-    radial-gradient(600px 500px at -10% 90%, rgba(30,42,86,0.05),  transparent 60%),
-    linear-gradient(170deg, #F4F1E8 0%, #FBF8F1 60%, #F4F1E8 100%);
+    radial-gradient(700px 500px at 90% -10%, rgba(232,185,71,0.18), transparent 65%),
+    radial-gradient(600px 500px at -10% 90%, rgba(24,33,72,0.07),  transparent 60%),
+    linear-gradient(170deg, #F3F2EC 0%, #FAFAF6 60%, #F3F2EC 100%);
 }
 
 .bg-ink-mesh {
   background:
-    radial-gradient(900px 600px at 80% -10%, rgba(230,182,55,0.18), transparent 60%),
-    linear-gradient(180deg, #141B3C 0%, #1E2A56 60%, #141B3C 100%);
+    radial-gradient(900px 600px at 80% -10%, rgba(210,154,26,0.22), transparent 60%),
+    linear-gradient(180deg, #060920 0%, #182148 55%, #0B1230 100%);
+  color: var(--color-ivory-50);
+}
+
+/* Refined navy banner used by Hero/CTA/PageHero */
+.bg-navy-banner {
+  background:
+    radial-gradient(1100px 600px at 82% -8%, rgba(210,154,26,0.30), transparent 60%),
+    radial-gradient(800px 600px at 12% 110%, rgba(232,185,71,0.14), transparent 60%),
+    linear-gradient(180deg, #060920 0%, #111939 55%, #0B1230 100%);
   color: var(--color-ivory-50);
 }
 
@@ -187,7 +199,7 @@ button { font: inherit; cursor: pointer; }
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.22em;
-  color: var(--color-gold-600);
+  color: var(--color-gold-700);
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -199,15 +211,15 @@ button { font: inherit; cursor: pointer; }
 }
 .eyebrow.no-rule::before { display: none; }
 .eyebrow.on-dark      { color: var(--color-gold-200); }
-.eyebrow.on-dark::before { background: var(--color-gold-200); }
+.eyebrow.on-dark::before { background: var(--color-gold-300); }
 
 .roman {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 0.85rem;
-  color: var(--color-ink-400);
-  letter-spacing: 0.05em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--color-gold-700);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 /* ─── Buttons ─────────────────────────────────────────────────────────── */
@@ -346,6 +358,34 @@ button { font: inherit; cursor: pointer; }
 @keyframes marquee {
   from { transform: translate3d(0, 0, 0); }
   to   { transform: translate3d(-50%, 0, 0); }
+}
+
+/* ─── Section padding tokens — tighter, less wasted air ──────────────── */
+.section-pad      { padding-block: clamp(56px, 6.5vw, 96px); }
+.section-pad-lg   { padding-block: clamp(72px, 8vw, 112px); }
+.section-pad-sm   { padding-block: clamp(40px, 5vw, 72px); }
+
+/* Decorative gold rule used to anchor banners + section heads */
+.gold-rule {
+  display: block;
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold-500) 0%, var(--color-gold-300) 100%);
+}
+.gold-rule.center { margin-inline: auto; }
+
+/* ─── Banner sub-patterns ─────────────────────────────────────────────── */
+.banner-rule-top {
+  position: relative;
+}
+.banner-rule-top::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(210,154,26,0) 4%, rgba(232,185,71,0.55) 50%, rgba(210,154,26,0) 96%, transparent 100%);
+  z-index: 5;
+  pointer-events: none;
 }
 
 /* ─── Reduced-motion overrides ──────────────────────────────────────── */
