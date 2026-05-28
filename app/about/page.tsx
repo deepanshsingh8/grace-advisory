@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Approach } from "@/components/approach";
 import { CTABand } from "@/components/cta-band";
 import { Founder } from "@/components/founder";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
+import { Process } from "@/components/process";
 import { Results } from "@/components/results";
 import { IMG } from "@/lib/imagery";
 
@@ -51,8 +53,10 @@ export default function AboutPage() {
         </p>
       </PageBody>
 
+      <Approach />
       <Founder noHead />
       <Results />
+      <Process />
 
       <CTABand />
     </main>

@@ -37,9 +37,9 @@ const STANDARDS = [
 /**
  * Trusted by Leaders. Backed by Results.
  *
- * Editorial proof block — numerals sit directly on the page (no cards),
- * separated only by hairline rules. Asymmetric two-column rhythm gives
- * each statement breathing room; standards strip below grounds the page.
+ * 2×2 editorial stat block. Each cell sits on the page (no card borders) —
+ * a thin cross of hairlines partitions the grid, keeping the structure
+ * legible without making the section feel boxy.
  */
 export function Results() {
   return (
@@ -77,39 +77,42 @@ export function Results() {
           lede="A boutique that brings the rigour of a top-tier compliance function — measured in programs delivered, regulators answered, and clients retained."
         />
 
-        {/* Editorial stat rows — no cards, just hairline rules */}
-        <ul className="reveal list-none p-0 m-0 mt-2">
-          {STATS.map((s, i) => (
-            <li
-              key={s.label}
-              className="grid grid-cols-1 md:grid-cols-[minmax(260px,_0.9fr)_1.4fr] items-baseline gap-x-10 lg:gap-x-16 gap-y-3 py-8 sm:py-10
-                         border-t border-[var(--color-line)] last:border-b"
-            >
-              {/* Numeral column */}
+        {/* 2×2 stat grid — divider hairlines (no boxes) */}
+        <div className="reveal grid grid-cols-1 sm:grid-cols-2 mt-2">
+          {STATS.map((s, i) => {
+            const isRightCol = i % 2 === 1;
+            const isBottomRow = i >= 2;
+            return (
               <div
+                key={s.label}
                 className={
-                  "font-display font-medium tracking-[-0.02em] text-[var(--color-navy-900)] leading-[0.95] " +
-                  (i % 2 === 1 ? "md:text-right" : "")
+                  "relative py-9 sm:py-10 lg:py-12 " +
+                  (isRightCol ? "sm:pl-10 lg:pl-14 " : "sm:pr-10 lg:pr-14 ") +
+                  (isBottomRow ? "border-t border-[var(--color-line)] " : "") +
+                  // Vertical divider for right column on sm+
+                  (isRightCol ? "sm:border-l sm:border-[var(--color-line)] " : "")
                 }
-                style={{ fontSize: "clamp(2.8rem, 6.2vw, 5.2rem)" }}
               >
-                {s.num}
-              </div>
-
-              {/* Body column */}
-              <div className="max-w-[60ch]">
-                <div className="eyebrow no-rule">{s.label}</div>
-                <p className="font-sans text-[var(--color-ink-700)] mt-3 mb-0 leading-[1.7]"
-                   style={{ fontSize: "clamp(1rem, 1.05vw, 1.1rem)" }}>
+                <div
+                  className="font-display font-medium tracking-[-0.018em] text-[var(--color-navy-900)] leading-[0.95]"
+                  style={{ fontSize: "clamp(2.4rem, 4.4vw, 3.6rem)" }}
+                >
+                  {s.num}
+                </div>
+                <div className="mt-4 font-sans font-bold text-[0.72rem] tracking-[0.2em] uppercase text-[var(--color-gold-700)]">
+                  {s.label}
+                </div>
+                <p className="mt-3 mb-0 font-sans text-[var(--color-ink-700)] leading-[1.65] max-w-[44ch]"
+                   style={{ fontSize: "0.98rem" }}>
                   {s.body}
                 </p>
               </div>
-            </li>
-          ))}
-        </ul>
+            );
+          })}
+        </div>
 
         {/* Standards / accreditations strip */}
-        <div className="reveal mt-[clamp(40px,6vw,72px)] pt-8 flex flex-col items-center gap-5 text-center">
+        <div className="reveal mt-[clamp(40px,6vw,72px)] pt-8 border-t border-[var(--color-line)] flex flex-col items-center gap-5 text-center">
           <span className="eyebrow">Accredited & operating across</span>
           <div className="flex flex-wrap justify-center items-center gap-x-7 gap-y-3 sm:gap-x-10
                           font-sans font-bold text-[0.85rem] tracking-[0.18em] uppercase text-[var(--color-navy-700)]">

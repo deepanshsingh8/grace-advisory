@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CTABand } from "@/components/cta-band";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
+import { SectorGrid } from "@/components/sector-grid";
 import { IMG } from "@/lib/imagery";
 
 export const metadata: Metadata = {
@@ -46,6 +47,7 @@ export default function AmlCtfPage() {
           <li>Independent Part A program reviews</li>
         </ul>
       </PageBody>
+      <SectorGrid />
       <CTABand />
     </main>
   );
