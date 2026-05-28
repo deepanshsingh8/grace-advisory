@@ -49,7 +49,7 @@ export function Founder({ noHead = false }: FounderProps) {
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         {!noHead && (
           <SectionHead
-            eyebrow="No. VII · From the Principal"
+            eyebrow="No. II · From the Principal"
             title={<>The compliance counsel<br/>behind every engagement.</>}
             lede="Senior-led by design — the partnership begins with the person whose name is on the door."
           />

@@ -32,7 +32,7 @@ export function SectorGrid() {
     <section id="sectors" className="relative py-[clamp(56px,7vw,96px)] bg-cream-mesh">
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. V · Reporting Entities"
+          eyebrow="No. I · Reporting Entities"
           title={<>Qualified to consult for<br/>Phase 1 &amp; 2 entities.</>}
           lede="From financial services and law to real estate and virtual assets — we work across every sector captured by Australia's AML/CTF regime."
         />

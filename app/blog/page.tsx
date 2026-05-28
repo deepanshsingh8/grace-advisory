@@ -16,7 +16,6 @@ export default function BlogIndexPage() {
       <PageHero
         eyebrow="Insights"
         title="Notes from the practice."
-        lede="Plain-English commentary on the rules you actually have to follow."
       />
       <Insights />
       <CTABand />
