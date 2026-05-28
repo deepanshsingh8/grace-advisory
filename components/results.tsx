@@ -37,9 +37,9 @@ const STANDARDS = [
 /**
  * Trusted by Leaders. Backed by Results.
  *
- * A proof block that pairs hard numbers with the credentials that frame
- * them — the regulators we work in front of, the standards bodies we are
- * accredited under. Editorial in voice; quantified in substance.
+ * Editorial proof block — numerals sit directly on the page (no cards),
+ * separated only by hairline rules. Asymmetric two-column rhythm gives
+ * each statement breathing room; standards strip below grounds the page.
  */
 export function Results() {
   return (
@@ -77,36 +77,39 @@ export function Results() {
           lede="A boutique that brings the rigour of a top-tier compliance function — measured in programs delivered, regulators answered, and clients retained."
         />
 
-        {/* Stats grid */}
-        <div className="reveal reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-[var(--color-line)]">
-          {STATS.map((s) => (
-            <article
+        {/* Editorial stat rows — no cards, just hairline rules */}
+        <ul className="reveal list-none p-0 m-0 mt-2">
+          {STATS.map((s, i) => (
+            <li
               key={s.label}
-              className="has-spotlight relative bg-[var(--color-ivory-50)] hover:bg-white transition-colors duration-500
-                         border-r border-b border-[var(--color-line)] p-9 lg:p-10 flex flex-col"
+              className="grid grid-cols-1 md:grid-cols-[minmax(260px,_0.9fr)_1.4fr] items-baseline gap-x-10 lg:gap-x-16 gap-y-3 py-8 sm:py-10
+                         border-t border-[var(--color-line)] last:border-b"
             >
-              {/* Hex glyph in the corner */}
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden
-                   className="absolute top-5 right-5 w-7 h-7 text-[var(--color-gold-300)] opacity-60">
-                <path d="M12 2 L21 7 V17 L12 22 L3 17 V7 Z" stroke="currentColor" strokeWidth="1.4" />
-              </svg>
-
+              {/* Numeral column */}
               <div
-                className="font-display font-medium tracking-[-0.018em] text-[var(--color-navy-900)] leading-[0.95] mb-5"
-                style={{ fontSize: "clamp(2.4rem, 4.4vw, 3.6rem)" }}
+                className={
+                  "font-display font-medium tracking-[-0.02em] text-[var(--color-navy-900)] leading-[0.95] " +
+                  (i % 2 === 1 ? "md:text-right" : "")
+                }
+                style={{ fontSize: "clamp(2.8rem, 6.2vw, 5.2rem)" }}
               >
                 {s.num}
               </div>
-              <div className="font-sans font-bold text-[0.72rem] tracking-[0.18em] uppercase text-[var(--color-gold-600)] mb-3">
-                {s.label}
+
+              {/* Body column */}
+              <div className="max-w-[60ch]">
+                <div className="eyebrow no-rule">{s.label}</div>
+                <p className="font-sans text-[var(--color-ink-700)] mt-3 mb-0 leading-[1.7]"
+                   style={{ fontSize: "clamp(1rem, 1.05vw, 1.1rem)" }}>
+                  {s.body}
+                </p>
               </div>
-              <p className="text-[0.95rem] leading-[1.6] text-[var(--color-ink-700)] m-0">{s.body}</p>
-            </article>
+            </li>
           ))}
-        </div>
+        </ul>
 
         {/* Standards / accreditations strip */}
-        <div className="reveal mt-[clamp(40px,6vw,72px)] pt-8 border-t border-[var(--color-line)] flex flex-col items-center gap-5 text-center">
+        <div className="reveal mt-[clamp(40px,6vw,72px)] pt-8 flex flex-col items-center gap-5 text-center">
           <span className="eyebrow">Accredited & operating across</span>
           <div className="flex flex-wrap justify-center items-center gap-x-7 gap-y-3 sm:gap-x-10
                           font-sans font-bold text-[0.85rem] tracking-[0.18em] uppercase text-[var(--color-navy-700)]">

@@ -8,7 +8,6 @@ import { Pillars } from "@/components/pillars";
 import { Process } from "@/components/process";
 import { Results } from "@/components/results";
 import { SectorGrid } from "@/components/sector-grid";
-import { ServiceGrid } from "@/components/service-grid";
 import { TrustStrip } from "@/components/trust-strip";
 
 export default function HomePage() {
@@ -17,11 +16,10 @@ export default function HomePage() {
       <Hero />
       <Marquee />
       <TrustStrip />
-      <Results />
       <Pillars />
-      <ServiceGrid />
-      <SectorGrid />
       <Approach />
+      <Results />
+      <SectorGrid />
       <Founder />
       <Process />
       <Insights />
