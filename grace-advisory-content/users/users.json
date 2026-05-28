@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "login": "admin",
+    "email": "info@best-web-host.in",
+    "display_name": "admin",
+    "registered": "2024-09-04 14:40:09",
+    "first_name": "",
+    "last_name": "",
+    "nickname": "admin",
+    "description_bio": "",
+    "wp_capabilities_raw": "a:1:{s:13:\"administrator\";b:1;}"
+  },
+  {
+    "id": 2,
+    "login": "dev_admin",
+    "email": "",
+    "display_name": "admin dev",
+    "registered": "2025-07-09 06:21:09",
+    "first_name": "admin",
+    "last_name": "dev",
+    "nickname": "dev_admin",
+    "description_bio": "",
+    "wp_capabilities_raw": "a:1:{s:13:\"administrator\";b:1;}"
+  },
+  {
+    "id": 3,
+    "login": "dev_admin1",
+    "email": "",
+    "display_name": "admin dev",
+    "registered": "2025-07-09 06:21:09",
+    "first_name": "",
+    "last_name": "",
+    "nickname": "",
+    "description_bio": "",
+    "wp_capabilities_raw": ""
+  },
+  {
+    "id": 4,
+    "login": "adminbackup",
+    "email": "adminbackup@wordpress.org",
+    "display_name": "adminbackup",
+    "registered": "2025-07-31 08:19:34",
+    "first_name": "",
+    "last_name": "",
+    "nickname": "adminbackup",
+    "description_bio": "",
+    "wp_capabilities_raw": "a:1:{s:13:\"administrator\";b:1;}"
+  }
+]

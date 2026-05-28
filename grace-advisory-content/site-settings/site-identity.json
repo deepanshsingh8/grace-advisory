@@ -1,0 +1,26 @@
+{
+  "siteurl": "https://graceadvisory.com.au/",
+  "home": "https://graceadvisory.com.au/",
+  "blogname": "Grace Advisory",
+  "blogdescription": "Governance | Risk | Compliance | Audit | AFSL",
+  "admin_email": "info@best-web-host.in",
+  "template": "graceadvisory",
+  "stylesheet": "graceadvisory",
+  "timezone_string": "",
+  "WPLANG": "",
+  "date_format": "F j, Y",
+  "time_format": "g:i a",
+  "start_of_week": "1",
+  "show_on_front": "page",
+  "page_on_front": {
+    "value": "808",
+    "title": "Home",
+    "slug": "home-2"
+  },
+  "page_for_posts": {
+    "value": "2085",
+    "title": "Blog",
+    "slug": "blog"
+  },
+  "permalink_structure": "/%postname%/"
+}

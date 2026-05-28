@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NAV, SITE } from "@/lib/seo";
-import { FacebookIcon, LinkedInIcon, YouTubeIcon } from "@/components/icons";
+import { LinkedInIcon } from "@/components/icons";
 
 export function Footer() {
   return (
@@ -55,9 +55,7 @@ export function Footer() {
         <div className="mt-12 pt-6 border-t border-[rgba(232,185,71,0.18)] flex flex-wrap justify-between gap-4 font-sans text-[0.78rem] tracking-[0.06em] text-[rgba(251,248,241,0.6)]">
           <span>© {new Date().getFullYear()} Grace Advisory · ABN {SITE.abn}</span>
           <div className="flex gap-3" aria-label="Social links">
-            <SocialLink href="https://www.linkedin.com/company/grace-advisory" label="LinkedIn"><LinkedInIcon className="w-3.5 h-3.5"/></SocialLink>
-            <SocialLink href="https://www.facebook.com/graceadvisory" label="Facebook"><FacebookIcon className="w-3.5 h-3.5"/></SocialLink>
-            <SocialLink href="https://www.youtube.com/@graceadvisory" label="YouTube"><YouTubeIcon className="w-3.5 h-3.5"/></SocialLink>
+            <SocialLink href="https://www.linkedin.com/company/grace-advisory-au" label="LinkedIn"><LinkedInIcon className="w-3.5 h-3.5"/></SocialLink>
           </div>
         </div>
       </div>
