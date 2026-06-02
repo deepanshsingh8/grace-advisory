@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { CTABand } from "@/components/cta-band";
-import { Founder } from "@/components/founder";
 import { PageHero } from "@/components/page-hero";
 
 export const metadata: Metadata = {
@@ -101,8 +100,6 @@ export default function OurTeamPage() {
           </div>
         </div>
       </section>
-
-      <Founder noHead />
 
       <CTABand />
     </main>
