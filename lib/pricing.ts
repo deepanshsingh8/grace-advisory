@@ -160,7 +160,7 @@ export interface FAQ { q: string; a: string; }
 export const PRICING_FAQS: FAQ[] = [
   {
     q: "Are these prices fixed, or a starting point?",
-    a: "The retainer tiers are fixed monthly amounts; the project engagements are quoted ranges that we confirm in writing after a 30-minute scoping call. We don't bill by the hour for project work — once we've agreed scope, the fee is the fee.",
+    a: "The retainer tiers are fixed monthly amounts; project engagements are quoted as a fixed fee that we confirm in writing after a 30-minute scoping call. We don't bill by the hour for project work — once we've agreed scope, the fee is the fee.",
   },
   {
     q: "Can I move between retainer tiers?",

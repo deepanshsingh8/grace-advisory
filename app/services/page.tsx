@@ -30,7 +30,6 @@ const FAMILIES: {
       { label: "Responsible Manager Nominations", href: "/afsl/responsible-manager" },
       { label: "External Compliance Reviews", href: "/afsl/external-review" },
       { label: "Ongoing Compliance Monitoring", href: "/afsl/ongoing-monitoring" },
-      { label: "Life Insurance (General Advice)", href: "/life-insurance" },
     ],
   },
   {

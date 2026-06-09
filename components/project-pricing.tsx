@@ -24,7 +24,7 @@ export function ProjectPricing() {
         <SectionHead
           eyebrow="No. II · Project Engagements"
           title={<>Fixed-fee project work.</>}
-          lede="One-off engagements quoted on scope, not the hour. Ranges cover most clients; exact figures confirmed after a 30-minute scoping call."
+          lede="One-off engagements quoted on scope, not the hour. Exact figures confirmed after a 30-minute scoping call."
         />
 
         <div className="reveal border-t border-[var(--color-line)]">
@@ -41,7 +41,7 @@ function ProjectRow({ project: p }: { project: Project }) {
   return (
     <Link
       href={p.href}
-      className="has-spotlight relative grid grid-cols-1 md:grid-cols-[1fr_auto_auto] gap-3 md:gap-10 items-start md:items-center
+      className="has-spotlight relative grid grid-cols-1 md:grid-cols-[1fr_auto] gap-3 md:gap-10 items-start md:items-center
                  px-5 py-7 md:py-9 border-b border-[var(--color-line)] bg-[var(--color-ivory-50)]
                  hover:bg-[var(--color-ivory-100)] transition-[background-color] duration-500 group"
     >
@@ -60,15 +60,6 @@ function ProjectRow({ project: p }: { project: Project }) {
             <span className="w-1 h-1 bg-[var(--color-gold-500)] rotate-45" aria-hidden />
             {p.timeline}
           </div>
-        </div>
-      </div>
-
-      {/* Middle — fee range */}
-      <div className="md:text-right md:min-w-[200px]">
-        <div className="font-sans font-bold tracking-[0.18em] uppercase text-[0.66rem] text-[var(--color-ink-600)] hidden md:block">Range</div>
-        <div className="mt-0.5 font-display font-medium tracking-[-0.005em] text-[var(--color-navy-900)] tabular-nums"
-             style={{ fontSize: "clamp(1.1rem, 1.5vw, 1.3rem)" }}>
-          ${p.from.toLocaleString("en-AU")}{p.to ? ` – $${p.to.toLocaleString("en-AU")}` : "+"}
         </div>
       </div>
 
