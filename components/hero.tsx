@@ -98,7 +98,7 @@ export function Hero() {
                 Book a consultation
                 <ArrowRight className="arrow" />
               </Link>
-              <Link href="/about" className="btn btn-outline on-dark">
+              <Link href="#approach" className="btn btn-outline on-dark">
                 Our approach
               </Link>
             </div>

@@ -24,7 +24,7 @@ export function PricingTiers() {
         <SectionHead
           eyebrow="No. I · Retainer Tiers"
           title={<>Compliance, on retainer.</>}
-          lede="Three monthly subscriptions for ongoing compliance — matched to your regulatory load at every stage. AUD, excl. GST."
+          lede="Three monthly subscriptions for ongoing compliance — matched to your regulatory load at every stage. Fees quoted on enquiry."
         />
 
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch">
@@ -93,26 +93,14 @@ function TierCard({ tier }: { tier: Tier }) {
           {tier.tagline}
         </p>
 
-        {/* Price block */}
-        <div className={"mt-7 pt-6 border-t " + (featured ? "border-[rgba(255,255,255,0.15)]" : "border-[var(--color-line)]")}>
-          <div className="flex items-baseline gap-2">
-            <span className={"font-sans font-bold tracking-[0.18em] uppercase text-[0.7rem] " + (featured ? "text-[rgba(241,203,107,0.7)]" : "text-[var(--color-gold-700)]")}>from</span>
-            <span
-              className={"font-display font-medium tracking-[-0.02em] " + (featured ? "text-[var(--color-gold-200)]" : "text-[var(--color-navy-900)]")}
-              style={{ fontSize: "clamp(2.6rem, 4.4vw, 3.4rem)", lineHeight: 1 }}
-            >
-              <span className="text-[0.55em] align-top mr-0.5">$</span>{tier.price.toLocaleString("en-AU")}
-            </span>
-            <span className={"font-sans text-sm font-bold tracking-[0.04em] " + (featured ? "text-[rgba(251,248,241,0.7)]" : "text-[var(--color-ink-600)]")}>
-              {tier.cadence}
-            </span>
-          </div>
-          {tier.footnote && (
-            <p className={"mt-2 text-xs font-sans tracking-[0.04em] " + (featured ? "text-[rgba(251,248,241,0.55)]" : "text-[var(--color-ink-600)]")}>
+        {/* Engagement terms — fees are quoted on enquiry, not published */}
+        {tier.footnote && (
+          <div className={"mt-7 pt-6 border-t " + (featured ? "border-[rgba(255,255,255,0.15)]" : "border-[var(--color-line)]")}>
+            <p className={"text-xs font-sans tracking-[0.04em] m-0 " + (featured ? "text-[rgba(251,248,241,0.55)]" : "text-[var(--color-ink-600)]")}>
               {tier.footnote}
             </p>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Features */}
         <ul className={"mt-7 pt-6 border-t space-y-3.5 list-none p-0 flex-1 " + (featured ? "border-[rgba(255,255,255,0.15)]" : "border-[var(--color-line)]")}>

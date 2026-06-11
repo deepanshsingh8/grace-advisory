@@ -72,7 +72,7 @@ export function Results() {
 
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. II · Proof of practice"
+          eyebrow="No. III · Proof of practice"
           title={<>Trusted by leaders.<br/>Backed by results.</>}
           lede="A boutique that brings the rigour of a top-tier compliance function — measured in programs delivered, regulators answered, and clients retained."
         />

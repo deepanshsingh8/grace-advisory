@@ -59,8 +59,8 @@ export default function GradPage() {
               Apply to the program
               <ArrowRight className="arrow" />
             </Link>
-            <Link href="/about" className="btn btn-outline">
-              About the firm
+            <Link href="/our-team" className="btn btn-outline">
+              Meet the team
             </Link>
           </div>
         </div>

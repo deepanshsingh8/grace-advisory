@@ -64,7 +64,7 @@ export default function NotFound() {
             { label: "AML/CTF", href: "/aml-ctf" },
             { label: "Pricing", href: "/pricing" },
             { label: "Insights", href: "/blog" },
-            { label: "About", href: "/about" },
+            { label: "Our Team", href: "/our-team" },
           ].map((l) => (
             <li key={l.href}>
               <Link href={l.href} className="hover:text-[var(--color-gold-600)] border-b border-transparent hover:border-[var(--color-gold-500)] pb-1 transition-colors">

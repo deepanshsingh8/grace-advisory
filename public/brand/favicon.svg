@@ -2,14 +2,13 @@
   <!-- Brand-navy background, soft rounded corners -->
   <rect width="32" height="32" rx="4" fill="#141B3C"/>
 
-  <!-- Hexagon frame (lifted from the logo, subtle) -->
-  <path d="M16 4 L27 10 V22 L16 28 L5 22 V10 Z"
-        stroke="#E6B637" stroke-width="1.2" fill="none" opacity="0.55"
-        stroke-linejoin="miter"/>
-
-  <!-- The letter G — drawn as a near-closed arc with a horizontal tongue.
-       Start top-right, sweep counter-clockwise around, then tongue inward. -->
-  <path d="M22 12 A8 8 0 1 0 22 20 V16 H17"
-        stroke="#E6B637" stroke-width="2.6"
-        stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Brand hexagonal G — same geometry as the logo mark:
+       hex ring with a diagonal-cut opening at the upper right
+       and a wedge spur pointing at the centre. -->
+  <g transform="translate(16 16) scale(0.23)">
+    <path fill="#E6B637"
+          d="M 49 -28.3 L 0 -56.6 L -49 -28.3 L -49 28.3 L 0 56.6 L 49 28.3
+             L 49 -15.5 L 2 15.5 L 32 16.5 L 32 18.5 L 0 37 L -32 18.5
+             L -32 -18.5 L 0 -37 L 32 -18.5 L 32 -13 Z"/>
+  </g>
 </svg>

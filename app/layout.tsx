@@ -101,7 +101,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`${ebGaramond.variable} ${lato.variable}`}>
+    <html lang="en-AU" className={`${ebGaramond.variable} ${lato.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Runs before paint: gates the scroll-reveal hiding (html.js .reveal)
+            so content is only ever hidden when JS is actually running. */}
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.add("js")` }} />
+      </head>
       <body>
         {/* Skip-to-content for keyboard users — visible only on focus */}
         <a

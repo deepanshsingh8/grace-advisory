@@ -36,6 +36,7 @@ export function Nav() {
   }, [open]);
 
   return (
+    <>
     <header
       className={
         "sticky top-0 z-50 transition-[background,backdrop-filter,box-shadow] duration-300 " +
@@ -54,7 +55,7 @@ export function Nav() {
               width={586}
               height={206}
               priority
-              className="h-11 w-auto sm:h-12"
+              className="h-[80px] w-auto sm:h-[88px]"
             />
           </Link>
 
@@ -86,9 +87,6 @@ export function Nav() {
         </div>
       </div>
 
-      {/* ── Mobile sheet ───────────────────────────────────────── */}
-      <MobileSheet open={open} onClose={() => setOpen(false)} />
-
       <style jsx>{`
         :global(.nav-link-flat) {
           position: relative;
@@ -116,6 +114,13 @@ export function Nav() {
         :global(.nav-link-flat:hover::after) { transform: scaleX(1); }
       `}</style>
     </header>
+
+    {/* ── Mobile sheet ─────────────────────────────────────────────
+        Must live OUTSIDE the sticky header: its backdrop-filter creates
+        a containing block for position:fixed, which would size the
+        sheet to the header box instead of the viewport. */}
+    <MobileSheet open={open} onClose={() => setOpen(false)} />
+    </>
   );
 }
 
@@ -188,7 +193,7 @@ function MobileSheet({ open, onClose }: { open: boolean; onClose: () => void }) 
   return (
     <div
       className={
-        "lg:hidden fixed inset-0 z-40 transition-[opacity,visibility] duration-300 " +
+        "lg:hidden fixed inset-0 z-[60] transition-[opacity,visibility] duration-300 " +
         (open ? "opacity-100 visible" : "opacity-0 invisible")
       }
       aria-hidden={!open}

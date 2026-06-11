@@ -98,17 +98,16 @@ export function HexComposition() {
           strokeWidth="0.8"
         />
 
-        {/* Geometric G monogram — mirrors the brand wordmark */}
-        <g
-          transform="translate(200 200)"
-          fill="none"
-          stroke="#E6B637"
-          strokeWidth="11"
-          strokeLinejoin="miter"
-          strokeLinecap="square"
-        >
-          {/* C-shape opening right: top → left → bottom → bottom-right → inner tab */}
-          <path d="M 28 -32 L -32 -32 L -32 32 L 32 32 L 32 2 L 8 2" />
+        {/* Brand hexagonal G — traced from grace_advisory_logo.png:
+            hex ring with a diagonal-cut opening at the upper right and a
+            wedge spur pointing at the centre. */}
+        <g transform="translate(200 196) scale(0.74)">
+          <path
+            fill="#E6B637"
+            d="M 49 -28.3 L 0 -56.6 L -49 -28.3 L -49 28.3 L 0 56.6 L 49 28.3
+               L 49 -15.5 L 2 15.5 L 32 16.5 L 32 18.5 L 0 37 L -32 18.5
+               L -32 -18.5 L 0 -37 L 32 -18.5 L 32 -13 Z"
+          />
         </g>
         {/* Wordmark caption inside the hex */}
         <text

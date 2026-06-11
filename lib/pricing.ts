@@ -1,11 +1,8 @@
 /**
  * Pricing data — monthly retainer tiers + one-off project engagements.
  *
- * NOTE: Figures below are placeholders calibrated to the Australian
- * boutique-compliance market. Confirm with the client before launch
- * and edit this file directly.
- *
- * All amounts are AUD, exclusive of GST.
+ * Dollar figures are deliberately not published anywhere on the site;
+ * fees are quoted on enquiry. Quotes are AUD, exclusive of GST.
  */
 
 export interface Feature {
@@ -19,11 +16,7 @@ export interface Tier {
   name: string;
   eyebrow: string;
   tagline: string;
-  /** Monthly amount in AUD (excl. GST) */
-  price: number;
-  /** Suffix shown after the price, e.g. "/month" */
-  cadence: string;
-  /** A small footnote shown beneath the price */
+  /** A small footnote with the engagement terms */
   footnote?: string;
   /** Highlighted in the layout? */
   featured?: boolean;
@@ -39,8 +32,6 @@ export const TIERS: Tier[] = [
     name: "Foundation",
     eyebrow: "Tier I",
     tagline: "For newly licensed firms and small reporting entities — your compliance baseline, on retainer.",
-    price: 1950,
-    cadence: "/month",
     footnote: "Annual engagement · 30-day notice",
     features: [
       { label: "Quarterly compliance review with formal report", included: true },
@@ -57,8 +48,6 @@ export const TIERS: Tier[] = [
     name: "Practice",
     eyebrow: "Tier II · Most chosen",
     tagline: "For mid-sized AFSL holders and active reporting entities — a true ongoing partnership.",
-    price: 3950,
-    cadence: "/month",
     footnote: "Annual engagement · 60-day notice",
     featured: true,
     features: [
@@ -77,8 +66,6 @@ export const TIERS: Tier[] = [
     name: "Concierge",
     eyebrow: "Tier III",
     tagline: "Your fully outsourced compliance function — embedded with the team and the board.",
-    price: 8500,
-    cadence: "/month",
     footnote: "Annual engagement · 90-day notice",
     features: [
       { label: "Named compliance officer embedded with your team", included: true },
@@ -99,10 +86,6 @@ export const TIERS: Tier[] = [
 export interface Project {
   name: string;
   description: string;
-  /** Lower bound, AUD (excl. GST) */
-  from: number;
-  /** Upper bound or null for "+ scoping required" */
-  to?: number;
   /** Typical timeline */
   timeline: string;
   href: string;
@@ -112,42 +95,36 @@ export const PROJECTS: Project[] = [
   {
     name: "AFSL Application",
     description: "End-to-end support: RM selection, proof documents, application, ASIC liaison.",
-    from: 18000, to: 38000,
     timeline: "4–8 months",
     href: "/afsl/application",
   },
   {
     name: "AML/CTF Program — Standard",
     description: "Tailored Part A and Part B for a stand-alone reporting entity.",
-    from: 6500, to: 14500,
     timeline: "4–8 weeks",
     href: "/aml-ctf/program",
   },
   {
     name: "AUSTRAC Registration Package",
     description: "For remittance providers and crypto exchanges — program, application and liaison.",
-    from: 9500, to: 18500,
     timeline: "6–10 weeks",
     href: "/aml-ctf/austrac-registration",
   },
   {
     name: "Independent AML/CTF Review",
     description: "Part A or Part B independent review with formal report and recommendations.",
-    from: 7500, to: 16500,
     timeline: "3–6 weeks",
     href: "/aml-ctf/independent-review",
   },
   {
     name: "AFSL Compliance Policies Drafting",
     description: "A complete AFSL Manual aligned to the nature, size and complexity of your business.",
-    from: 5500, to: 12500,
     timeline: "3–5 weeks",
     href: "/afsl/compliance-policies",
   },
   {
     name: "External AFSL Compliance Review",
     description: "Independent compliance health-check with formal report and recommendations.",
-    from: 8500, to: 18500,
     timeline: "3–6 weeks",
     href: "/afsl/external-review",
   },
@@ -159,8 +136,8 @@ export interface FAQ { q: string; a: string; }
 
 export const PRICING_FAQS: FAQ[] = [
   {
-    q: "Are these prices fixed, or a starting point?",
-    a: "The retainer tiers are fixed monthly amounts; project engagements are quoted as a fixed fee that we confirm in writing after a 30-minute scoping call. We don't bill by the hour for project work — once we've agreed scope, the fee is the fee.",
+    q: "How is your pricing structured?",
+    a: "Retainer tiers are a fixed monthly fee, quoted on enquiry; project engagements are quoted as a fixed fee that we confirm in writing after a 30-minute scoping call. We don't bill by the hour for project work — once we've agreed scope, the fee is the fee.",
   },
   {
     q: "Can I move between retainer tiers?",
@@ -176,10 +153,10 @@ export const PRICING_FAQS: FAQ[] = [
   },
   {
     q: "Can we trial before committing to an annual term?",
-    a: "We offer a one-off Compliance Health Check (from $4,500) which functions as a paid trial: you receive a formal report, and the fee is credited against your first six months if you proceed to a retainer.",
+    a: "We offer a one-off Compliance Health Check which functions as a paid trial: you receive a formal report, and the fee is credited against your first six months if you proceed to a retainer.",
   },
   {
     q: "How are fees billed?",
-    a: "Retainers are billed monthly in advance, by direct debit or bank transfer. Project engagements are typically 50% on commencement and 50% on delivery. All amounts shown are AUD and exclusive of GST.",
+    a: "Retainers are billed monthly in advance, by direct debit or bank transfer. Project engagements are typically 50% on commencement and 50% on delivery. All fees are quoted in AUD and exclusive of GST.",
   },
 ];

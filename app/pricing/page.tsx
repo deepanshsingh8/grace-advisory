@@ -10,42 +10,27 @@ import { TIERS, PROJECTS, PRICING_FAQS } from "@/lib/pricing";
 export const metadata: Metadata = {
   title: "Pricing — Compliance Retainers & Project Engagements",
   description:
-    "Transparent pricing for AFSL and AML/CTF compliance — three monthly retainer tiers and fixed-fee project engagements (AFSL Application, AML/CTF Programs, AUSTRAC Registration, Independent Reviews).",
+    "AFSL and AML/CTF compliance pricing — three monthly retainer tiers and fixed-fee project engagements (AFSL Application, AML/CTF Programs, AUSTRAC Registration, Independent Reviews). Fees quoted on enquiry.",
   alternates: { canonical: "/pricing" },
 };
 
-/* ─── JSON-LD: each tier as an Offer; each project as a Service+Offer ── */
+/* ─── JSON-LD: tiers and projects as Services — fees are not published ── */
 const pricingSchema = {
   "@context": "https://schema.org",
   "@graph": [
     ...TIERS.map((t) => ({
-      "@type": "Offer",
+      "@type": "Service",
       "@id": `https://graceadvisory.com.au/pricing#${t.id}`,
       name: `${t.name} retainer`,
       description: t.tagline,
-      price: t.price,
-      priceCurrency: "AUD",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        price: t.price,
-        priceCurrency: "AUD",
-        unitText: "MON",
-      },
-      availability: "https://schema.org/InStock",
-      eligibleRegion: { "@type": "Country", name: "Australia" },
-      seller: { "@id": "https://graceadvisory.com.au/#organization" },
+      areaServed: { "@type": "Country", name: "Australia" },
+      provider: { "@id": "https://graceadvisory.com.au/#organization" },
     })),
     ...PROJECTS.map((p) => ({
       "@type": "Service",
       name: p.name,
       description: p.description,
       provider: { "@id": "https://graceadvisory.com.au/#organization" },
-      offers: {
-        "@type": "AggregateOffer",
-        lowPrice: p.from,
-        highPrice: p.to ?? p.from,
-        priceCurrency: "AUD",
-      },
     })),
     {
       "@type": "FAQPage",
@@ -63,8 +48,8 @@ export default function PricingPage() {
     <main>
       <PageHero
         eyebrow="Pricing"
-        title={<>Transparent fees, by retainer<br/>and by project.</>}
-        lede="No hourly bills. Three subscription tiers for ongoing work; fixed fees for one-off engagements. AUD, excl. GST."
+        title={<>Fixed fees, by retainer<br/>and by project.</>}
+        lede="No hourly bills. Three subscription tiers for ongoing work; fixed fees for one-off engagements — quoted on scope."
       />
       <PricingTiers />
       <ProjectPricing />

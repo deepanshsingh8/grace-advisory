@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   experimental: {
     optimizePackageImports: [],
   },
+  async redirects() {
+    // The standalone About page was folded back into the home page.
+    return [{ source: "/about", destination: "/#approach", permanent: true }];
+  },
 };
 
 export default nextConfig;

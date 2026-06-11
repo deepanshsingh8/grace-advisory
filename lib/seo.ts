@@ -80,7 +80,6 @@ export const NAV = {
     { label: "Independent Review", href: "/aml-ctf/independent-review" },
   ],
   ABOUT: [
-    { label: "About", href: "/about" },
     { label: "Our Team", href: "/our-team" },
     { label: "Our Partners", href: "/our-partners" },
     { label: "Graduate Training", href: "/graduate-training" },

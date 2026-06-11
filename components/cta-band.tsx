@@ -60,7 +60,7 @@ export function CTABand() {
               Book a consultation
               <ArrowRight className="arrow" />
             </Link>
-            <Link href="/about" className="btn btn-outline">Read our approach</Link>
+            <Link href="/#approach" className="btn btn-outline">Read our approach</Link>
             <span className="font-sans text-[rgba(241,203,107,0.85)] text-[0.72rem] tracking-[0.18em] uppercase font-bold mt-1">
               Or call us
               <strong className="ml-2 font-sans font-bold tracking-[0.04em] text-[var(--color-ivory-50)] text-[0.95rem]" style={{ textTransform: "none", letterSpacing: "0.04em" }}>{SITE.phone}</strong>
