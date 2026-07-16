@@ -7,6 +7,7 @@ import "./globals.css";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { InteractiveLayer } from "@/components/interactive-layer";
+import { DoodleField } from "@/components/doodle-field";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -122,6 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div id="main" tabIndex={-1} className="outline-none">{children}</div>
         <Footer />
         <InteractiveLayer />
+        <DoodleField />
         <Script
           id="ld-org"
           type="application/ld+json"

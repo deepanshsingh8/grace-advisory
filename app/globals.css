@@ -345,6 +345,34 @@ html.js .reveal-stagger:not(.in) > * { opacity: 0; transform: translateY(16px); 
 .cursor-dot.is-link { width: 36px; height: 36px; background: rgba(230,182,55,.25); border: 1px solid var(--color-gold-500); }
 @media (hover: none), (max-width: 900px) { .cursor-dot { display: none; } }
 
+/* ─── Floating doodle field ──────────────────────────────────────────────
+   Physics-driven compliance doodles that drift in the page whitespace,
+   parallax with the cursor, and can be grabbed & flung. The container is
+   pointer-transparent — only the doodles themselves are grabbable — so text
+   and links underneath stay fully usable. Sits above content, below the nav. */
+.doodle-field {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+}
+.doodle {
+  position: absolute;
+  top: 0; left: 0;
+  color: var(--color-navy-700);
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: none;             /* dragging a doodle must not scroll the page */
+  will-change: transform;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.doodle:active { cursor: grabbing; }
+.doodle.is-gold { color: var(--color-gold-500); }
+.doodle svg { display: block; pointer-events: none; }
+
 /* ─── Marquee ────────────────────────────────────────────────────────── */
 .marquee {
   overflow: hidden;
@@ -398,4 +426,6 @@ html.js .reveal-stagger:not(.in) > * { opacity: 0; transform: translateY(16px); 
   .marquee-track { animation: none; }
   .cursor-dot { display: none; }
   .bg-hex-gold::after, .bg-hex-navy::after { transform: none !important; }
+  /* Doodles stay as static, non-interactive decoration when motion is reduced. */
+  .doodle { pointer-events: none; cursor: default; opacity: 0.32 !important; }
 }
