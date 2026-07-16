@@ -109,10 +109,15 @@ export function Nav() {
 
           {/* ── CTA ──────────────────────────────────────────────── */}
           <div className="flex items-center gap-3">
-            <Link href="/contact" className="hidden lg:inline-flex btn btn-primary magnetic">
-              Book a consultation
-              <ArrowRight className="arrow" />
-            </Link>
+            {/* Wrapper carries the responsive hide: `.btn` sets display:inline-flex
+                as an unlayered rule, which would override a `hidden` utility placed
+                directly on the Link — so the show/hide lives on this plain span. */}
+            <span className="hidden lg:inline-flex">
+              <Link href="/contact" className="btn btn-primary magnetic">
+                Book a consultation
+                <ArrowRight className="arrow" />
+              </Link>
+            </span>
             <button
               ref={menuButtonRef}
               type="button"
