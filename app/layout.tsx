@@ -12,6 +12,7 @@ import { DoodleField } from "@/components/doodle-field";
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-eb-garamond",
   display: "swap",
 });

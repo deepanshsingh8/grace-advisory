@@ -3,30 +3,28 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
 /**
- * DoodleField — a playful, physics-driven layer of compliance doodles that
- * float in the whitespace of every page.
+ * DoodleField — a playful layer of compliance doodles that live ONLY in the
+ * side gutters (the empty margins left & right of the centred content column).
  *
- * What it does
- *   • 9 monoline "what Grace Advisory does" doodles (shield-tick, scales,
- *     checklist, magnifier, seal, fingerprint, radar, handshake, grad-cap).
- *   • Perpetual gentle drift so the layer always feels alive.
- *   • Cursor PARALLAX: each doodle shifts by an amount scaled to its depth,
- *     giving a sense of layered space.
- *   • FLICK physics: grab any doodle and throw it — it flies off with the
- *     momentum you gave it, bounces off the viewport edges, and eases back
- *     into a calm drift. Works with mouse, touch and pen (Pointer Events).
+ * Design rules (per client):
+ *   • Never overlap or hover over any text — doodles are geometrically clamped
+ *     to the side rails outside the ~1240px content column, so they physically
+ *     cannot enter the text area (parallax and throws are clamped too).
+ *   • Small, ambient, background feel.
  *
- * It's mounted once in the root layout (fixed, full-viewport). The container
- * is pointer-transparent; only the doodles themselves are grabbable, so text
- * and links underneath stay fully usable. Honors prefers-reduced-motion.
+ * Behaviour: perpetual gentle drift, cursor parallax by depth, and each doodle
+ * can still be grabbed & flung — but it bounces within its rail rather than
+ * flying across the page. Works with mouse, touch and pen (Pointer Events).
  *
- * Perf: React renders the doodles once; the animation loop mutates each
- * element's transform directly (no per-frame re-render).
+ * Mounted once in the root layout (fixed, full-viewport). The container is
+ * pointer-transparent; only doodles are grabbable. Honors prefers-reduced-motion
+ * and hides itself on viewports too narrow to have real gutters.
+ *
+ * Perf: React renders the doodles once; the loop mutates transforms directly.
  */
 
 /* ── The doodle art ──────────────────────────────────────────────────────
-   House style: monoline, 48×48 frame, currentColor. Rounded caps here (vs.
-   the square caps of the UI icon set) to read a touch more hand-drawn. */
+   House style: monoline, 48×48 frame, currentColor, rounded caps. */
 const S = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 
 const DOODLES: { name: string; el: React.ReactNode }[] = [
@@ -133,66 +131,103 @@ const DOODLES: { name: string; el: React.ReactNode }[] = [
 ];
 
 /* ── Body model ──────────────────────────────────────────────────────────
-   One free-floating rigid dot per doodle. Positions are viewport pixels
-   (the layer is position:fixed, so "world" == viewport). */
+   One free-floating doodle, confined to a rail box [xMin..xMax] × [yMin..yMax]
+   in viewport pixels (the layer is position:fixed, so "world" == viewport). */
 type Body = {
-  idx: number;        // which doodle art
+  idx: number;
+  side: "L" | "R";
   x: number; y: number;
   vx: number; vy: number;
-  size: number;       // px, square
-  depth: number;      // 0.15–0.55 — parallax + how "close" it feels
-  gold: boolean;      // accent vs. navy line colour
-  opacity: number;
-  rot: number; vr: number;
-  drift: number;      // idle heading (radians)
+  size: number;
+  depth: number;      // 0.15–0.5 — parallax amount
+  gold: boolean;
+  rot: number;
+  drift: number;      // idle heading (radians) — biased vertical
+  xMin: number; xMax: number; yMin: number; yMax: number;
   dragging: boolean;
   el: HTMLDivElement | null;
 };
 
-const IDLE = 0.22;      // px/frame — perpetual minimum drift speed
-const FRICTION = 0.992; // light: thrown doodles glide a long way
-const RESTITUTION = 0.86;
-const PARALLAX = 34;    // px of cursor parallax at depth 1
-const TOP_SAFE = 76;    // keep initial spawns clear of the sticky nav
+const IDLE = 0.3;       // px/frame — perpetual minimum drift speed
+const FRICTION = 0.99;
+const RESTITUTION = 0.8;
+// Cursor parallax at depth 1. Vertical is generous (the rails are tall, and
+// vertical shift can never touch text); horizontal stays small since the rails
+// are narrow and any sideways drift is clamped away from the copy.
+const PARALLAX_X = 14;
+const PARALLAX_Y = 40;
+
+/* Layout of the two side rails for a given viewport. The content column is
+   ~1240px wide; text sits inside it. We keep doodles OUTSIDE the text with a
+   safety gap, so they never touch copy. Rails only exist on wide-enough screens. */
+const CONTENT_HALF = 590; // ≈ half the widest text block (1240 col minus padding)
+const TEXT_GAP = 10;      // clearance between text edge and a doodle
+const EDGE = 6;           // clearance from the viewport edge
+const TOP_SAFE = 84;      // clear the sticky nav
+const BOT_SAFE = 16;
+const MIN_RAIL = 34;      // below this usable width, no room → hide the field
+
+function railLayout(W: number, H: number) {
+  const innerL = W / 2 - CONTENT_HALF - TEXT_GAP; // right edge of the left rail
+  const innerR = W / 2 + CONTENT_HALF + TEXT_GAP; // left edge of the right rail
+  const railW = innerL - EDGE;                     // usable width (same both sides)
+  const ok = railW >= MIN_RAIL;
+  // Doodles shrink to fit the rail — small and ambient.
+  const size = Math.max(24, Math.min(railW - 4, 46));
+  return { ok, innerL, innerR, railW, size, yMin: TOP_SAFE, yMax: H - size - BOT_SAFE };
+}
 
 function rand(a: number, b: number) {
   return a + Math.random() * (b - a);
 }
 
 export function DoodleField() {
-  // A couple of the closer doodles are gold accents; the rest are navy line.
+  // A few of the doodles are gold accents; the rest are navy line.
   const goldSet = useMemo(() => new Set([1, 4, 6]), []);
   const bodiesRef = useRef<Body[]>([]);
-  // Bodies are built client-side (they use window + randomness). We render an
-  // empty container on the server / first paint — matching the client's first
-  // paint, so no hydration mismatch — then flip `mounted` to render the field.
+  // Built client-side (window + randomness). Empty on server/first paint →
+  // no hydration mismatch → then `mounted` flips to render the field.
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    // Build ONCE. In dev, React Strict Mode invokes effects twice; rebuilding
+    // here would swap in fresh Body objects while the rendered DOM refs stay
+    // bound to the originals — the loop would then animate orphan objects whose
+    // .el is null and nothing would move. Guarding on length keeps render, refs
+    // and the physics loop all pointing at the same objects.
+    if (bodiesRef.current.length) { setMounted(true); return; }
     const W = window.innerWidth;
     const H = window.innerHeight;
-    const small = W < 720;
+    const L = railLayout(W, H);
 
-    // On phones, thin the field so it never crowds the copy.
-    const active = small ? [0, 2, 3, 5, 6, 8] : DOODLES.map((_, i) => i);
+    if (!L.ok) { setMounted(true); return; }
 
-    bodiesRef.current = active.map((idx, n) => {
-      const size = small ? rand(40, 62) : rand(48, 88);
-      const depth = rand(0.16, 0.55);
+    // 8 doodles, alternating rails, spread down each rail.
+    const order = [0, 2, 3, 5, 6, 8, 1, 4];
+    bodiesRef.current = order.map((idx, n) => {
+      const side: "L" | "R" = n % 2 === 0 ? "L" : "R";
+      const xMin = side === "L" ? EDGE : L.innerR;
+      const xMax = side === "L" ? L.innerL - L.size : W - EDGE - L.size;
+      // Stagger vertically so they don't cluster.
+      const band = (Math.floor(n / 2) + 0.5) / 4;
+      const y = L.yMin + band * (L.yMax - L.yMin) + rand(-40, 40);
       return {
         idx,
-        x: rand(24, Math.max(48, W - size - 24)),
-        y: rand(TOP_SAFE, Math.max(TOP_SAFE + 40, H - size - 24)),
-        vx: 0,
-        vy: 0,
-        size,
-        depth,
+        side,
+        x: rand(xMin, Math.max(xMin, xMax)),
+        y: Math.max(L.yMin, Math.min(L.yMax, y)),
+        vx: rand(-0.12, 0.12),
+        vy: (n % 2 === 0 ? 1 : -1) * IDLE, // start drifting immediately
+        size: L.size,
+        depth: rand(0.18, 0.5),
         gold: goldSet.has(idx),
-        opacity: 0.5, // as requested — plainly visible
-        rot: rand(-14, 14),
-        vr: 0,
-        drift: (n / active.length) * Math.PI * 2,
+        rot: rand(-12, 12),
+        drift: (n % 2 === 0 ? 1 : -1) * (Math.PI / 2), // mostly vertical drift
+        xMin,
+        xMax: Math.max(xMin, xMax),
+        yMin: L.yMin,
+        yMax: L.yMax,
         dragging: false,
         el: null,
       };
@@ -200,11 +235,11 @@ export function DoodleField() {
     setMounted(true);
   }, [goldSet]);
 
-  // Physics + parallax loop. Runs after `mounted` renders the doodle elements,
-  // so every body.el ref is attached before the first frame.
+  // Physics + parallax loop. Runs after `mounted` renders the elements.
   useEffect(() => {
     if (!mounted || typeof window === "undefined") return;
     const bodies = bodiesRef.current;
+    if (!bodies.length) return;
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let W = window.innerWidth;
@@ -213,22 +248,36 @@ export function DoodleField() {
     const onResize = () => {
       W = window.innerWidth;
       H = window.innerHeight;
+      const L = railLayout(W, H);
       for (const b of bodies) {
-        b.x = Math.min(b.x, Math.max(0, W - b.size));
-        b.y = Math.min(b.y, Math.max(0, H - b.size));
+        if (b.el) b.el.style.display = L.ok ? "" : "none";
+        if (!L.ok) continue;
+        b.size = L.size;
+        b.xMin = b.side === "L" ? EDGE : L.innerR;
+        b.xMax = (b.side === "L" ? L.innerL - L.size : W - EDGE - L.size);
+        b.xMax = Math.max(b.xMin, b.xMax);
+        b.yMin = L.yMin;
+        b.yMax = L.yMax;
+        b.x = Math.min(Math.max(b.x, b.xMin), b.xMax);
+        b.y = Math.min(Math.max(b.y, b.yMin), b.yMax);
+        if (b.el) { b.el.style.width = `${L.size}px`; b.el.style.height = `${L.size}px`; }
       }
     };
     window.addEventListener("resize", onResize, { passive: true });
 
-    // Reduced motion: place them statically, no loop, no interaction.
+    const place = (b: Body, px = 0, py = 0) => {
+      if (!b.el) return;
+      const x = Math.min(Math.max(b.x + px, b.xMin), b.xMax);
+      const y = Math.min(Math.max(b.y + py, b.yMin), b.yMax);
+      b.el.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) rotate(${b.rot.toFixed(2)}deg)`;
+    };
+
     if (reduce) {
-      for (const b of bodies) {
-        if (b.el) b.el.style.transform = `translate3d(${b.x}px, ${b.y}px, 0) rotate(${b.rot}deg)`;
-      }
+      for (const b of bodies) place(b);
       return () => window.removeEventListener("resize", onResize);
     }
 
-    /* ── Cursor parallax (own lerped pointer, decoupled) ── */
+    /* Cursor parallax (own lerped pointer). */
     let pxT = 0, pyT = 0, pxC = 0, pyC = 0;
     const onMouse = (e: MouseEvent) => {
       pxT = (e.clientX / W) * 2 - 1;
@@ -236,7 +285,6 @@ export function DoodleField() {
     };
     window.addEventListener("mousemove", onMouse, { passive: true });
 
-    /* ── Animation loop ── */
     let raf = 0;
     const step = () => {
       pxC += (pxT - pxC) * 0.06;
@@ -249,29 +297,21 @@ export function DoodleField() {
           b.vx *= FRICTION;
           b.vy *= FRICTION;
 
-          // Bounce off the viewport edges.
-          const maxX = W - b.size;
-          const maxY = H - b.size;
-          if (b.x < 0) { b.x = 0; b.vx = Math.abs(b.vx) * RESTITUTION + IDLE; b.drift = Math.atan2(b.vy, b.vx); }
-          else if (b.x > maxX) { b.x = maxX; b.vx = -Math.abs(b.vx) * RESTITUTION - IDLE; b.drift = Math.atan2(b.vy, b.vx); }
-          if (b.y < 0) { b.y = 0; b.vy = Math.abs(b.vy) * RESTITUTION + IDLE; b.drift = Math.atan2(b.vy, b.vx); }
-          else if (b.y > maxY) { b.y = maxY; b.vy = -Math.abs(b.vy) * RESTITUTION - IDLE; b.drift = Math.atan2(b.vy, b.vx); }
+          // Bounce inside the rail box.
+          if (b.x < b.xMin) { b.x = b.xMin; b.vx = Math.abs(b.vx) * RESTITUTION; }
+          else if (b.x > b.xMax) { b.x = b.xMax; b.vx = -Math.abs(b.vx) * RESTITUTION; }
+          if (b.y < b.yMin) { b.y = b.yMin; b.vy = Math.abs(b.vy) * RESTITUTION + IDLE; b.drift = Math.PI / 2; }
+          else if (b.y > b.yMax) { b.y = b.yMax; b.vy = -Math.abs(b.vy) * RESTITUTION - IDLE; b.drift = -Math.PI / 2; }
 
-          // Never fully stop — keep a calm perpetual drift.
+          // Never fully stop — keep a calm, mostly-vertical drift.
           const sp = Math.hypot(b.vx, b.vy);
           if (sp < IDLE) {
-            if (sp < 1e-3) { b.vx = Math.cos(b.drift) * IDLE; b.vy = Math.sin(b.drift) * IDLE; }
+            if (sp < 1e-3) { b.vx = Math.cos(b.drift) * IDLE * 0.3; b.vy = Math.sin(b.drift) * IDLE; }
             else { const k = IDLE / sp; b.vx *= k; b.vy *= k; }
           }
-          // Roll a little in the direction of travel.
-          b.rot += b.vx * 0.22;
+          b.rot += b.vy * 0.12;
         }
-
-        if (b.el) {
-          const px = pxC * PARALLAX * b.depth;
-          const py = pyC * PARALLAX * b.depth;
-          b.el.style.transform = `translate3d(${(b.x + px).toFixed(2)}px, ${(b.y + py).toFixed(2)}px, 0) rotate(${b.rot.toFixed(2)}deg)`;
-        }
+        place(b, pxC * PARALLAX_X * b.depth, pyC * PARALLAX_Y * b.depth);
       }
       raf = requestAnimationFrame(step);
     };
@@ -284,9 +324,7 @@ export function DoodleField() {
     };
   }, [mounted]);
 
-  /* ── Per-doodle pointer handlers: grab → drag → flick ──
-     setPointerCapture routes move/up to the element even outside its bounds,
-     so a throw tracks the cursor all the way to release. */
+  /* Per-doodle pointer handlers: grab → drag → flick (clamped to the rail). */
   const grabOff = useRef<{ id: number; ox: number; oy: number } | null>(null);
 
   const onPointerDown = (e: React.PointerEvent<HTMLDivElement>, b: Body) => {
@@ -299,9 +337,9 @@ export function DoodleField() {
 
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>, b: Body) => {
     if (!b.dragging || grabOff.current?.id !== e.pointerId) return;
-    const nx = e.clientX - grabOff.current.ox;
-    const ny = e.clientY - grabOff.current.oy;
-    // Smoothed instantaneous velocity → becomes the throw on release.
+    // Clamp the drag itself to the rail so you can't drag a doodle over text.
+    const nx = Math.min(Math.max(e.clientX - grabOff.current.ox, b.xMin), b.xMax);
+    const ny = Math.min(Math.max(e.clientY - grabOff.current.oy, b.yMin), b.yMax);
     b.vx = b.vx * 0.4 + (nx - b.x) * 0.6;
     b.vy = b.vy * 0.4 + (ny - b.y) * 0.6;
     b.x = nx;
@@ -312,8 +350,7 @@ export function DoodleField() {
     if (grabOff.current?.id !== e.pointerId) return;
     b.dragging = false;
     grabOff.current = null;
-    // Cap the launch so a violent flick doesn't teleport off-screen.
-    const cap = 34;
+    const cap = 26;
     const sp = Math.hypot(b.vx, b.vy);
     if (sp > cap) { const k = cap / sp; b.vx *= k; b.vy *= k; }
   };
@@ -325,7 +362,7 @@ export function DoodleField() {
           key={i}
           ref={(el) => { b.el = el; }}
           className={`doodle${b.gold ? " is-gold" : ""}`}
-          style={{ width: b.size, height: b.size, opacity: b.opacity }}
+          style={{ width: b.size, height: b.size }}
           onPointerDown={(e) => onPointerDown(e, b)}
           onPointerMove={(e) => onPointerMove(e, b)}
           onPointerUp={(e) => endDrag(e, b)}
