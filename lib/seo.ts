@@ -25,13 +25,13 @@ export const siteSchema = {
       priceRange: "$$$",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "1/19 Musgrave St",
-        addressLocality: "West End",
+        streetAddress: "52 Petrel Crescent",
+        addressLocality: "Worongary",
         addressRegion: "QLD",
-        postalCode: "4101",
+        postalCode: "4213",
         addressCountry: "AU",
       },
-      geo: { "@type": "GeoCoordinates", latitude: -27.481, longitude: 153.011 },
+      geo: { "@type": "GeoCoordinates", latitude: -28.028, longitude: 153.354 },
       areaServed: { "@type": "Country", name: "Australia" },
       identifier: [{ "@type": "PropertyValue", name: "ABN", value: "89 661 414 197" }],
       knowsAbout: [
@@ -97,8 +97,8 @@ export const SITE = {
   phoneTel: "+61468454831",
   email: "info@graceadvisory.com.au",
   address: {
-    line1: "1/19 Musgrave St",
-    line2: "West End QLD 4101",
+    line1: "52 Petrel Crescent",
+    line2: "Worongary QLD 4213",
   },
   abn: "89 661 414 197",
 };
