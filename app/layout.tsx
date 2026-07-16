@@ -94,9 +94,9 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   other: {
     "geo.region": "AU-QLD",
-    "geo.placename": "Gold Coast",
-    "geo.position": "-28.028;153.354",
-    ICBM: "-28.028, 153.354",
+    "geo.placename": "Brisbane",
+    "geo.position": "-27.481;153.011",
+    ICBM: "-27.481, 153.011",
   },
 };
 

@@ -31,7 +31,7 @@ export const siteSchema = {
         postalCode: "4213",
         addressCountry: "AU",
       },
-      geo: { "@type": "GeoCoordinates", latitude: -28.028, longitude: 153.354 },
+      geo: { "@type": "GeoCoordinates", latitude: -27.481, longitude: 153.011 },
       areaServed: { "@type": "Country", name: "Australia" },
       identifier: [{ "@type": "PropertyValue", name: "ABN", value: "89 661 414 197" }],
       knowsAbout: [
