@@ -14,7 +14,7 @@ They serve financial-services businesses that need:
 
 They also do credit-licence (ACL) applications, life-insurance distribution compliance, graduate training, and general regulatory advisory.
 
-The business operates from **1/19 Musgrave St, West End, QLD 4101**. Phone `0468 454 831`. Email `info@graceadvisory.com.au`. LinkedIn `linkedin.com/company/grace-advisory-au`. Full details: [`contact-info.md`](./contact-info.md).
+The business operates from **52 Petrel Crescent, Worongary, QLD 4213**. Phone `0468 454 831`. Email `info@graceadvisory.com.au`. LinkedIn `linkedin.com/company/grace-advisory-au`. Full details: [`contact-info.md`](./contact-info.md).
 
 ## Site information architecture
 

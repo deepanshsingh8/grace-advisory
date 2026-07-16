@@ -10,7 +10,7 @@ The single source of truth for contact details when rebuilding the site. All val
 
 ## Address
 
-`1/19 Musgrave St, West End, QLD 4101, Australia`
+`52 Petrel Crescent, Worongary, QLD 4213, Australia`
 
 ## Phone
 
@@ -31,7 +31,7 @@ The single source of truth for contact details when rebuilding the site. All val
 
 ```
 Grace Advisory
-1/19 Musgrave St, West End, QLD 4101
+52 Petrel Crescent, Worongary, QLD 4213
 0468 454 831  ·  info@graceadvisory.com.au
 LinkedIn: linkedin.com/company/grace-advisory-au
 

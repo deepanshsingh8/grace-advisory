@@ -65,7 +65,7 @@ are won by the map pack, not by web pages.
 
 1. <https://business.google.com> → create profile for **Grace Advisory**,
    category "Business management consultant" (secondary: "Financial consultant").
-2. Address: 1/19 Musgrave St, West End QLD 4101 (or service-area business if
+2. Address: 52 Petrel Crescent, Worongary QLD 4213 (or service-area business if
    you don't want the address public). Phone: 0468 454 831.
    Website: `https://graceadvisory.com.au`.
 3. Verify (postcard/phone/video, whatever Google offers).

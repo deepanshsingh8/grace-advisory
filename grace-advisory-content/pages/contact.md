@@ -28,12 +28,12 @@ _Email here_
 ### Contact Information
 
 _List Subtitle Type here_
-### 1/19 Musgrave St, West End, QLD 4101
+### 52 Petrel Crescent, Worongary, QLD 4213
 _List Subtitle Type here_
 ### info@graceadvisory.com.au
 _List Subtitle Type here_
 
-1/19 Musgrave St West End QLD 4101
+52 Petrel Crescent Worongary QLD 4213
 
 ---
 
@@ -85,7 +85,7 @@ Linkedin
 
 
 - 
-1/19 Musgrave St, West End, QLD 4101 
+52 Petrel Crescent, Worongary, QLD 4213 
 
 
 

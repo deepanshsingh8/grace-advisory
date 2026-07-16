@@ -14,7 +14,7 @@ This document is the source-of-truth content extracted from the existing site. U
 - **ABN:** 89 661 414 197
 - **Phone:** 0468 454 831
 - **Email:** info@graceadvisory.com.au
-- **Address:** 1/19 Musgrave St, West End, QLD 4101
+- **Address:** 52 Petrel Crescent, Worongary, QLD 4213
 - **Social:** Facebook, Twitter/X, YouTube, LinkedIn, Instagram
 
 **Mission Statement (used throughout site):**
