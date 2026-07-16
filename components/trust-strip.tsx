@@ -8,7 +8,7 @@ const FRAMEWORKS = ["ASIC", "AUSTRAC", "AFCA", "FATF", "RG 105", "AML/CTF Act"
 export function TrustStrip() {
   return (
     <section
-      className="relative py-12 sm:py-14 bg-[var(--color-ivory-100)] border-y border-[var(--color-line)]"
+      className="relative section-pad-sm bg-[var(--color-ivory-100)] border-y border-[var(--color-line)]"
     >
       {/* Soft warm wash so it doesn't read as a flat slab */}
       <div

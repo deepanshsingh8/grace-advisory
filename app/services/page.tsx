@@ -75,14 +75,14 @@ export default function ServicesPage() {
       />
 
       {/* Two pillars */}
-      <section className="bg-[var(--color-ivory-50)] py-16 sm:py-20 lg:py-24">
+      <section className="bg-[var(--color-ivory-50)] section-pad">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
             {FAMILIES.map((f) => (
               <article key={f.title}
                        className="relative bg-[var(--color-ivory-50)] border border-[var(--color-line)] p-7 sm:p-9 lg:p-10 flex flex-col">
                 <div className="h-[3px] w-12 bg-[var(--color-gold-500)] mb-6" aria-hidden />
-                <span className="font-sans font-bold tracking-[0.2em] uppercase text-[0.72rem] text-[var(--color-gold-700)]">
+                <span className="eyebrow no-rule">
                   {f.eyebrow}
                 </span>
                 <h2 className="font-display font-medium text-[var(--color-navy-900)] tracking-[-0.01em] mt-3"
@@ -118,7 +118,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Adjacent services */}
-      <section className="bg-[var(--color-ivory-100)] border-t border-[var(--color-line)] py-16 sm:py-20 lg:py-24">
+      <section className="bg-[var(--color-ivory-100)] border-t border-[var(--color-line)] section-pad">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="max-w-[640px] mb-10 sm:mb-12">
             <span className="eyebrow">Also available</span>

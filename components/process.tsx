@@ -44,7 +44,7 @@ export function Process() {
   return (
     <section
       id="process"
-      className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)] overflow-hidden"
+      className="relative section-pad bg-[var(--color-ivory-50)] overflow-hidden"
     >
       {/* Background atmosphere */}
       <div
@@ -59,10 +59,10 @@ export function Process() {
       {/* Subtle hex pattern */}
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-50"
+        className="parallax absolute inset-0 pointer-events-none opacity-50"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%231E2A56' stroke-opacity='0.04' stroke-width='1'/></svg>\")",
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23182148' stroke-opacity='0.04' stroke-width='1'/></svg>\")",
           backgroundSize: "200px 230px",
           transform: "translate3d(calc(var(--mx) * -10px), calc(var(--my) * -8px), 0)",
           transition: "transform 1200ms cubic-bezier(.18,.7,.2,1)",
@@ -71,7 +71,7 @@ export function Process() {
 
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. IV · The Engagement"
+          eyebrow="The Engagement"
           title={<>How we work,<br/>step by step.</>}
           lede="Five stages from first call to ongoing support — clearly scoped, fixed-fee, and senior-led throughout."
         />

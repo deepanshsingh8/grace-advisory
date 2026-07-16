@@ -29,7 +29,7 @@ export default function LifeInsurancePage() {
       />
 
       {/* Products grid */}
-      <section className="bg-[var(--color-ivory-100)] py-16 sm:py-20 lg:py-24">
+      <section className="bg-[var(--color-ivory-100)] section-pad">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="max-w-[640px] mb-10 sm:mb-14">
             <span className="eyebrow">What we cover</span>

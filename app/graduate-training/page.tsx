@@ -27,7 +27,7 @@ export default function GradPage() {
         lede="Landing your first opportunity is hard without experience. Our program bridges that gap with end-to-end training and real-world insight."
       />
 
-      <section className="bg-[var(--color-ivory-50)] py-16 sm:py-20 lg:py-24">
+      <section className="bg-[var(--color-ivory-50)] section-pad">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="max-w-[640px] mb-12">
             <span className="eyebrow">What we offer</span>
@@ -38,11 +38,8 @@ export default function GradPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[var(--color-line)] border border-[var(--color-line)]">
-            {PILLARS.map((p, i) => (
+            {PILLARS.map((p) => (
               <div key={p.title} className="bg-[var(--color-ivory-50)] p-7 sm:p-9 lg:p-10">
-                <span className="font-sans font-bold tracking-[0.2em] uppercase text-[0.7rem] text-[var(--color-gold-700)]">
-                  No. {String(i + 1).padStart(2, "0")}
-                </span>
                 <h3 className="font-display font-medium text-[var(--color-navy-900)] mt-4 mb-3"
                     style={{ fontSize: "clamp(1.2rem, 1.7vw, 1.45rem)", lineHeight: 1.2 }}>
                   {p.title}

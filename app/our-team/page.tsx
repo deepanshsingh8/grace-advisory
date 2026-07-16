@@ -40,7 +40,7 @@ export default function OurTeamPage() {
       />
 
       {/* Principles */}
-      <section className="bg-[var(--color-ivory-50)] py-16 sm:py-20 lg:py-24">
+      <section className="bg-[var(--color-ivory-50)] section-pad">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="max-w-[640px] mb-12">
             <span className="eyebrow">Commitment to excellence</span>
@@ -51,11 +51,8 @@ export default function OurTeamPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--color-line)] border border-[var(--color-line)]">
-            {PRINCIPLES.map((p, i) => (
+            {PRINCIPLES.map((p) => (
               <div key={p.title} className="bg-[var(--color-ivory-50)] p-7 sm:p-8 lg:p-10">
-                <span className="font-sans font-bold tracking-[0.2em] uppercase text-[0.7rem] text-[var(--color-gold-700)]">
-                  No. {String(i + 1).padStart(2, "0")}
-                </span>
                 <h3 className="font-display font-medium text-[var(--color-navy-900)] mt-4 mb-3"
                     style={{ fontSize: "clamp(1.2rem, 1.6vw, 1.4rem)", lineHeight: 1.2 }}>
                   {p.title}
@@ -70,7 +67,7 @@ export default function OurTeamPage() {
       </section>
 
       {/* Track record */}
-      <section className="bg-[var(--color-ivory-100)] py-16 sm:py-20 lg:py-24 border-t border-[var(--color-line)]">
+      <section className="bg-[var(--color-ivory-100)] section-pad border-t border-[var(--color-line)]">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-16">
             <div>
@@ -91,7 +88,7 @@ export default function OurTeamPage() {
                         style={{ fontSize: "clamp(1.4rem, 2vw, 1.8rem)", letterSpacing: "-0.01em" }}>
                     {t.stat}
                   </span>
-                  <span className="font-sans text-[var(--color-ink-800)] text-[0.98rem] leading-[1.6]">
+                  <span className="font-sans text-[var(--color-ink-700)] text-[0.98rem] leading-[1.6]">
                     {t.body}
                   </span>
                 </li>

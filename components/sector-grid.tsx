@@ -29,7 +29,7 @@ const SECTORS: Sector[] = [
  */
 export function SectorGrid() {
   return (
-    <section id="sectors" className="relative py-[clamp(56px,7vw,96px)] bg-cream-mesh">
+    <section id="sectors" className="relative section-pad bg-cream-mesh">
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
           eyebrow="No. I · Reporting Entities"
@@ -62,7 +62,7 @@ export function SectorGrid() {
             return (
               <article key={s.name} className={`group ${dividers}`}>
                 <div className="flex items-start gap-5">
-                  <s.Ill className="text-[var(--color-gold-500)] transition-transform duration-700 group-hover:rotate-[6deg] shrink-0" />
+                  <s.Ill className="text-[var(--color-gold-500)] transition-transform duration-300 group-hover:rotate-[6deg] shrink-0" />
                   <div className="min-w-0 pt-1">
                     <span className="font-sans font-bold tracking-[0.2em] uppercase text-[0.7rem] text-[var(--color-gold-700)]">
                       {s.num}.

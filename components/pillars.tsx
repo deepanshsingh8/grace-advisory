@@ -38,7 +38,7 @@ const AML: PillarProps = {
   eyebrow: "Pillar II",
   title: "AML/CTF Compliance",
   lede:
-    "Australia&rsquo;s AML/CTF regime is risk-based. We turn that principle into programs that work in practice — from AUSTRAC enrolment to independent review.",
+    "Australia’s AML/CTF regime is risk-based. We turn that principle into programs that work in practice — from AUSTRAC enrolment to independent review.",
   items: [
     { title: "AML/CTF Program", body: "Standard, Joint and Special programs, Part A and Part B." },
     { title: "AUSTRAC Registration", body: "For remittance providers and crypto exchanges." },
@@ -54,7 +54,7 @@ const AML: PillarProps = {
 
 export function Pillars() {
   return (
-    <section id="pillars" className="relative py-[clamp(56px,7vw,96px)] bg-warm-mesh">
+    <section id="pillars" className="relative section-pad bg-warm-mesh">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none opacity-60"
@@ -66,7 +66,7 @@ export function Pillars() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. I · Service Pillars"
+          eyebrow="Service Pillars"
           title={<>Two regulatory regimes.<br />One advisory.</>}
           lede="AFSL, AML/CTF Program or ongoing oversight — shaped to how your business actually runs."
         />
@@ -83,7 +83,7 @@ export function Pillars() {
 function Pillar(p: PillarProps) {
   return (
     <article className="has-spotlight relative bg-[var(--color-ivory-50)] border border-[var(--color-line)]
-                        hover:border-[var(--color-gold-300)] transition-[border-color] duration-500 group flex flex-col">
+                        hover:border-[var(--color-gold-300)] transition-[border-color] duration-200 group flex flex-col">
       {/* Image header */}
       <div className="relative aspect-[16/9] overflow-hidden bg-[var(--color-navy-900)]">
         <Image
@@ -117,8 +117,7 @@ function Pillar(p: PillarProps) {
 
       {/* Body */}
       <div className="p-8 lg:p-10 flex flex-col flex-1">
-        <h3 className="font-display font-medium leading-[1.05] tracking-[-0.012em] mb-4"
-            style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>{p.title}</h3>
+        <h3 className="font-display font-semibold leading-[1.05] tracking-[-0.012em] mb-4 text-[var(--text-h3)]">{p.title}</h3>
         <p className="text-[var(--color-ink-700)] mb-7 leading-[1.7]">{p.lede}</p>
 
         <ul className="border-t border-[var(--color-line)] pt-5 mb-7 space-y-3 list-none p-0">

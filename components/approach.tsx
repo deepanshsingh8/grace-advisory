@@ -10,7 +10,7 @@ const PILLARS = [
 
 export function Approach() {
   return (
-    <section id="approach" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-100)]">
+    <section id="approach" className="relative section-pad bg-[var(--color-ivory-100)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -22,7 +22,7 @@ export function Approach() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. II · Why Grace"
+          eyebrow="Why Grace"
           title={<>A boutique discipline,<br/>at every stage of compliance.</>}
           lede="Three principles shape every engagement — precision over volume, partnership over transaction."
         />
@@ -81,10 +81,10 @@ export function Approach() {
                   {/* Numeral badge */}
                   <div className="flex items-baseline gap-4 mb-3">
                     <span className="font-sans font-bold text-[var(--color-gold-700)] text-[0.7rem] tracking-[0.18em] uppercase leading-none">{p.num}</span>
-                    <h3 className="font-display font-medium leading-[1.1] tracking-[-0.008em] m-0 flex-1 text-[var(--color-navy-900)]"
+                    <h3 className="font-display font-semibold leading-[1.1] tracking-[-0.008em] m-0 flex-1 text-[var(--color-navy-900)]"
                         style={{ fontSize: "clamp(1.35rem, 1.9vw, 1.7rem)" }}>{p.title}</h3>
                     <svg viewBox="0 0 24 24" fill="none" aria-hidden
-                         className="w-5 h-5 text-[var(--color-gold-500)] opacity-30 group-hover:opacity-100 transition-opacity duration-500 shrink-0">
+                         className="w-5 h-5 text-[var(--color-gold-500)] opacity-30 group-hover:opacity-100 transition-opacity duration-300 shrink-0">
                       <path d="M12 2 L21 7 V17 L12 22 L3 17 V7 Z" stroke="currentColor" strokeWidth="1.4" />
                     </svg>
                   </div>

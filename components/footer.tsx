@@ -28,7 +28,7 @@ export function Footer() {
                 style={{ filter: "brightness(0) invert(1)" }}
               />
             </Link>
-            <p className="mt-5 max-w-[340px] font-sans text-[rgba(251,248,241,0.78)] text-[0.95rem] leading-[1.6] m-0">
+            <p className="mt-5 max-w-[340px] font-sans text-[rgba(250,250,246,0.78)] text-[0.95rem] leading-[1.6] m-0">
               Ethical conduct, clients&rsquo; interests first — in our words and actions.
             </p>
           </div>
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[rgba(232,185,71,0.18)] flex flex-wrap justify-between gap-4 font-sans text-[0.78rem] tracking-[0.06em] text-[rgba(251,248,241,0.6)]">
+        <div className="mt-12 pt-6 border-t border-[rgba(232,185,71,0.18)] flex flex-wrap justify-between gap-4 font-sans text-[0.78rem] tracking-[0.06em] text-[rgba(250,250,246,0.78)]">
           <span>© {new Date().getFullYear()} Grace Advisory · ABN {SITE.abn}</span>
           <div className="flex gap-3" aria-label="Social links">
             <SocialLink href="https://www.linkedin.com/company/grace-advisory-au" label="LinkedIn"><LinkedInIcon className="w-3.5 h-3.5"/></SocialLink>
@@ -70,7 +70,7 @@ function FootCol({ heading, items }: { heading: string; items: readonly { label:
       <ul className="list-none p-0 m-0 space-y-2.5">
         {items.map((it) => (
           <li key={it.href}>
-            <Link href={it.href} className="font-sans text-[rgba(251,248,241,0.85)] text-[0.95rem] hover:text-[var(--color-gold-300)] transition-colors">
+            <Link href={it.href} className="font-sans text-[rgba(250,250,246,0.85)] text-[0.95rem] hover:text-[var(--color-gold-300)] transition-colors">
               {it.label}
             </Link>
           </li>
@@ -83,7 +83,7 @@ function FootCol({ heading, items }: { heading: string; items: readonly { label:
 function SocialLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
   return (
     <a href={href} aria-label={label}
-       className="w-8 h-8 inline-flex items-center justify-center border border-[rgba(232,185,71,0.25)] text-[rgba(251,248,241,0.8)] hover:border-[var(--color-gold-500)] hover:text-[var(--color-navy-900)] hover:bg-[var(--color-gold-500)] transition-colors">
+       className="w-11 h-11 inline-flex items-center justify-center border border-[rgba(232,185,71,0.25)] text-[rgba(250,250,246,0.8)] hover:border-[var(--color-gold-500)] hover:text-[var(--color-navy-900)] hover:bg-[var(--color-gold-500)] transition-colors">
       {children}
     </a>
   );

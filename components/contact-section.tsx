@@ -1,12 +1,15 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useRef } from "react";
 import { useFormStatus } from "react-dom";
 import { ArrowRight } from "@/components/icons";
 import { SITE } from "@/lib/seo";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 
 const INITIAL: ContactState = { status: "idle" };
+
+/** Field order — drives "focus the first invalid field" after a failed submit. */
+const FIELD_ORDER = ["name", "email", "phone", "subject", "message"] as const;
 
 /**
  * Contact section — split: brand-tinted detail panel on the left,
@@ -16,6 +19,20 @@ const INITIAL: ContactState = { status: "idle" };
  */
 export function ContactSection() {
   const [state, formAction] = useActionState(submitContact, INITIAL);
+  const alertRef = useRef<HTMLDivElement>(null);
+
+  // After a failed submit, move focus to the first invalid field so keyboard
+  // and screen-reader users are taken straight to what needs fixing. If the
+  // failure is general (no field errors), focus the error banner instead.
+  useEffect(() => {
+    if (state.status !== "error") return;
+    const firstInvalid = FIELD_ORDER.find((name) => state.errors?.[name]);
+    if (firstInvalid) {
+      document.getElementById(`field-${firstInvalid}`)?.focus();
+    } else {
+      alertRef.current?.focus();
+    }
+  }, [state]);
 
   return (
     <section className="relative bg-[var(--color-ivory-50)]">
@@ -28,8 +45,7 @@ export function ContactSection() {
             "radial-gradient(700px 500px at 100% 100%, rgba(30,42,86,0.05), transparent 60%)",
         }}
       />
-      <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12"
-           style={{ paddingBlock: "clamp(48px, 6vw, 88px)" }}>
+      <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12 section-pad">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-0 border border-[var(--color-line)] bg-[var(--color-ivory-50)]">
           {/* Detail panel */}
           <aside className="relative bg-[var(--color-navy-900)] text-[var(--color-ivory-50)] p-10 sm:p-12 overflow-hidden">
@@ -76,12 +92,7 @@ export function ContactSection() {
             </h3>
 
             {state.status === "ok" ? (
-              <div className="border border-[var(--color-gold-300)] bg-[var(--color-gold-50)] p-7">
-                <div className="eyebrow no-rule mb-2">Message sent</div>
-                <p className="font-sans text-[var(--color-navy-900)] m-0 text-[1.05rem] leading-[1.6]">
-                  {state.message}
-                </p>
-              </div>
+              <SuccessNotice message={state.message} />
             ) : (
               <form action={formAction} className="space-y-5" noValidate>
                 {/* Honeypot — hidden from sighted users + screen readers */}
@@ -103,8 +114,14 @@ export function ContactSection() {
                 <Field label="Your message" name="message" textarea autoComplete="off" error={state.errors?.message} required />
 
                 {state.status === "error" && state.message && (
-                  <div role="alert" className="border-l-2 border-[var(--color-gold-500)] bg-[var(--color-ivory-100)] px-4 py-3 text-[var(--color-ink-900)] text-[0.95rem] font-sans">
-                    {state.message}
+                  <div
+                    ref={alertRef}
+                    role="alert"
+                    tabIndex={-1}
+                    className="flex items-start gap-3 border-l-[3px] border-[var(--color-gold-700)] bg-[var(--color-ivory-100)] px-4 py-3 text-[var(--color-ink-900)] text-[0.95rem] font-sans focus:outline-none focus-visible:outline-2 focus-visible:outline-[var(--color-gold-500)] focus-visible:outline-offset-2"
+                  >
+                    <WarningIcon className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-gold-700)]" />
+                    <span>{state.message}</span>
                   </div>
                 )}
 
@@ -119,6 +136,46 @@ export function ContactSection() {
         </div>
       </div>
     </section>
+  );
+}
+
+/* ─── Success notice ─────────────────────────────────────────────────────
+   role="status" + aria-live announces the confirmation to assistive tech,
+   and focus is moved here so keyboard users land on the outcome. */
+
+function SuccessNotice({ message }: { message?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => { ref.current?.focus(); }, []);
+  return (
+    <div
+      ref={ref}
+      role="status"
+      aria-live="polite"
+      tabIndex={-1}
+      className="border border-[var(--color-gold-300)] bg-[var(--color-gold-50)] p-7 focus:outline-none focus-visible:outline-2 focus-visible:outline-[var(--color-gold-500)] focus-visible:outline-offset-2"
+    >
+      <div className="eyebrow no-rule mb-2">Message sent</div>
+      <p className="font-sans text-[var(--color-navy-900)] m-0 text-[1.05rem] leading-[1.6]">
+        {message}
+      </p>
+    </div>
+  );
+}
+
+/* ─── Warning glyph (error banner) ──────────────────────────────────────── */
+
+function WarningIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden className={className}>
+      <path
+        d="M12 3.5 L21.5 20 H2.5 Z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <path d="M12 10 V14" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="12" cy="16.8" r="0.9" fill="currentColor" />
+    </svg>
   );
 }
 
@@ -142,7 +199,7 @@ function Field({
   const base =
     "w-full px-4 py-3.5 bg-[var(--color-ivory-50)] border " +
     "font-sans text-[var(--color-ink-900)] placeholder:text-[var(--color-ink-600)] " +
-    "focus:outline-none focus:border-[var(--color-navy-700)] focus:shadow-[0_0_0_3px_rgba(230,182,55,0.25)] " +
+    "focus:outline-none focus:border-[var(--color-navy-700)] focus:shadow-[0_0_0_3px_rgba(230,182,55,0.4)] " +
     "transition-[border-color,box-shadow] duration-200 " +
     (error ? "border-[var(--color-gold-600)]" : "border-[var(--color-line)]");
 

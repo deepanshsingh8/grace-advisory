@@ -22,7 +22,7 @@ const SERVICES: Service[] = [
 
 export function ServiceGrid() {
   return (
-    <section id="services" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)]">
+    <section id="services" className="relative section-pad bg-[var(--color-ivory-50)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -43,7 +43,7 @@ export function ServiceGrid() {
           {SERVICES.map((s) => (
             <article
               key={s.title}
-              className="has-spotlight relative bg-[var(--color-ivory-50)] hover:bg-[var(--color-ivory-100)] transition-colors duration-500 border-r border-b border-[var(--color-line)] p-7 lg:p-8"
+              className="has-spotlight relative bg-[var(--color-ivory-50)] hover:bg-[var(--color-ivory-100)] transition-colors duration-200 border-r border-b border-[var(--color-line)] p-7 lg:p-8"
             >
               <div className="font-sans font-bold tracking-[0.18em] uppercase text-[0.7rem] text-[var(--color-gold-700)] mb-3">{s.num}</div>
               <s.Icon className="w-10 h-10 text-[var(--color-gold-500)] mb-5" />

@@ -43,7 +43,7 @@ const POSTS: Post[] = [
 
 export function Insights() {
   return (
-    <section id="insights" className="relative py-[clamp(56px,7vw,96px)] bg-[var(--color-ivory-50)]">
+    <section id="insights" className="relative section-pad bg-[var(--color-ivory-50)]">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -55,7 +55,7 @@ export function Insights() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. V · From the Practice"
+          eyebrow="From the Practice"
           title={<>Notes on the regulation<br/>that shapes your business.</>}
         />
 
@@ -65,7 +65,7 @@ export function Insights() {
               href={p.href}
               key={p.title}
               className="has-spotlight group relative bg-[var(--color-ivory-50)] border border-[var(--color-line)]
-                         hover:border-[var(--color-gold-300)] transition-[border-color] duration-500
+                         hover:border-[var(--color-gold-300)] transition-[border-color] duration-300
                          flex flex-col"
             >
               {/* Cover */}
@@ -102,12 +102,12 @@ export function Insights() {
               {/* Body */}
               <div className="p-7 lg:p-8 flex flex-col gap-4 flex-1">
                 <div className="font-sans font-bold text-[0.7rem] tracking-[0.18em] uppercase text-[var(--color-ink-600)]">{p.date}</div>
-                <h3 className="font-display font-medium leading-[1.2] tracking-[-0.005em] m-0"
+                <h3 className="font-display font-semibold leading-[1.2] tracking-[-0.005em] m-0"
                     style={{ fontSize: "clamp(1.25rem, 1.6vw, 1.5rem)" }}>
                   {p.title}
                 </h3>
                 <p className="text-[var(--color-ink-700)] text-[0.95rem] leading-[1.6] m-0 flex-1">{p.excerpt}</p>
-                <span className="btn-ghost mt-2 self-start">
+                <span className="btn-ghost mt-2 self-start group-hover:border-[var(--color-gold-500)]">
                   Read article
                   <ArrowRight className="w-3 h-3" />
                 </span>

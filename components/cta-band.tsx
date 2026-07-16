@@ -21,7 +21,7 @@ export function CTABand() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 pointer-events-none z-[1]"
+        className="parallax absolute inset-0 pointer-events-none z-[1]"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23D29A1A' stroke-opacity='0.10' stroke-width='1'/></svg>\")",

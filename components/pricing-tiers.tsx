@@ -22,7 +22,7 @@ export function PricingTiers() {
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. I · Retainer Tiers"
+          eyebrow="Retainer Tiers"
           title={<>Compliance, on retainer.</>}
           lede="Three monthly subscriptions for ongoing compliance — matched to your regulatory load at every stage. Fees quoted on enquiry."
         />
@@ -49,7 +49,7 @@ function TierCard({ tier }: { tier: Tier }) {
   return (
     <article
       className={
-        "has-spotlight relative flex flex-col h-full transition-[transform,box-shadow] duration-500 " +
+        "has-spotlight relative flex flex-col h-full transition-colors duration-300 " +
         (featured
           ? "bg-[var(--color-navy-900)] text-[var(--color-ivory-50)] lg:-translate-y-3 shadow-[0_24px_60px_-20px_rgba(20,27,60,0.3)] on-dark"
           : "bg-[var(--color-ivory-50)] border border-[var(--color-line)] hover:border-[var(--color-gold-300)]")
@@ -111,7 +111,7 @@ function TierCard({ tier }: { tier: Tier }) {
                 "grid grid-cols-[18px_1fr] gap-3 items-start text-[0.95rem] leading-[1.5] " +
                 (f.included
                   ? featured ? "text-[var(--color-ivory-50)]" : "text-[var(--color-ink-900)]"
-                  : featured ? "text-[rgba(251,248,241,0.4)]" : "text-[var(--color-ink-400)]")
+                  : featured ? "text-[rgba(250,250,246,0.6)]" : "text-[var(--color-ink-600)]")
               }
             >
               {f.included ? (
@@ -119,7 +119,7 @@ function TierCard({ tier }: { tier: Tier }) {
               ) : (
                 <HexOutline className="w-3 h-3 mt-1.5 shrink-0 opacity-50" />
               )}
-              <span className={f.included ? "" : "line-through opacity-70"}>{f.label}</span>
+              <span className={f.included ? "" : "line-through"}>{f.label}</span>
             </li>
           ))}
         </ul>

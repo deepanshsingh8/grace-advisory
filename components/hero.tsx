@@ -25,7 +25,7 @@ export function Hero() {
       {/* 2. Hex pattern, parallax-translated */}
       <div
         aria-hidden
-        className="absolute -inset-10 z-[1] pointer-events-none"
+        className="parallax absolute -inset-10 z-[1] pointer-events-none"
         style={{
           backgroundImage:
             "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23D29A1A' stroke-opacity='0.16' stroke-width='1'/></svg>\")",
@@ -64,17 +64,14 @@ export function Hero() {
         >
           {/* Text */}
           <div
-            className="hero-text-parallax"
+            className="hero-text-parallax parallax"
             style={{
               transform: "translate3d(calc(var(--mx) * -6px), calc(var(--my) * -4px), 0)",
               transition: "transform 900ms cubic-bezier(.18,.7,.2,1)",
             }}
           >
-            <div className="flex items-center gap-3 mb-6">
-              <span className="gold-rule" aria-hidden style={{ width: 28 }} />
-              <span className="font-sans font-bold text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-gold-200)]">
-                Compliance Consulting · Australia
-              </span>
+            <div className="mb-6">
+              <span className="eyebrow on-dark">Compliance Consulting · Australia</span>
             </div>
 
             <h1
@@ -82,7 +79,9 @@ export function Hero() {
               style={{ fontSize: "clamp(2.4rem, 5.6vw, 4.8rem)" }}
             >
               Compliance,{" "}
-              <span className="text-[var(--color-gold-300)]">conducted with grace.</span>
+              <span className="text-[var(--color-gold-300)]">
+                conducted with <em className="italic font-normal">grace.</em>
+              </span>
             </h1>
 
             <p

@@ -28,7 +28,7 @@ export function HexComposition() {
     >
       {/* Soft gold radial glow behind the centre */}
       <div
-        className="absolute inset-[22%] z-0"
+        className="parallax absolute inset-[22%] z-0"
         style={{
           background: "radial-gradient(closest-side, rgba(230,182,55,0.34), transparent 70%)",
           filter: "blur(22px)",
@@ -38,7 +38,7 @@ export function HexComposition() {
       />
 
       {/* Layer 1: outermost slow-spinning hex ring */}
-      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full" style={layer(-10, -10)}>
+      <svg viewBox="0 0 400 400" className="parallax absolute inset-0 w-full h-full" style={layer(-10, -10)}>
         <g className="hex-spin-slow">
           <path d="M200 20 L356 110 V290 L200 380 L44 290 V110 Z"
                 fill="none" stroke="#E6B637" strokeOpacity="0.55" strokeWidth="1" />
@@ -46,7 +46,7 @@ export function HexComposition() {
       </svg>
 
       {/* Layer 2: mid hex rings, opposite rotation */}
-      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full" style={layer(16, 16)}>
+      <svg viewBox="0 0 400 400" className="parallax absolute inset-0 w-full h-full" style={layer(16, 16)}>
         <g className="hex-spin-rev">
           <path d="M200 60 L320 130 V270 L200 340 L80 270 V130 Z"
                 fill="none" stroke="#F4D27A" strokeOpacity="0.35" strokeWidth="1" />
@@ -56,7 +56,7 @@ export function HexComposition() {
       </svg>
 
       {/* Layer 3: hex tick marks at the vertices */}
-      <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full" style={layer(-22, -22)}>
+      <svg viewBox="0 0 400 400" className="parallax absolute inset-0 w-full h-full" style={layer(-22, -22)}>
         <g className="hex-spin-fast">
           {[
             [200, 20], [356, 110], [356, 290],
@@ -70,7 +70,7 @@ export function HexComposition() {
       {/* Foreground: solid navy hex with the brand G-mark inside */}
       <svg
         viewBox="0 0 400 400"
-        className="absolute inset-0 w-full h-full"
+        className="parallax absolute inset-0 w-full h-full"
         style={layer(30, 30, 1.3)}
       >
         {/* Soft outer halo */}
@@ -130,7 +130,7 @@ export function HexComposition() {
       {/* Floating credential satellites — anchor in the brand's regulatory world */}
       <svg
         viewBox="0 0 400 400"
-        className="absolute inset-0 w-full h-full pointer-events-none"
+        className="parallax absolute inset-0 w-full h-full pointer-events-none"
         style={layer(-14, -14, 0.6)}
       >
         {[

@@ -84,7 +84,7 @@
 /* ─── Base ────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -263,7 +263,7 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--color-navy-700);
 }
 .btn-outline:hover { background: var(--color-navy-700); color: var(--color-ivory-50); }
-.on-dark .btn-outline, .btn-outline.on-dark { color: var(--color-ivory-50); border-color: rgba(251,248,241,.6); }
+.on-dark .btn-outline, .btn-outline.on-dark { color: var(--color-ivory-50); border-color: color-mix(in srgb, var(--color-ivory-50) 60%, transparent); }
 .on-dark .btn-outline:hover, .btn-outline.on-dark:hover { background: var(--color-ivory-50); color: var(--color-navy-900); border-color: var(--color-ivory-50); }
 
 .btn-ghost {
@@ -276,13 +276,20 @@ button { font: inherit; cursor: pointer; }
   display: inline-flex;
   gap: 10px;
   align-items: center;
-  padding-bottom: 4px;
+  /* padding lifts the hit area toward the 44px min while keeping the rule tight */
+  padding-block: 10px 6px;
   border-bottom: 1.5px solid transparent;
   transition: border-color 220ms var(--ease-out-soft), color 220ms var(--ease-out-soft);
 }
 .btn-ghost:hover { border-color: var(--color-gold-500); }
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
 .on-dark .btn-ghost { color: var(--color-ivory-50); }
 .on-dark .btn-ghost:hover { color: var(--color-gold-200); border-color: var(--color-gold-200); }
+.on-dark .btn-ghost:focus-visible { outline-color: var(--color-gold-300); }
 
 /* ─── Reveal on scroll ────────────────────────────────────────────────────
    Fail-open: elements are only hidden when an inline script has confirmed
@@ -361,6 +368,7 @@ html.js .reveal-stagger:not(.in) > * { opacity: 0; transform: translateY(16px); 
   position: absolute;
   top: 0; left: 0;
   color: var(--color-navy-700);
+  opacity: 0.3;
   pointer-events: auto;
   cursor: grab;
   touch-action: none;             /* dragging a doodle must not scroll the page */
@@ -426,6 +434,8 @@ html.js .reveal-stagger:not(.in) > * { opacity: 0; transform: translateY(16px); 
   .marquee-track { animation: none; }
   .cursor-dot { display: none; }
   .bg-hex-gold::after, .bg-hex-navy::after { transform: none !important; }
+  /* Cursor-parallax layers (inline translate3d driven by --mx/--my) freeze. */
+  .parallax { transform: none !important; }
   /* Doodles stay as static, non-interactive decoration when motion is reduced. */
   .doodle { pointer-events: none; cursor: default; opacity: 0.32 !important; }
 }

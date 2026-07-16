@@ -16,7 +16,7 @@ export function PricingFAQ() {
     <section className="relative py-[clamp(56px,7vw,96px)] bg-cream-mesh">
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. III · Frequently asked"
+          eyebrow="Frequently asked"
           title={<>The questions we<br/>are most often asked.</>}
           lede="Plain-language answers on structure, billing and scope. Anything else — just ask."
         />
@@ -25,14 +25,16 @@ export function PricingFAQ() {
           {PRICING_FAQS.map((faq, i) => {
             const open = i === openIndex;
             const id = `faq-${i}`;
+            const triggerId = `faq-trigger-${i}`;
             return (
               <div key={faq.q} className="border-b border-[var(--color-line)]">
                 <button
                   type="button"
+                  id={triggerId}
                   aria-expanded={open}
                   aria-controls={id}
                   onClick={() => setOpenIndex(open ? null : i)}
-                  className="w-full text-left py-6 lg:py-7 flex items-start justify-between gap-6 group"
+                  className="w-full text-left py-6 lg:py-7 flex items-start justify-between gap-6 group focus:outline-none focus-visible:outline-2 focus-visible:outline-[var(--color-gold-500)] focus-visible:outline-offset-2"
                 >
                   <span className="font-display font-medium leading-[1.3] tracking-[-0.005em] text-[var(--color-navy-900)] flex-1"
                         style={{ fontSize: "clamp(1.15rem, 1.5vw, 1.35rem)" }}>
@@ -40,7 +42,7 @@ export function PricingFAQ() {
                   </span>
                   <span
                     className={
-                      "shrink-0 mt-1 w-9 h-9 inline-flex items-center justify-center border " +
+                      "shrink-0 mt-1 w-9 h-9 inline-flex items-center justify-center border transition-colors duration-200 " +
                       (open
                         ? "bg-[var(--color-navy-900)] border-[var(--color-navy-900)] text-[var(--color-gold-300)]"
                         : "bg-transparent border-[var(--color-line)] text-[var(--color-navy-700)] group-hover:border-[var(--color-gold-500)]")
@@ -52,8 +54,9 @@ export function PricingFAQ() {
                 <div
                   id={id}
                   role="region"
+                  aria-labelledby={triggerId}
                   className={
-                    "grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(.18,.7,.2,1)] " +
+                    "grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(.18,.7,.2,1)] " +
                     (open ? "grid-rows-[1fr]" : "grid-rows-[0fr]")
                   }
                 >

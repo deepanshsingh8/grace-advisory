@@ -45,7 +45,7 @@ export function Results() {
   return (
     <section
       id="results"
-      className="relative py-[clamp(56px,7vw,96px)] bg-cream-mesh overflow-hidden"
+      className="relative section-pad bg-cream-mesh overflow-hidden"
     >
       {/* Atmosphere */}
       <div
@@ -60,10 +60,10 @@ export function Results() {
       {/* Subtle hex pattern */}
       <div
         aria-hidden
-        className="absolute -inset-10 pointer-events-none opacity-50"
+        className="parallax absolute -inset-10 pointer-events-none opacity-50"
         style={{
           backgroundImage:
-            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%231E2A56' stroke-opacity='0.04' stroke-width='1'/></svg>\")",
+            "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 92' width='80' height='92'><path d='M40 2 L74 22 V64 L40 84 L6 64 V22 Z' fill='none' stroke='%23182148' stroke-opacity='0.04' stroke-width='1'/></svg>\")",
           backgroundSize: "200px 230px",
           transform: "translate3d(calc(var(--mx) * -10px), calc(var(--my) * -8px), 0)",
           transition: "transform 1200ms cubic-bezier(.18,.7,.2,1)",
@@ -72,7 +72,7 @@ export function Results() {
 
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
-          eyebrow="No. III · Proof of practice"
+          eyebrow="Proof of practice"
           title={<>Trusted by leaders.<br/>Backed by results.</>}
           lede="A boutique that brings the rigour of a top-tier compliance function — measured in programs delivered, regulators answered, and clients retained."
         />
