@@ -3,7 +3,12 @@
  * Sits on a slightly darker ivory band so it visually separates from
  * the marquee above and the section below.
  */
-const FRAMEWORKS = ["ASIC", "AUSTRAC", "AFCA", "FATF", "RG 105", "AML/CTF Act"];
+import { byRegion } from "@/lib/region";
+
+const FRAMEWORKS = byRegion({
+  au: ["ASIC", "AUSTRAC", "AFCA", "FATF", "RG 105", "AML/CTF Act"],
+  nz: ["FMA", "DIA", "NZ Police FIU", "FATF", "FMC Act", "AML/CFT Act"],
+});
 
 export function TrustStrip() {
   return (

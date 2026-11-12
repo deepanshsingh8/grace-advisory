@@ -1,6 +1,30 @@
 import Link from "next/link";
 import { ArrowRight } from "@/components/icons";
 import { HexComposition } from "@/components/hex-composition";
+import { byRegion } from "@/lib/region";
+
+const COPY = byRegion({
+  au: {
+    eyebrow: "Compliance Consulting · Australia",
+    lede: "Tailored AFSL and AML/CTF advisory — from licence application to ongoing monitoring, scaled to your business.",
+    credentials: [
+      { credential: "Phase 1 & 2", descriptor: "reporting entities" },
+      { credential: "RG 105",      descriptor: "responsible managers" },
+      { credential: "AUSTRAC",     descriptor: "independent reviews" },
+      { credential: "End-to-end",  descriptor: "senior-led service" },
+    ],
+  },
+  nz: {
+    eyebrow: "Compliance Consulting · New Zealand",
+    lede: "Tailored FMA licensing and AML/CFT advisory — from FSPR registration and licence application to ongoing monitoring, scaled to your business.",
+    credentials: [
+      { credential: "FAP & FSPR",  descriptor: "licensing & registration" },
+      { credential: "Phase 1 & 2", descriptor: "reporting entities" },
+      { credential: "AML/CFT",     descriptor: "independent audits" },
+      { credential: "End-to-end",  descriptor: "senior-led service" },
+    ],
+  },
+});
 
 export function Hero() {
   return (
@@ -71,7 +95,7 @@ export function Hero() {
             }}
           >
             <div className="mb-6">
-              <span className="eyebrow on-dark">Compliance Consulting · Australia</span>
+              <span className="eyebrow on-dark">{COPY.eyebrow}</span>
             </div>
 
             <h1
@@ -88,8 +112,7 @@ export function Hero() {
               className="font-sans text-[var(--color-ivory-50)]/85 max-w-[560px] mb-8"
               style={{ fontSize: "clamp(1rem, 1.25vw, 1.18rem)", lineHeight: 1.6 }}
             >
-              Tailored AFSL and AML/CTF advisory — from licence application to ongoing
-              monitoring, scaled to your business.
+              {COPY.lede}
             </p>
 
             <div className="flex flex-wrap gap-3 items-center">
@@ -107,12 +130,7 @@ export function Hero() {
               className="mt-10 pt-6 grid grid-cols-2 sm:grid-cols-4 gap-x-6 gap-y-5"
               style={{ borderTop: "1px solid rgba(232,185,71,0.22)" }}
             >
-              {[
-                { credential: "Phase 1 & 2", descriptor: "reporting entities" },
-                { credential: "RG 105",      descriptor: "responsible managers" },
-                { credential: "AUSTRAC",     descriptor: "independent reviews" },
-                { credential: "End-to-end",  descriptor: "senior-led service" },
-              ].map((c) => (
+              {COPY.credentials.map((c) => (
                 <div key={c.credential} className="flex flex-col gap-1.5">
                   <dt className="font-display font-medium text-[var(--color-ivory-50)] tracking-[-0.005em] leading-[1.1]"
                       style={{ fontSize: "clamp(1.15rem, 1.5vw, 1.4rem)" }}>

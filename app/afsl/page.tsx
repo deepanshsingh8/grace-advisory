@@ -3,6 +3,7 @@ import { CTABand } from "@/components/cta-band";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
 import { IMG } from "@/lib/imagery";
+import { onlyIn } from "@/lib/region-guard";
 
 export const metadata: Metadata = {
   title: "AFSL Compliance — Applying for an AFSL & AFSL Registration Australia",
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function AfslPage() {
+  onlyIn("au");
   return (
     <main>
       <PageHero

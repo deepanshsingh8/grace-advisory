@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import { CTABand } from "@/components/cta-band";
 import { Insights } from "@/components/insights";
 import { PageHero } from "@/components/page-hero";
+import { byRegion } from "@/lib/region";
 
 export const metadata: Metadata = {
   title: "Insights — Financial Services Licence & Compliance Insights",
-  description:
-    "Plain-English commentary on the AFSL, AML/CTF and AUSTRAC rules — Tranche 2, RG 105, the application process and more.",
+  description: byRegion({
+    au: "Plain-English commentary on the AFSL, AML/CTF and AUSTRAC rules — Tranche 2, RG 105, the application process and more.",
+    nz: "Plain-English commentary on New Zealand's financial services rules — FMA licensing, FSPR registration, AML/CFT and more.",
+  }),
   alternates: { canonical: "/blog" },
 };
 

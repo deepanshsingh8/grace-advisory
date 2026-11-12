@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/icons";
 import { SectionHead } from "@/components/section";
 import { IMG } from "@/lib/imagery";
+import { byRegion } from "@/lib/region";
 
 interface Post {
   cat: string;
@@ -14,7 +15,7 @@ interface Post {
   coverAlt: string;
 }
 
-const POSTS: Post[] = [
+const AU_POSTS: Post[] = [
   {
     cat: "AML/CTF Reforms", date: "30 Apr 2026",
     title: "Tranche 2 Compliance Explained: What Has Changed Under AUSTRAC Reform?",
@@ -40,6 +41,35 @@ const POSTS: Post[] = [
     coverAlt: "Modern office building — institutional landscape under reform.",
   },
 ];
+
+const NZ_POSTS: Post[] = [
+  {
+    cat: "AML/CFT", date: "12 Nov 2026",
+    title: "AML/CFT in New Zealand: A Practical Guide for Reporting Entities",
+    excerpt: "Who the AML/CFT Act captures, what your risk assessment and programme must cover, and how reporting to the FIU through goAML works.",
+    href: "/blog/aml-cft-guide-new-zealand-reporting-entities",
+    cover: IMG.insight_tranche2,
+    coverAlt: "Architectural facade — a metaphor for the structure of AML/CFT obligations.",
+  },
+  {
+    cat: "Licensing", date: "12 Nov 2026",
+    title: "Getting a Financial Advice Provider Licence in New Zealand (Step-by-Step)",
+    excerpt: "From scoping your advice model to FSPR registration, dispute resolution and the FMA application — and what comes after the licence.",
+    href: "/blog/financial-advice-provider-licence-new-zealand-guide",
+    cover: IMG.insight_afsl,
+    coverAlt: "Hands signing a contract — the licence application process.",
+  },
+  {
+    cat: "Licensing", date: "12 Nov 2026",
+    title: "FSPR Registration and Dispute Resolution Schemes Explained",
+    excerpt: "Who must register on the Financial Service Providers Register, what registration does (and doesn't) mean, and choosing a dispute resolution scheme.",
+    href: "/blog/fspr-registration-dispute-resolution-schemes-explained",
+    cover: IMG.insight_reforms,
+    coverAlt: "Modern office building — the institutional landscape of financial services.",
+  },
+];
+
+const POSTS = byRegion({ au: AU_POSTS, nz: NZ_POSTS });
 
 export function Insights() {
   return (

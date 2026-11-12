@@ -76,8 +76,8 @@ export function ContactSection() {
                 <Item label="Address">
                   <span className="font-sans leading-[1.6]">{SITE.address.line1}<br/>{SITE.address.line2}</span>
                 </Item>
-                <Item label="ABN">
-                  <span className="font-sans tracking-[0.06em]">{SITE.abn}</span>
+                <Item label={SITE.businessIdLabel}>
+                  <span className="font-sans tracking-[0.06em]">{SITE.businessId}</span>
                 </Item>
               </dl>
             </div>

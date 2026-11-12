@@ -3,21 +3,33 @@ import Link from "next/link";
 import { CTABand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 import { ArrowRight } from "@/components/icons";
+import { byRegion } from "@/lib/region";
 
 export const metadata: Metadata = {
-  title: "Services — AML Compliance & AFSL Consulting Australia",
-  description:
-    "Comprehensive AML compliance and AFSL Australia support. Professional compliance consulting services for regulated financial services businesses.",
+  ...byRegion({
+    au: {
+      title: "Services — AML Compliance & AFSL Consulting Australia",
+      description:
+        "Comprehensive AML compliance and AFSL Australia support. Professional compliance consulting services for regulated financial services businesses.",
+    },
+    nz: {
+      title: "Services — FMA Licensing & AML/CFT Consulting New Zealand",
+      description:
+        "FSPR registration, FAP and market services licensing, AML/CFT programmes and independent audits — compliance consulting for New Zealand's regulated financial services businesses.",
+    },
+  }),
   alternates: { canonical: "/services" },
 };
 
-const FAMILIES: {
+interface Family {
   eyebrow: string;
   title: string;
   blurb: string;
   href: string;
   items: { label: string; href: string }[];
-}[] = [
+}
+
+const AU_FAMILIES: Family[] = [
   {
     eyebrow: "Pillar I",
     title: "AFSL Compliance",
@@ -47,7 +59,41 @@ const FAMILIES: {
   },
 ];
 
-const ADJACENT: { title: string; blurb: string; href: string }[] = [
+const NZ_FAMILIES: Family[] = [
+  {
+    eyebrow: "Pillar I",
+    title: "Licensing & Registration",
+    blurb:
+      "From FSPR registration and the FMA licence application through to ongoing oversight — for firms providing financial advice and market services in New Zealand.",
+    href: "/licensing",
+    items: [
+      { label: "FAP Licence Application", href: "/licensing/fap-licence" },
+      { label: "FSPR Registration & Dispute Resolution", href: "/licensing/fspr-registration" },
+      { label: "Compliance Policies Drafting", href: "/licensing/compliance-policies" },
+      { label: "External Compliance Reviews", href: "/licensing/compliance-review" },
+      { label: "Ongoing Compliance Monitoring", href: "/licensing/ongoing-monitoring" },
+    ],
+  },
+  {
+    eyebrow: "Pillar II",
+    title: "AML/CFT Compliance",
+    blurb:
+      "Risk-based programmes that work in practice — built for the AML/CFT Act 2009 and the realities of supervision and FIU reporting.",
+    href: "/aml-cft",
+    items: [
+      { label: "AML/CFT Programme", href: "/aml-cft/programme" },
+      { label: "Remitters & Virtual Asset Providers", href: "/aml-cft/remittance-vasp" },
+      { label: "Ongoing AML/CFT Compliance", href: "/aml-cft/ongoing" },
+      { label: "Independent AML/CFT Audit", href: "/aml-cft/independent-audit" },
+    ],
+  },
+];
+
+const FAMILIES = byRegion({ au: AU_FAMILIES, nz: NZ_FAMILIES });
+
+interface Adjacent { title: string; blurb: string; href: string }
+
+const AU_ADJACENT: Adjacent[] = [
   {
     title: "Credit Licence Applications",
     blurb: "Help your business obtain an Australian Credit Licence (ACL) — including responsible-lending obligations.",
@@ -64,6 +110,26 @@ const ADJACENT: { title: string; blurb: string; href: string }[] = [
     href: "/graduate-training",
   },
 ];
+
+const NZ_ADJACENT: Adjacent[] = [
+  {
+    title: "Market Services & CoFI Licensing",
+    blurb: "Support for managed fund, DIMS and other market services licences — and fair conduct programmes for banks, insurers and deposit takers under CoFI.",
+    href: "/contact",
+  },
+  {
+    title: "Consumer Credit Compliance",
+    blurb: "Responsible lending and compliance frameworks for consumer lenders under the Credit Contracts and Consumer Finance Act 2003.",
+    href: "/contact",
+  },
+  {
+    title: "Graduate Training Program",
+    blurb: "Hands-on training, industry insight and career development for graduates entering compliance.",
+    href: "/graduate-training",
+  },
+];
+
+const ADJACENT = byRegion({ au: AU_ADJACENT, nz: NZ_ADJACENT });
 
 export default function ServicesPage() {
   return (

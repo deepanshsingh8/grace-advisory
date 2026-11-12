@@ -1,12 +1,21 @@
 import Image from "next/image";
 import { SectionHead } from "@/components/section";
 import { IMG } from "@/lib/imagery";
+import { byRegion } from "@/lib/region";
 
-const PILLARS = [
+const AU_PILLARS = [
   { num: "i.",   title: "Deep regulatory expertise", body: "Across AFSL and AUSTRAC. We work in the text of the rules — RG 105, the AML/CTF Act, Tranche 2 — so you don't have to." },
   { num: "ii.",  title: "End-to-end support",         body: "From application through to ongoing monitoring and independent review — we stay alongside the business as it grows." },
   { num: "iii.", title: "Trusted across all stages",  body: "Our framework scales to your business — first AFSL or mature program." },
 ];
+
+const NZ_PILLARS: typeof AU_PILLARS = [
+  { num: "i.",   title: "Deep regulatory expertise", body: "Across FMA licensing and AML/CFT. We work in the text of the rules — the FMC Act, the Code of Professional Conduct, the AML/CFT Act — so you don't have to." },
+  { num: "ii.",  title: "End-to-end support",         body: "From registration and licensing through to ongoing monitoring and independent audit — we stay alongside the business as it grows." },
+  { num: "iii.", title: "Trusted across all stages",  body: "Our framework scales to your business — first licence or mature programme." },
+];
+
+const PILLARS = byRegion({ au: AU_PILLARS, nz: NZ_PILLARS });
 
 export function Approach() {
   return (

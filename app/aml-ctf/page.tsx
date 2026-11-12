@@ -4,6 +4,7 @@ import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
 import { SectorGrid } from "@/components/sector-grid";
 import { IMG } from "@/lib/imagery";
+import { onlyIn } from "@/lib/region-guard";
 
 export const metadata: Metadata = {
   title: "AML/CTF Compliance — AML Reforms & Tranche 2 Compliance Services Australia",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function AmlCtfPage() {
+  onlyIn("au");
   return (
     <main>
       <PageHero

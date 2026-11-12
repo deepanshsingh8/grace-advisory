@@ -1,11 +1,21 @@
 import type { Metadata } from "next";
 import { CTABand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
+import { byRegion } from "@/lib/region";
 
 export const metadata: Metadata = {
-  title: "Our Team — AFSL & AML Compliance Experts | Risk Management",
-  description:
-    "Meet our AFSL compliance experts and AML/CTF compliance professionals. A trusted financial risk management team supporting regulatory compliance.",
+  ...byRegion({
+    au: {
+      title: "Our Team — AFSL & AML Compliance Experts | Risk Management",
+      description:
+        "Meet our AFSL compliance experts and AML/CTF compliance professionals. A trusted financial risk management team supporting regulatory compliance.",
+    },
+    nz: {
+      title: "Our Team — FMA Licensing & AML/CFT Compliance Experts",
+      description:
+        "Meet our licensing and AML/CFT compliance professionals. A trusted financial risk management team supporting regulatory compliance in New Zealand.",
+    },
+  }),
   alternates: { canonical: "/our-team" },
 };
 

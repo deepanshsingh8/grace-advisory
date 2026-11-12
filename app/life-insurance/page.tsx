@@ -4,6 +4,7 @@ import { CTABand } from "@/components/cta-band";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
 import { ArrowRight } from "@/components/icons";
+import { onlyIn } from "@/lib/region-guard";
 
 export const metadata: Metadata = {
   title: "Life Insurance — General Advice for Life Risk Products",
@@ -20,6 +21,7 @@ const PRODUCTS = [
 ];
 
 export default function LifeInsurancePage() {
+  onlyIn("au");
   return (
     <main>
       <PageHero

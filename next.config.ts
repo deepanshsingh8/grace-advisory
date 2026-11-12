@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import { crossRegionRedirects } from "./lib/routes";
+
+// AU (default) or NZ — see lib/region.ts.
+const REGION = process.env.NEXT_PUBLIC_SITE_REGION === "nz" ? "nz" : "au";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -17,7 +21,11 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     // The standalone About page was folded back into the home page.
-    return [{ source: "/about", destination: "/#approach", permanent: true }];
+    return [
+      { source: "/about", destination: "/#approach", permanent: true },
+      // Pages that only exist on the other country's site → closest local page.
+      ...crossRegionRedirects(REGION),
+    ];
   },
 };
 

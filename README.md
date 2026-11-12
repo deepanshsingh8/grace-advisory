@@ -11,6 +11,49 @@ npm run typecheck
 npm run build
 ```
 
+## Australia + New Zealand — one codebase, two sites
+
+The same code builds both **graceadvisory.com.au** and **graceadvisory.co.nz**.
+The design is identical; only the content changes (regulators, services,
+pricing currency, articles, logo tagline). One environment variable decides
+which site is built:
+
+| Site | `NEXT_PUBLIC_SITE_REGION` |
+|---|---|
+| graceadvisory.com.au | unset (or `au`) |
+| graceadvisory.co.nz | `nz` |
+
+```bash
+npm run dev:nz       # NZ site on http://localhost:3001
+npm run build:nz     # production build of the NZ site
+```
+
+**Where the content lives**
+
+- `lib/region.ts` — the switch (`REGION`, `byRegion({ au, nz })`, site URLs).
+- `lib/seo.ts` — contact details, menus, logo, JSON-LD for each region.
+  **When the NZ office is set up, update the `NZ_SITE` block** (phone, email,
+  address, NZBN).
+- `lib/pricing.ts` — retainer tiers, projects and FAQs (AUD vs NZD/GST 15%).
+- `lib/routes.ts` — which pages belong to which country, and where AU links
+  redirect on the NZ site (e.g. `/afsl` → `/licensing`) and vice versa.
+- Shared sections (`components/*`) hold both AU and NZ copy side by side.
+- AU-only pages: `app/afsl/*`, `app/aml-ctf/*`, `app/life-insurance`.
+  NZ-only pages: `app/licensing/*`, `app/aml-cft/*`. Each calls `onlyIn()`.
+- NZ articles: `app/blog/[slug]/posts-nz.tsx`.
+
+**Deploying the NZ site on Vercel**
+
+1. Vercel → Add New → Project → import this same GitHub repository again.
+2. Name it e.g. `grace-advisory-nz`. In Environment Variables add
+   `NEXT_PUBLIC_SITE_REGION` = `nz` (plus the same mail variables as the AU project).
+3. Deploy, then Settings → Domains → add `graceadvisory.co.nz` and
+   `www.graceadvisory.co.nz`, and set the DNS records Vercel shows at the .nz registrar.
+
+Both projects redeploy automatically on every push, so a fix made once ships
+to both sites. Contact-form messages from the NZ site go to the same inbox,
+with `[NZ]` at the start of the subject.
+
 ## Contact form — email setup
 
 The contact form (`/contact`) is wired through a server action that sends to

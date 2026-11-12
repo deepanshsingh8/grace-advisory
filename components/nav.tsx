@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { NAV, SITE } from "@/lib/seo";
+import { LOGO, NAV, SITE } from "@/lib/seo";
 import { ArrowRight, MenuIcon, XIcon, ChevronDownIcon } from "@/components/icons";
 
 /**
@@ -77,8 +77,8 @@ export function Nav() {
           {/* ── Logo ─────────────────────────────────────────────── */}
           <Link href="/" aria-label="Grace Advisory home" className="shrink-0 inline-flex items-center">
             <Image
-              src="/brand/grace_advisory_logo.png"
-              alt="Grace Advisory — Governance · Risk · Compliance · Audit · AFSL"
+              src={LOGO.src}
+              alt={LOGO.alt}
               width={586}
               height={206}
               priority
@@ -88,8 +88,8 @@ export function Nav() {
 
           {/* ── Primary nav (desktop) ────────────────────────────── */}
           <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
-            <NavMenu label="AFSL" items={NAV.AFSL} isActive={isActive} />
-            <NavMenu label="AML/CTF" items={NAV.AML} isActive={isActive} />
+            <NavMenu label={NAV.PILLAR_1.label} items={NAV.PILLAR_1.items} isActive={isActive} />
+            <NavMenu label={NAV.PILLAR_2.label} items={NAV.PILLAR_2.items} isActive={isActive} />
             <NavMenu label="About" items={NAV.ABOUT} isActive={isActive} />
             <Link
               href="/pricing"
@@ -362,7 +362,7 @@ function MobileSheet({
         <div className="h-full flex flex-col">
           <div className="px-6 py-5 border-b border-[var(--color-line)] flex items-center justify-between">
             <Image
-              src="/brand/grace_advisory_logo.png"
+              src={LOGO.src}
               alt=""
               width={586} height={206}
               className="h-8 w-auto"
@@ -378,8 +378,8 @@ function MobileSheet({
           </div>
 
           <nav className="flex-1 overflow-y-auto px-6 py-6 space-y-7">
-            <MobileSection title="AFSL" items={NAV.AFSL} onClose={onClose} isActive={isActive} />
-            <MobileSection title="AML/CTF" items={NAV.AML} onClose={onClose} isActive={isActive} />
+            <MobileSection title={NAV.PILLAR_1.label} items={NAV.PILLAR_1.items} onClose={onClose} isActive={isActive} />
+            <MobileSection title={NAV.PILLAR_2.label} items={NAV.PILLAR_2.items} onClose={onClose} isActive={isActive} />
             <MobileSection title="About" items={NAV.ABOUT} onClose={onClose} isActive={isActive} />
             <MobileSection title="Pricing" items={[{ label: "Retainers & Projects", href: "/pricing" }]} onClose={onClose} isActive={isActive} />
             <MobileSection title="Insights" items={[{ label: "Blog", href: "/blog" }]} onClose={onClose} isActive={isActive} />

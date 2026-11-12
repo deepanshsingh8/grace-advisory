@@ -6,11 +6,14 @@ import { PricingFAQ } from "@/components/pricing-faq";
 import { PricingTiers } from "@/components/pricing-tiers";
 import { ProjectPricing } from "@/components/project-pricing";
 import { TIERS, PROJECTS, PRICING_FAQS } from "@/lib/pricing";
+import { byRegion, SITE_URL } from "@/lib/region";
 
 export const metadata: Metadata = {
   title: "Pricing — Compliance Retainers & Project Engagements",
-  description:
-    "AFSL and AML/CTF compliance pricing — three monthly retainer tiers and fixed-fee project engagements (AFSL Application, AML/CTF Programs, AUSTRAC Registration, Independent Reviews). Fees quoted on enquiry.",
+  description: byRegion({
+    au: "AFSL and AML/CTF compliance pricing — three monthly retainer tiers and fixed-fee project engagements (AFSL Application, AML/CTF Programs, AUSTRAC Registration, Independent Reviews). Fees quoted on enquiry.",
+    nz: "Licensing and AML/CFT compliance pricing in NZD — three monthly retainer tiers and fixed-fee project engagements (FAP Licence, AML/CFT Programmes, FSPR Registration, Independent Audits). Fees quoted on enquiry.",
+  }),
   alternates: { canonical: "/pricing" },
 };
 
@@ -20,17 +23,17 @@ const pricingSchema = {
   "@graph": [
     ...TIERS.map((t) => ({
       "@type": "Service",
-      "@id": `https://graceadvisory.com.au/pricing#${t.id}`,
+      "@id": `${SITE_URL}/pricing#${t.id}`,
       name: `${t.name} retainer`,
       description: t.tagline,
-      areaServed: { "@type": "Country", name: "Australia" },
-      provider: { "@id": "https://graceadvisory.com.au/#organization" },
+      areaServed: { "@type": "Country", name: byRegion({ au: "Australia", nz: "New Zealand" }) },
+      provider: { "@id": `${SITE_URL}/#organization` },
     })),
     ...PROJECTS.map((p) => ({
       "@type": "Service",
       name: p.name,
       description: p.description,
-      provider: { "@id": "https://graceadvisory.com.au/#organization" },
+      provider: { "@id": `${SITE_URL}/#organization` },
     })),
     {
       "@type": "FAQPage",

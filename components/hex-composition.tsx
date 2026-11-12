@@ -1,3 +1,5 @@
+import { byRegion } from "@/lib/region";
+
 /**
  * The hero hex composition — layered SVGs that:
  *   • independently parallax-translate based on the global --mx/--my vars
@@ -133,12 +135,20 @@ export function HexComposition() {
         className="parallax absolute inset-0 w-full h-full pointer-events-none"
         style={layer(-14, -14, 0.6)}
       >
-        {[
-          { x: 70,  y: 88,  t: "ASIC" },
-          { x: 332, y: 110, t: "AUSTRAC" },
-          { x: 60,  y: 296, t: "RG 105" },
-          { x: 336, y: 304, t: "AFCA" },
-        ].map((c) => (
+        {byRegion({
+          au: [
+            { x: 70,  y: 88,  t: "ASIC" },
+            { x: 332, y: 110, t: "AUSTRAC" },
+            { x: 60,  y: 296, t: "RG 105" },
+            { x: 336, y: 304, t: "AFCA" },
+          ],
+          nz: [
+            { x: 70,  y: 88,  t: "FMA" },
+            { x: 332, y: 110, t: "DIA" },
+            { x: 60,  y: 296, t: "FSPR" },
+            { x: 336, y: 304, t: "FIU" },
+          ],
+        }).map((c) => (
           <g key={c.t}>
             <circle cx={c.x} cy={c.y} r="2.5" fill="#E6B637" fillOpacity="0.9" />
             <text

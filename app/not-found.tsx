@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight } from "@/components/icons";
+import { byRegion } from "@/lib/region";
 
 export const metadata: Metadata = {
   title: "Page not found",
@@ -60,8 +61,16 @@ export default function NotFound() {
 
         <ul className="mt-14 flex flex-wrap gap-x-8 gap-y-3 justify-center font-sans font-bold text-[0.72rem] tracking-[0.18em] uppercase text-[var(--color-ink-600)]">
           {[
-            { label: "AFSL", href: "/afsl" },
-            { label: "AML/CTF", href: "/aml-ctf" },
+            ...byRegion({
+              au: [
+                { label: "AFSL", href: "/afsl" },
+                { label: "AML/CTF", href: "/aml-ctf" },
+              ],
+              nz: [
+                { label: "Licensing", href: "/licensing" },
+                { label: "AML/CFT", href: "/aml-cft" },
+              ],
+            }),
             { label: "Pricing", href: "/pricing" },
             { label: "Insights", href: "/blog" },
             { label: "Our Team", href: "/our-team" },

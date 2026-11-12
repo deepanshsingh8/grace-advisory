@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3000",
+    "dev:nz": "NEXT_PUBLIC_SITE_REGION=nz next dev --port 3001",
     "build": "next build",
+    "build:nz": "NEXT_PUBLIC_SITE_REGION=nz next build",
     "start": "next start --port 3000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit"

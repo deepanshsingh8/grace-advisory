@@ -3,15 +3,21 @@ import Link from "next/link";
 import { CTABand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 import { ArrowRight } from "@/components/icons";
+import { byRegion } from "@/lib/region";
 
 export const metadata: Metadata = {
-  title: "Our Partners — AFSL Compliance Partner Firms & Strategic Alliances",
-  description:
-    "Strategic alliances with legal, accounting, audit and insurance professionals that complement Grace Advisory's AFSL and AML/CTF compliance services.",
+  title: byRegion({
+    au: "Our Partners — AFSL Compliance Partner Firms & Strategic Alliances",
+    nz: "Our Partners — Compliance Partner Firms & Strategic Alliances",
+  }),
+  description: byRegion({
+    au: "Strategic alliances with legal, accounting, audit and insurance professionals that complement Grace Advisory's AFSL and AML/CTF compliance services.",
+    nz: "Working alongside legal, accounting, audit and banking professionals to complement Grace Advisory's licensing and AML/CFT compliance services in New Zealand.",
+  }),
   alternates: { canonical: "/our-partners" },
 };
 
-const ALLIANCES: { eyebrow: string; title: string; body: string }[] = [
+const AU_ALLIANCES: { eyebrow: string; title: string; body: string }[] = [
   {
     eyebrow: "Legal",
     title: "Corporate & financial services counsel",
@@ -33,6 +39,31 @@ const ALLIANCES: { eyebrow: string; title: string; body: string }[] = [
     body: "Trusted referral channels with accountants positioned for the Tranche 2 reforms — supporting their entry into the AUSTRAC regime.",
   },
 ];
+
+const NZ_ALLIANCES: typeof AU_ALLIANCES = [
+  {
+    eyebrow: "Legal",
+    title: "Corporate & financial services counsel",
+    body: "We work alongside specialist law firms on licence conditions, breach analysis and disclosure where formal legal advice is required.",
+  },
+  {
+    eyebrow: "Audit & Assurance",
+    title: "External auditors & assurance providers",
+    body: "Our reviews complement statutory audit cycles — coordinated so your compliance manual and AML/CFT programme testing fit your assurance calendar.",
+  },
+  {
+    eyebrow: "Banking",
+    title: "Banking partners",
+    body: "We help remitters, payment providers and virtual asset businesses explain their AML/CFT framework to the banks they rely on.",
+  },
+  {
+    eyebrow: "Accounting",
+    title: "CA ANZ & CPA practices",
+    body: "Trusted referral channels with accountants — reporting entities themselves under the AML/CFT Act, and advisers to many more.",
+  },
+];
+
+const ALLIANCES = byRegion({ au: AU_ALLIANCES, nz: NZ_ALLIANCES });
 
 export default function OurPartnersPage() {
   return (

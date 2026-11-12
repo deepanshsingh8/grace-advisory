@@ -1,4 +1,5 @@
 import { SectionHead } from "@/components/section";
+import { byRegion } from "@/lib/region";
 
 interface Step {
   num: string;
@@ -6,7 +7,7 @@ interface Step {
   body: string;
 }
 
-const STEPS: Step[] = [
+const AU_STEPS: Step[] = [
   {
     num: "01",
     title: "Discovery",
@@ -33,6 +34,17 @@ const STEPS: Step[] = [
     body: "Move to a monthly retainer for ongoing monitoring, regulator liaison and program upkeep — or pick up the next engagement when you need us.",
   },
 ];
+
+const STEPS: Step[] = byRegion({
+  au: AU_STEPS,
+  nz: AU_STEPS.map((s) =>
+    s.num === "03"
+      ? { ...s, body: "We do the work — your AML/CFT programme, licence application, policies, or independent audit — alongside your team, not above them." }
+      : s.num === "05"
+        ? { ...s, body: "Move to a monthly retainer for ongoing monitoring, regulator liaison and programme upkeep — or pick up the next engagement when you need us." }
+        : s,
+  ),
+});
 
 /**
  * Five-step horizontal process for the home page. A long gold connector rule

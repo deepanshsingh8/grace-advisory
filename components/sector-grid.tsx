@@ -3,6 +3,7 @@ import {
   IllAccounting, IllCrypto, IllFinance, IllLaw, IllOther, IllRealEstate,
 } from "@/components/sector-illustrations";
 import { ComponentType, HTMLAttributes } from "react";
+import { byRegion } from "@/lib/region";
 
 interface Sector {
   num: string;
@@ -11,7 +12,7 @@ interface Sector {
   Ill: ComponentType<HTMLAttributes<HTMLDivElement> & { className?: string }>;
 }
 
-const SECTORS: Sector[] = [
+const AU_SECTORS: Sector[] = [
   { num: "i",   name: "Accounting",              body: "Wide reach and a gatekeeper role — accountants feature in every phase of ML/TF.", Ill: IllAccounting },
   { num: "ii",  name: "Financial Services",      body: "Heightened ML/TF exposure. The Act sets clear obligations to detect and deter.", Ill: IllFinance },
   { num: "iii", name: "Law",                     body: "Wide reach and a gatekeeper role — lawyers feature in every phase of ML/TF.", Ill: IllLaw },
@@ -19,6 +20,26 @@ const SECTORS: Sector[] = [
   { num: "v",   name: "Virtual Assets & Crypto", body: "Pseudo-anonymous, wide-reach services — VASPs attract heightened scrutiny.", Ill: IllCrypto },
   { num: "vi",  name: "Other Captured Sectors",  body: "Easy-access industries that lend themselves to ML/TF — now in scope under Tranche 2.", Ill: IllOther },
 ];
+
+const NZ_SECTORS: Sector[] = [
+  { num: "i",   name: "Accounting",              body: "Wide reach and a gatekeeper role — accountants have been reporting entities since Phase 2.", Ill: IllAccounting },
+  { num: "ii",  name: "Financial Services",      body: "Heightened ML/TF exposure. The Act sets clear obligations to detect, deter and report.", Ill: IllFinance },
+  { num: "iii", name: "Law",                     body: "Wide reach and a gatekeeper role — lawyers and conveyancers are captured for key activities.", Ill: IllLaw },
+  { num: "iv",  name: "Real Estate",             body: "Property is a recurring channel for laundering proceeds — agents carry full AML/CFT duties.", Ill: IllRealEstate },
+  { num: "v",   name: "Virtual Assets & Crypto", body: "Pseudo-anonymous, wide-reach services — VASPs attract heightened scrutiny.", Ill: IllCrypto },
+  { num: "vi",  name: "Other Captured Sectors",  body: "Trust and company service providers, high-value dealers and other easy-access industries.", Ill: IllOther },
+];
+
+const SECTORS = byRegion({ au: AU_SECTORS, nz: NZ_SECTORS });
+
+const HEAD = byRegion({
+  au: {
+    lede: "From financial services and law to real estate and virtual assets — we work across every sector captured by Australia's AML/CTF regime.",
+  },
+  nz: {
+    lede: "From financial services and law to real estate and virtual assets — we work across the sectors captured by New Zealand's AML/CFT regime.",
+  },
+});
 
 /**
  * Sectors we serve — a calm 2×3 editorial grid. No card borders; only
@@ -34,7 +55,7 @@ export function SectorGrid() {
         <SectionHead
           eyebrow="No. I · Reporting Entities"
           title={<>Qualified to consult for<br/>Phase 1 &amp; 2 entities.</>}
-          lede="From financial services and law to real estate and virtual assets — we work across every sector captured by Australia's AML/CTF regime."
+          lede={HEAD.lede}
         />
 
         <div className="reveal mt-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">

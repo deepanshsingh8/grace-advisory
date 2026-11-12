@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CTABand } from "@/components/cta-band";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
+import { onlyIn } from "@/lib/region-guard";
 
 export const metadata: Metadata = {
   title: "AML/CTF Program",
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function ProgramPage() {
+  onlyIn("au");
   return (
     <main>
       <PageHero

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { EB_Garamond, Lato } from "next/font/google";
 import Script from "next/script";
 import { siteSchema } from "@/lib/seo";
+import { byRegion, LANG, REGION, SITE_URLS } from "@/lib/region";
 import "./globals.css";
 
 import { Nav } from "@/components/nav";
@@ -31,8 +32,8 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://graceadvisory.com.au"),
+const AU_METADATA: Metadata = {
+  metadataBase: new URL(SITE_URLS.au),
   title: {
     default: "Grace Advisory — AFSL & AML/CTF Compliance Consulting · Australia",
     template: "%s · Grace Advisory",
@@ -57,7 +58,11 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false, email: false, address: false },
   alternates: {
     canonical: "/",
-    languages: { "en-AU": "/", "x-default": "/" },
+    languages: {
+      "en-AU": `${SITE_URLS.au}/`,
+      "en-NZ": `${SITE_URLS.nz}/`,
+      "x-default": `${SITE_URLS.au}/`,
+    },
   },
   openGraph: {
     type: "website",
@@ -92,7 +97,6 @@ export const metadata: Metadata = {
     icon: [{ url: "/brand/favicon.svg", type: "image/svg+xml" }],
     apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
   },
-  manifest: "/site.webmanifest",
   other: {
     "geo.region": "AU-QLD",
     "geo.placename": "Brisbane",
@@ -101,9 +105,78 @@ export const metadata: Metadata = {
   },
 };
 
+const NZ_METADATA: Metadata = {
+  metadataBase: new URL(SITE_URLS.nz),
+  title: {
+    default: "Grace Advisory — FMA Licensing & AML/CFT Compliance Consulting · New Zealand",
+    template: "%s · Grace Advisory",
+  },
+  description:
+    "Boutique compliance consulting for New Zealand's financial service providers — FSPR registration, FAP and market services licensing, AML/CFT programmes, independent audits and ongoing monitoring.",
+  keywords: [
+    "FAP licence",
+    "financial advice provider licence",
+    "FSPR registration",
+    "FMA licensing",
+    "AML/CFT compliance",
+    "AML/CFT programme",
+    "AML/CFT independent audit",
+    "goAML reporting",
+    "compliance consulting New Zealand",
+    "regulatory compliance NZ",
+  ],
+  authors: [{ name: "Grace Advisory" }],
+  creator: "Grace Advisory",
+  publisher: "Grace Advisory",
+  formatDetection: { telephone: false, email: false, address: false },
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-AU": `${SITE_URLS.au}/`,
+      "en-NZ": `${SITE_URLS.nz}/`,
+      "x-default": `${SITE_URLS.au}/`,
+    },
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_NZ",
+    url: `${SITE_URLS.nz}/`,
+    siteName: "Grace Advisory",
+    title: "Grace Advisory — FMA Licensing & AML/CFT Compliance Consulting · New Zealand",
+    description:
+      "Boutique FMA licensing and AML/CFT advisory for New Zealand's regulated firms — from FSPR registration to ongoing monitoring.",
+    images: [
+      {
+        url: "/brand/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Grace Advisory — Compliance, conducted with grace.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Grace Advisory — FMA Licensing & AML/CFT Compliance Consulting",
+    description:
+      "Boutique FMA licensing and AML/CFT advisory for New Zealand's regulated firms.",
+    images: ["/brand/og-image.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  icons: {
+    icon: [{ url: "/brand/favicon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
+  },
+};
+
+export const metadata: Metadata = byRegion({ au: AU_METADATA, nz: NZ_METADATA });
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-AU" className={`${ebGaramond.variable} ${lato.variable}`} suppressHydrationWarning>
+    <html lang={LANG[REGION]} className={`${ebGaramond.variable} ${lato.variable}`} suppressHydrationWarning>
       <head>
         {/* Runs before paint: gates the scroll-reveal hiding (html.js .reveal)
             so content is only ever hidden when JS is actually running. */}

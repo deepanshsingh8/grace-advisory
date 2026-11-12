@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { NAV, SITE } from "@/lib/seo";
+import { LOGO, NAV, SITE } from "@/lib/seo";
 import { LinkedInIcon } from "@/components/icons";
 
 export function Footer() {
@@ -20,7 +20,7 @@ export function Footer() {
           <div>
             <Link href="/" aria-label="Grace Advisory home" className="inline-flex">
               <Image
-                src="/brand/grace_advisory_logo.png"
+                src={LOGO.src}
                 alt="Grace Advisory"
                 width={586}
                 height={206}
@@ -33,8 +33,8 @@ export function Footer() {
             </p>
           </div>
 
-          <FootCol heading="AFSL" items={NAV.AFSL} />
-          <FootCol heading="AML/CTF" items={NAV.AML} />
+          <FootCol heading={NAV.PILLAR_1.label} items={NAV.PILLAR_1.items} />
+          <FootCol heading={NAV.PILLAR_2.label} items={NAV.PILLAR_2.items} />
           <FootCol heading="Engage" items={NAV.ENGAGE} />
 
           <div>
@@ -53,7 +53,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-[rgba(232,185,71,0.18)] flex flex-wrap justify-between gap-4 font-sans text-[0.78rem] tracking-[0.06em] text-[rgba(250,250,246,0.78)]">
-          <span>© {new Date().getFullYear()} Grace Advisory · ABN {SITE.abn}</span>
+          <span>© {new Date().getFullYear()} Grace Advisory · {SITE.businessIdLabel} {SITE.businessId}</span>
           <div className="flex gap-3" aria-label="Social links">
             <SocialLink href="https://www.linkedin.com/company/grace-advisory-au" label="LinkedIn"><LinkedInIcon className="w-3.5 h-3.5"/></SocialLink>
           </div>

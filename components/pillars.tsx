@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, HexFilled } from "@/components/icons";
 import { SectionHead } from "@/components/section";
 import { IMG } from "@/lib/imagery";
+import { byRegion } from "@/lib/region";
 
 interface PillarItem { title: string; body: string }
 interface PillarProps {
@@ -16,7 +17,7 @@ interface PillarProps {
   imageAlt: string;
 }
 
-const AFSL: PillarProps = {
+const AU_PILLAR_1: PillarProps = {
   eyebrow: "Pillar I",
   title: "AFSL Compliance",
   lede:
@@ -34,7 +35,7 @@ const AFSL: PillarProps = {
   imageAlt: "Pen and document — the substance of an AFSL application.",
 };
 
-const AML: PillarProps = {
+const AU_PILLAR_2: PillarProps = {
   eyebrow: "Pillar II",
   title: "AML/CTF Compliance",
   lede:
@@ -52,6 +53,47 @@ const AML: PillarProps = {
   imageAlt: "Signing a contract — the formality of compliance, made tractable.",
 };
 
+const NZ_PILLAR_1: PillarProps = {
+  eyebrow: "Pillar I",
+  title: "Licensing & Registration",
+  lede:
+    "For firms providing financial advice and market services in New Zealand — from FSPR registration and the FMA licence application through to policies, monitoring and external review.",
+  items: [
+    { title: "FAP Licence Application", body: "Licence scoping, compliance arrangements, FMA liaison." },
+    { title: "FSPR Registration", body: "and dispute resolution scheme membership." },
+    { title: "Compliance Policies Drafting", body: "Manuals aligned to the nature, size and complexity of your business." },
+    { title: "External Compliance Reviews", body: "A regular health check against your licence and the Code." },
+    { title: "Ongoing Compliance Monitoring", body: "Replace or supplement your in-house function." },
+  ],
+  href: "/licensing",
+  cta: "Explore licensing services",
+  image: IMG.pillar_afsl,
+  imageAlt: "Pen and document — the substance of a licence application.",
+};
+
+const NZ_PILLAR_2: PillarProps = {
+  eyebrow: "Pillar II",
+  title: "AML/CFT Compliance",
+  lede:
+    "New Zealand’s AML/CFT regime is risk-based. We turn that principle into programmes that work in practice — from risk assessment to independent audit.",
+  items: [
+    { title: "AML/CFT Programme", body: "Risk assessment and programme, standalone or for a designated business group." },
+    { title: "Remitters & VASPs", body: "FSPR, AML/CFT programme, goAML and banking-partner liaison." },
+    { title: "Ongoing Compliance", body: "Training, monitoring, annual reporting and supervisor liaison." },
+    { title: "Independent Audits", body: "Of your risk assessment and programme." },
+    { title: "Phase 1 & 2 coverage", body: "Financial institutions, lawyers, accountants, real estate and more." },
+  ],
+  href: "/aml-cft",
+  cta: "Explore AML/CFT services",
+  image: IMG.pillar_aml,
+  imageAlt: "Signing a contract — the formality of compliance, made tractable.",
+};
+
+const [PILLAR_1, PILLAR_2] = byRegion({
+  au: [AU_PILLAR_1, AU_PILLAR_2],
+  nz: [NZ_PILLAR_1, NZ_PILLAR_2],
+});
+
 export function Pillars() {
   return (
     <section id="pillars" className="relative section-pad bg-warm-mesh">
@@ -68,12 +110,15 @@ export function Pillars() {
         <SectionHead
           eyebrow="Service Pillars"
           title={<>Two regulatory regimes.<br />One advisory.</>}
-          lede="AFSL, AML/CTF Program or ongoing oversight — shaped to how your business actually runs."
+          lede={byRegion({
+            au: "AFSL, AML/CTF Program or ongoing oversight — shaped to how your business actually runs.",
+            nz: "FMA licensing, AML/CFT programme or ongoing oversight — shaped to how your business actually runs.",
+          })}
         />
 
         <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          <Pillar {...AFSL} />
-          <Pillar {...AML} />
+          <Pillar {...PILLAR_1} />
+          <Pillar {...PILLAR_2} />
         </div>
       </div>
     </section>

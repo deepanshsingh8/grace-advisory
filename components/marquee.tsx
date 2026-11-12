@@ -3,7 +3,9 @@
  * Sits between the hero and the trust strip; provides motion / atmosphere
  * to bridge the dark hero into the light body.
  */
-const ITEMS = [
+import { byRegion } from "@/lib/region";
+
+const ITEMS = byRegion({ au: [
   "AFSL Application",
   "Compliance Policies",
   "Responsible Manager Nominations",
@@ -13,7 +15,17 @@ const ITEMS = [
   "AUSTRAC Registration",
   "Independent Reviews",
   "Tranche 2 Readiness",
-];
+], nz: [
+  "FAP Licence Applications",
+  "FSPR Registration",
+  "Compliance Policies",
+  "External Compliance Reviews",
+  "Ongoing Monitoring",
+  "AML/CFT Programmes",
+  "Remitters & VASPs",
+  "Independent Audits",
+  "goAML Reporting",
+] });
 
 export function Marquee() {
   return (

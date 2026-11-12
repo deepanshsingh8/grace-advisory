@@ -1,5 +1,6 @@
 import { SectionHead } from "@/components/section";
 import { HexFilled } from "@/components/icons";
+import { byRegion } from "@/lib/region";
 
 interface Stat {
   num: string;
@@ -7,7 +8,7 @@ interface Stat {
   body: string;
 }
 
-const STATS: Stat[] = [
+const AU_STATS: Stat[] = [
   {
     num: "100+",
     label: "Compliance engagements",
@@ -30,9 +31,39 @@ const STATS: Stat[] = [
   },
 ];
 
-const STANDARDS = [
+const NZ_STATS: Stat[] = [
+  {
+    num: "100+",
+    label: "Compliance engagements",
+    body: "Licence applications, AML programmes and independent reviews delivered across the practice.",
+  },
+  {
+    num: "15+",
+    label: "Years in the practice",
+    body: "Senior counsel across regulated financial services, governance, risk and investigations.",
+  },
+  {
+    num: "Phase 1 & 2",
+    label: "Reporting entities",
+    body: "Experience across the financial institutions and professions captured by AML/CFT regimes on both sides of the Tasman.",
+  },
+  {
+    num: "Top 10",
+    label: "Governance recognition",
+    body: "Outstanding Achievement, Australian Governance Top 100 — Nasdaq · Computershare, 2024.",
+  },
+];
+
+const STATS = byRegion({ au: AU_STATS, nz: NZ_STATS });
+
+const AU_STANDARDS = [
   "ASIC", "AUSTRAC", "AFCA", "FATF", "RG 105", "AML/CTF Act", "ANZIIF", "OCEG", "ACAMS",
 ];
+
+const STANDARDS = byRegion({
+  au: AU_STANDARDS,
+  nz: ["FMA", "DIA", "NZ Police FIU", "FATF", "FMC Act", "AML/CFT Act", "ANZIIF", "OCEG", "ACAMS"],
+});
 
 /**
  * Trusted by Leaders. Backed by Results.
@@ -74,7 +105,10 @@ export function Results() {
         <SectionHead
           eyebrow="Proof of practice"
           title={<>Trusted by leaders.<br/>Backed by results.</>}
-          lede="A boutique that brings the rigour of a top-tier compliance function — measured in programs delivered, regulators answered, and clients retained."
+          lede={byRegion({
+            au: "A boutique that brings the rigour of a top-tier compliance function — measured in programs delivered, regulators answered, and clients retained.",
+            nz: "A boutique that brings the rigour of a top-tier compliance function — measured in programmes delivered, regulators answered, and clients retained.",
+          })}
         />
 
         {/* 2×2 stat grid — divider hairlines (no boxes) */}

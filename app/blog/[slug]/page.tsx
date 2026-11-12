@@ -3,13 +3,15 @@ import { notFound } from "next/navigation";
 import { CTABand } from "@/components/cta-band";
 import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
+import { byRegion } from "@/lib/region";
+import { NZ_POSTS } from "./posts-nz";
 
 /**
  * Static blog posts. We render the three articles from the original site
  * with their full body. Easy to extend later by moving this map into
  * MDX / a CMS.
  */
-const POSTS = {
+const AU_POSTS = {
   "tranche-2-aml-ctf-reforms-australia-2026": {
     title: "Tranche 2 Compliance Explained: What Has Changed Under AUSTRAC Reform?",
     metaTitle: "Tranche 2 AML/CTF Reforms Australia 2026 — Compliance Guide",
@@ -139,15 +141,24 @@ const POSTS = {
   },
 } as const;
 
-type Slug = keyof typeof POSTS;
+interface Post {
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  eyebrow: string;
+  body: React.ReactNode;
+}
+
+/** Only the current region's articles are built and served. */
+const POSTS: Record<string, Post> = byRegion<Record<string, Post>>({ au: AU_POSTS, nz: NZ_POSTS });
 
 export function generateStaticParams() {
-  return (Object.keys(POSTS) as Slug[]).map((slug) => ({ slug }));
+  return Object.keys(POSTS).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = POSTS[slug as Slug];
+  const post = POSTS[slug];
   if (!post) return {};
   return {
     title: post.metaTitle,
@@ -159,7 +170,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = POSTS[slug as Slug];
+  const post = POSTS[slug];
   if (!post) notFound();
 
   return (

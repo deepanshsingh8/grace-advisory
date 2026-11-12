@@ -1,6 +1,7 @@
 "use server";
 
 import { sendMail } from "@/lib/mailer";
+import { IS_NZ } from "@/lib/region";
 
 /* ─── Types ──────────────────────────────────────────────────────────── */
 
@@ -44,9 +45,10 @@ export async function submitContact(
 
   // Build the email
   const cleanSubject = subject || "New consultation request";
-  const emailSubject = `New consultation request — ${cleanSubject}`;
+  // NZ-site enquiries go to the same inbox, tagged so they stand out.
+  const emailSubject = `${IS_NZ ? "[NZ] " : ""}New consultation request — ${cleanSubject}`;
   const text = [
-    `New consultation request from the Grace Advisory website`,
+    `New consultation request from the Grace Advisory ${IS_NZ ? "New Zealand " : ""}website`,
     ``,
     `Name:    ${name}`,
     `Email:   ${email}`,
