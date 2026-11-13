@@ -1,5 +1,5 @@
 /**
- * New Zealand articles — served on graceadvisory.co.nz only.
+ * New Zealand articles — served on graceadvisory.nz only.
  * Same shape as the AU posts in page.tsx.
  */
 export const NZ_POSTS = {

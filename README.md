@@ -13,7 +13,7 @@ npm run build
 
 ## Australia + New Zealand — one codebase, two sites
 
-The same code builds both **graceadvisory.com.au** and **graceadvisory.co.nz**.
+The same code builds both **graceadvisory.com.au** and **graceadvisory.nz**.
 The design is identical; only the content changes (regulators, services,
 pricing currency, articles, logo tagline). One environment variable decides
 which site is built:
@@ -21,7 +21,7 @@ which site is built:
 | Site | `NEXT_PUBLIC_SITE_REGION` |
 |---|---|
 | graceadvisory.com.au | unset (or `au`) |
-| graceadvisory.co.nz | `nz` |
+| graceadvisory.nz | `nz` |
 
 ```bash
 npm run dev:nz       # NZ site on http://localhost:3001
@@ -47,8 +47,8 @@ npm run build:nz     # production build of the NZ site
 1. Vercel → Add New → Project → import this same GitHub repository again.
 2. Name it e.g. `grace-advisory-nz`. In Environment Variables add
    `NEXT_PUBLIC_SITE_REGION` = `nz` (plus the same mail variables as the AU project).
-3. Deploy, then Settings → Domains → add `graceadvisory.co.nz` and
-   `www.graceadvisory.co.nz`, and set the DNS records Vercel shows at the .nz registrar.
+3. Deploy, then Settings → Domains → add `graceadvisory.nz` and
+   `www.graceadvisory.nz`, and set the DNS records Vercel shows in Cloudflare (DNS only — grey cloud).
 
 Both projects redeploy automatically on every push, so a fix made once ships
 to both sites. Contact-form messages from the NZ site go to the same inbox,

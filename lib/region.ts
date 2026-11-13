@@ -2,7 +2,7 @@
  * Region switch — one codebase, two sites.
  *
  *   graceadvisory.com.au  →  NEXT_PUBLIC_SITE_REGION=au  (default)
- *   graceadvisory.co.nz   →  NEXT_PUBLIC_SITE_REGION=nz
+ *   graceadvisory.nz      →  NEXT_PUBLIC_SITE_REGION=nz
  *
  * The design is identical on both sites; only the content changes. Each
  * region is a separate Vercel project built from the same repository, with
@@ -26,7 +26,7 @@ export function byRegion<T>(values: { au: T; nz: T }): T {
 /** Canonical origin for each region's site. */
 export const SITE_URLS: Record<Region, string> = {
   au: "https://graceadvisory.com.au",
-  nz: "https://graceadvisory.co.nz",
+  nz: "https://graceadvisory.nz",
 };
 
 export const SITE_URL = SITE_URLS[REGION];
