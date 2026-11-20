@@ -158,7 +158,7 @@ export const CREDIT_FAQS: readonly FAQ[] = [
   },
   {
     q: "Does my business need an Australian Credit Licence?",
-    a: "Generally, yes, if you engage in consumer credit activities — for example providing consumer credit, providing credit assistance or acting as an intermediary, offering consumer leases, providing buy now pay later products, or certain debt management services. Some businesses can operate as a credit representative of another licensee, or rely on an exemption instead. The answer depends on your activities, so it is worth confirming before you start.",
+    a: "Generally, yes, if you engage in consumer credit activities — for example providing consumer credit, providing credit assistance or acting as an intermediary, offering consumer leases, providing buy now pay later products, or providing debt management or credit reporting assistance (such as credit repair) services. Some businesses can operate as a credit representative of another licensee, or rely on an exemption instead. The answer depends on your activities, so it is worth confirming before you start.",
   },
   {
     q: "What evidence does ASIC expect in an ACL application?",
@@ -166,11 +166,11 @@ export const CREDIT_FAQS: readonly FAQ[] = [
   },
   {
     q: "Who can be a Responsible Manager?",
-    a: "A Responsible Manager is a person directly responsible for significant day-to-day decisions about your credit activities. Under ASIC's RG 206, Responsible Managers are generally expected to have relevant, problem-free experience and appropriate qualifications for the credit activities you will engage in, and to meet fit and proper requirements. We assess candidates against those expectations before anything is lodged.",
+    a: "Under ASIC's RG 206, a credit licensee's Responsible Managers are its directors, secretaries or senior managers (or partners or trustees) who perform duties in relation to its credit activities. At a minimum, ASIC expects them to have at least two years of relevant, problem-free experience and a credit industry qualification to at least Certificate IV level (or a relevant higher-level qualification), and to be fit and proper. We assess candidates against those expectations before anything is lodged.",
   },
   {
     q: "What obligations apply once the licence is granted?",
-    a: "Credit licensees must comply with the general conduct obligations — including acting efficiently, honestly and fairly, managing conflicts, maintaining competence, and having adequate resources and risk management. Ongoing obligations typically include AFCA membership and internal dispute resolution, compensation arrangements, responsible lending, breach reporting, design and distribution obligations where relevant, and an annual compliance certificate. Exactly what applies depends on your credit activities.",
+    a: "Credit licensees must comply with the general conduct obligations — including acting efficiently, honestly and fairly, managing conflicts, maintaining competence, and having adequate resources and risk management. Ongoing obligations typically include AFCA membership (which must be in place before ASIC will issue the licence) and internal dispute resolution, compensation arrangements, responsible lending, breach reporting, design and distribution obligations where relevant, and an annual compliance certificate. Exactly what applies depends on your credit activities.",
   },
   {
     q: "How long does an ACL application take, and can you guarantee approval?",

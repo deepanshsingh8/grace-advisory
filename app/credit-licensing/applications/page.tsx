@@ -53,7 +53,7 @@ export default function AclApplicationsPage() {
         <li><strong>Credit provider</strong> — providing consumer credit under a credit contract</li>
         <li><strong>Credit service</strong> — providing credit assistance or acting as an intermediary, such as mortgage and finance broking</li>
         <li><strong>Lessor</strong> — offering consumer leases</li>
-        <li><strong>Other activities</strong> — for example certain debt management services, or buy now pay later products brought into the regime by recent reforms</li>
+        <li><strong>Other activities</strong> — for example debt management or credit reporting assistance (such as credit repair) services, or buy now pay later products brought into the regime by recent reforms</li>
       </ul>
       <p>
         Getting this right matters: authorisations that are too narrow restrict the business,
@@ -64,16 +64,17 @@ export default function AclApplicationsPage() {
       <h2>2. Preparing the application</h2>
       <ol>
         <li><strong>Responsible Managers</strong> — assessing candidates against ASIC&rsquo;s expectations in RG 206. See <Link href={`${CREDIT_BASE}/responsible-managers`}>Responsible Manager Advisory</Link>.</li>
-        <li><strong>Fit and proper people</strong> — gathering the information ASIC needs about directors, secretaries, senior managers and controllers.</li>
+        <li><strong>Fit and proper people</strong> — gathering the information ASIC needs about the people who manage and control the business — usually directors, partners, trustees and senior managers, and anyone who controls the applicant — including criminal history and bankruptcy checks.</li>
         <li><strong>Business description</strong> — a clear account of your credit activities, products, customers and operating model.</li>
         <li><strong>Compliance arrangements</strong> — how you will meet the general conduct obligations, including responsible lending, conflicts, training and monitoring. See <Link href={`${CREDIT_BASE}/compliance-frameworks`}>Credit Compliance Frameworks</Link>.</li>
         <li><strong>Resources and risk</strong> — adequate financial, technological and human resources (RG 207) and a risk management system.</li>
-        <li><strong>Dispute resolution and compensation</strong> — internal dispute resolution meeting RG 271, AFCA membership, and compensation arrangements such as professional indemnity insurance (RG 210).</li>
+        <li><strong>Dispute resolution and compensation</strong> — internal dispute resolution meeting RG 271, AFCA membership (ASIC will only issue the licence once you are a member), and compensation arrangements such as professional indemnity insurance (RG 210).</li>
       </ol>
 
       <h2>3. Lodgement and ASIC liaison</h2>
       <p>
-        We help you lodge through the ASIC Regulatory Portal and then manage ASIC&rsquo;s requests
+        Applications are made online with ASIC, followed by your supporting documents. We help you
+        lodge and then manage ASIC&rsquo;s requests
         for further information through to a decision. ASIC&rsquo;s timing depends on the
         complexity of the business and the quality of the application — we cannot promise a
         timeframe or an outcome, but a complete and consistent application avoids the most common
@@ -84,7 +85,8 @@ export default function AclApplicationsPage() {
       <p>
         Business models change. If you plan to offer a new product, add credit assistance to a
         lending business, start offering consumer leases or change how you distribute, you may need
-        to vary your licence. We review whether a variation is required, update your Responsible
+        to vary your licence — an application made through ASIC&rsquo;s credit licensee and
+        representative portal. We review whether a variation is required, update your Responsible
         Manager coverage and compliance arrangements, and prepare the variation application.
       </p>
 

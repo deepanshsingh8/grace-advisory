@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "What is the annual compliance certificate?",
-    a: "Credit licensees must lodge an annual compliance certificate with ASIC, confirming matters about their compliance with their licence obligations. We help you gather the evidence behind the certificate so it can be given with confidence.",
+    a: "Credit licensees must lodge an annual compliance certificate with ASIC for every year they hold the licence. It is due no later than 45 days after the annual compliance date — usually the anniversary of the day the licence was issued — and failing to lodge is a breach of the law. We help you gather the evidence behind the certificate so it can be given with confidence.",
   },
   {
     q: "When does a breach need to be reported to ASIC?",
