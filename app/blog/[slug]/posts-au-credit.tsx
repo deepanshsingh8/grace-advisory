@@ -35,7 +35,7 @@ export const AU_CREDIT_POSTS = {
           <li>Providing credit assistance — suggesting or helping a consumer apply for a particular credit contract, as mortgage and finance brokers do</li>
           <li>Acting as an intermediary between consumers and credit providers</li>
           <li>Offering consumer leases</li>
-          <li>Certain debt management services, and buy now pay later products brought into the regime by recent reforms</li>
+          <li>Debt management and credit reporting assistance (such as credit repair) services, and buy now pay later products brought into the regime by recent reforms</li>
         </ul>
         <p>
           Not every business that touches credit needs its own licence. Some operate as a credit
@@ -56,9 +56,9 @@ export const AU_CREDIT_POSTS = {
         <h2>3. Appoint suitable Responsible Managers</h2>
         <p>
           ASIC assesses your organisational competence largely through your Responsible Managers —
-          the people directly responsible for significant day-to-day decisions about your credit
-          activities. ASIC&rsquo;s Regulatory Guide 206 explains its expectations, which generally
-          include relevant, problem-free experience and appropriate qualifications. Read more in
+          the directors, secretaries or senior managers (or partners or trustees) who perform duties
+          in relation to your credit activities. ASIC&rsquo;s Regulatory Guide 206 sets its minimum
+          expectations, including relevant, problem-free experience and appropriate qualifications. Read more in
           our guide to{" "}
           <Link href="/blog/responsible-manager-requirements-credit-licence">Responsible Manager requirements</Link>.
         </p>
@@ -75,17 +75,17 @@ export const AU_CREDIT_POSTS = {
           <li>Compliance monitoring and breach reporting</li>
           <li>Risk management</li>
           <li>Training and supervision of staff and representatives</li>
-          <li>Internal dispute resolution, and membership of AFCA</li>
+          <li>Internal dispute resolution, and membership of AFCA — ASIC will only issue the licence once you are a member</li>
           <li>Compensation arrangements, typically professional indemnity insurance</li>
           <li>Adequate financial, technological and human resources</li>
         </ul>
 
         <h2>5. Prepare the application</h2>
         <p>
-          Applications are lodged through the ASIC Regulatory Portal. Alongside the application
-          itself, ASIC asks for information about the business and its people, including
-          fit-and-proper information about directors, secretaries, senior managers and controllers,
-          and details of each Responsible Manager. The exact supporting documents depend on your
+          Applications are made online with ASIC. Alongside the application itself, ASIC asks for
+          information about the business and its people — including statements of personal
+          information, criminal history and bankruptcy checks for the people who manage and control
+          the business, and the qualifications and experience of each Responsible Manager. The exact supporting documents depend on your
           authorisations and business model. Consistency matters: the business description, the
           Responsible Managers&rsquo; experience and the compliance arrangements should all tell the
           same story.
@@ -203,12 +203,14 @@ export const AU_CREDIT_POSTS = {
           authorised for.
         </p>
 
-        <h2>What is a Responsible Manager?</h2>
+        <h2>Who can be nominated</h2>
         <p>
-          A Responsible Manager is a person directly responsible for significant day-to-day
-          decisions about the licensee&rsquo;s credit activities. They are not a figurehead: ASIC
-          expects them to be genuinely involved, with the time and authority to oversee the
-          credit business.
+          Under RG 206, a credit licensee&rsquo;s Responsible Managers come from its own
+          directors, secretaries or senior managers — or its partners or trustees — who perform
+          duties in relation to the credit activities. For an individual licensee, it is the
+          licensee. In a small business, ASIC expects them to be the people ultimately responsible
+          for day-to-day decisions about the credit activities. They are not figureheads: they need
+          the time and authority to oversee the credit business.
         </p>
 
         <h2>ASIC&rsquo;s expectations (RG 206)</h2>
@@ -218,7 +220,8 @@ export const AU_CREDIT_POSTS = {
         </p>
         <ul>
           <li><strong>Relevant experience</strong> — generally at least two years of problem-free experience in the credit activities the licence will cover</li>
-          <li><strong>Appropriate qualifications</strong> — generally at least a Certificate IV-level credit qualification or a relevant higher qualification, with higher expectations for some activities such as mortgage broking</li>
+          <li><strong>Appropriate qualifications</strong> — a credit industry qualification to at least Certificate IV level, or another relevant higher-level qualification such as a diploma or degree. Where the business provides third-party home loan credit assistance (mortgage broking), ASIC expects at least a Certificate IV in Finance and Mortgage Broking</li>
+          <li><strong>Ongoing training</strong> — at least 20 hours of continuing professional development each year</li>
           <li><strong>Good character</strong> — Responsible Managers must be fit and proper, supported by police and bankruptcy checks</li>
         </ul>
         <p>
@@ -229,8 +232,10 @@ export const AU_CREDIT_POSTS = {
         <h2>How many do you need?</h2>
         <p>
           There is no fixed number. Collectively, your Responsible Managers must cover every
-          authorisation, and ASIC considers the size and complexity of the business. Nominating at
-          least two avoids the licence depending on a single person.
+          authorisation, and ASIC considers the nature, scale and complexity of the business. If
+          your competence depends heavily on one or two people, ASIC may impose a &ldquo;key
+          person&rdquo; licence condition naming them — so if they leave, you must show you still
+          have the competence your licence requires (RG 206.48).
         </p>
 
         <h2>Common pitfalls</h2>
@@ -269,9 +274,9 @@ export const AU_CREDIT_POSTS = {
     body: (
       <>
         <p>
-          Being granted an Australian Credit Licence is the start, not the finish. From day one,
-          credit licensees must meet a set of continuing obligations — and be able to show ASIC
-          that they do.
+          The grant of a credit licence switches on a set of continuing obligations. From the first
+          day of trading, licensees must meet them — and be able to show ASIC, with evidence, that
+          they do.
         </p>
 
         <h2>The general conduct obligations</h2>
@@ -285,7 +290,8 @@ export const AU_CREDIT_POSTS = {
           <li>Take reasonable steps to ensure representatives comply with the law</li>
           <li>Maintain the organisational competence to engage in its credit activities</li>
           <li>Ensure representatives are adequately trained and competent</li>
-          <li>Have adequate resources — financial, technological and human — and risk management systems</li>
+          <li>Have adequate resources — financial, technological and human — and risk management systems (these two obligations do not apply to APRA-regulated bodies)</li>
+          <li>Have adequate arrangements and systems to ensure compliance, documented in a written plan</li>
           <li>Have internal dispute resolution that meets ASIC&rsquo;s standards, and be a member of AFCA</li>
           <li>Have adequate compensation arrangements</li>
         </ul>
@@ -317,8 +323,10 @@ export const AU_CREDIT_POSTS = {
 
         <h2>Annual compliance certificate</h2>
         <p>
-          Credit licensees must lodge an annual compliance certificate with ASIC. The certificate
-          should be backed by real evidence that the business has met its obligations — which is
+          Credit licensees must lodge an annual compliance certificate with ASIC for every year they
+          hold the licence — no later than 45 days after the annual compliance date, which is usually
+          the anniversary of the day the licence was issued. The certificate should be backed by real
+          evidence that the business has met its obligations — which is
           one reason a regular monitoring program matters.
         </p>
 
@@ -361,15 +369,16 @@ export const AU_CREDIT_POSTS = {
           Responsible lending obligations apply to credit providers and lessors before they enter
           into a credit contract or consumer lease, and to credit assistance providers, such as
           brokers, before they recommend or help a consumer apply for one. Some products are
-          subject to modified obligations — for example certain low cost credit contracts, such as
-          buy now pay later — and business-purpose lending generally falls outside the regime.
+          subject to modified obligations — for example low cost credit contracts, which include most
+          buy now pay later products (see ASIC&rsquo;s RG 281) — and lending predominantly for
+          business purposes generally falls outside the regime.
         </p>
 
         <h2>The three core steps</h2>
         <ol>
           <li><strong>Make reasonable inquiries</strong> about the consumer&rsquo;s requirements and objectives, and about their financial situation.</li>
           <li><strong>Take reasonable steps to verify</strong> the consumer&rsquo;s financial situation.</li>
-          <li><strong>Assess whether the contract or lease is unsuitable</strong> — and do not proceed if it is. Credit is presumed unsuitable if, for example, the consumer could only meet repayments with substantial hardship, or it does not meet their requirements and objectives.</li>
+          <li><strong>Assess whether the contract or lease is unsuitable</strong> — and do not proceed if it is. The law sets the test: credit must be assessed as unsuitable if it is likely that the consumer could not meet the repayments, could only meet them with substantial hardship, or that it will not meet their requirements or objectives.</li>
         </ol>
         <p>
           What is &ldquo;reasonable&rdquo; scales with the product and the consumer. ASIC&rsquo;s

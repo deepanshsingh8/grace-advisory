@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 const FAQS = [
   {
     q: "How many Responsible Managers do we need?",
-    a: "There is no fixed number. Together, your Responsible Managers need to cover every credit activity you are authorised for, and ASIC will consider the size and complexity of the business. Many applicants nominate at least two so the business is not dependent on one person.",
+    a: "There is no fixed number. Together, your Responsible Managers need to cover every credit activity you are authorised for, and ASIC considers the nature, scale and complexity of the business. If your competence depends heavily on one or two people, ASIC may impose a 'key person' licence condition naming them, so you would need to show continued competence if they leave (RG 206.48).",
   },
   {
     q: "Can a Responsible Manager be external to the business?",
-    a: "A Responsible Manager must be directly responsible for significant day-to-day decisions about your credit activities. ASIC looks closely at arrangements where that person is part-time or outside the business, so the role needs to be real, documented and properly resourced.",
+    a: "Generally not as an outside adviser alone. Under RG 206, a credit licensee's Responsible Managers are drawn from its own directors, secretaries or senior managers (or partners or trustees) who perform duties in relation to its credit activities. A person brought in from outside would need to hold a genuine role of that kind in the business — and the role needs to be real, documented and properly resourced.",
   },
   {
     q: "What if our Responsible Manager leaves?",
@@ -34,12 +34,11 @@ export default function ResponsibleManagersPage() {
     <CreditServiceLayout
       service={SERVICE}
       title={<>Responsible Manager<br />advisory.</>}
-      lede="Your Responsible Managers are how ASIC measures your organisational competence. We help you find, assess and evidence the right people for the credit activities you will engage in."
+      lede="ASIC looks to your Responsible Managers to judge whether your business has the competence its licence requires. We help you find, assess and evidence the right people for the credit activities you will engage in."
       faqs={FAQS}
     >
       <p>
-        Responsible Managers are the people directly responsible for significant day-to-day
-        decisions about your credit activities. ASIC relies heavily on their knowledge and
+        Under ASIC&rsquo;s RG 206, a credit licensee&rsquo;s Responsible Managers are the directors, secretaries or senior managers (or, for partnerships and trusts, the partners or trustees) who perform duties in relation to your credit activities and whom you nominate to demonstrate competence. ASIC relies heavily on their knowledge and
         experience when deciding whether a credit business has the organisational competence to
         hold a licence — and whether it continues to have it once licensed.
       </p>
@@ -51,7 +50,8 @@ export default function ResponsibleManagersPage() {
       </p>
       <ul>
         <li>Have relevant, problem-free experience in the credit activities the licence covers — generally at least two years</li>
-        <li>Hold an appropriate qualification, generally at least a Certificate IV-level credit qualification or a relevant higher qualification, with higher expectations for some activities such as mortgage broking</li>
+        <li>Hold a credit industry qualification to at least Certificate IV level, or another relevant higher-level qualification such as a diploma or degree — and, where the business provides third-party home loan credit assistance (mortgage broking), at least a Certificate IV in Finance and Mortgage Broking</li>
+        <li>Complete at least 20 hours of continuing professional development each year</li>
         <li>Be fit and proper, supported by police and bankruptcy checks</li>
         <li>Be genuinely involved in the credit business, with the time and authority the role requires</li>
       </ul>
