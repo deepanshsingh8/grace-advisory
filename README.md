@@ -38,7 +38,7 @@ npm run build:nz     # production build of the NZ site
 - `lib/routes.ts` — which pages belong to which country, and where AU links
   redirect on the NZ site (e.g. `/afsl` → `/licensing`) and vice versa.
 - Shared sections (`components/*`) hold both AU and NZ copy side by side.
-- AU-only pages: `app/afsl/*`, `app/aml-ctf/*`, `app/life-insurance`.
+- AU-only pages: `app/afsl/*`, `app/aml-ctf/*`, `app/credit-licensing/*`, `app/life-insurance`.
   NZ-only pages: `app/licensing/*`, `app/aml-cft/*`. Each calls `onlyIn()`.
 - NZ articles: `app/blog/[slug]/posts-nz.tsx`.
 
@@ -53,6 +53,37 @@ npm run build:nz     # production build of the NZ site
 Both projects redeploy automatically on every push, so a fix made once ships
 to both sites. Contact-form messages from the NZ site go to the same inbox,
 with `[NZ]` at the start of the subject.
+
+## Credit Licensing (AU third pillar)
+
+The Australian Credit Licence (ACL) pillar lives at `/credit-licensing` with six
+service pages beneath it. Shared copy — nav labels, service cards, homepage
+pillar, landing-page sections and FAQs — is in `lib/credit-licensing.ts`; each
+service page's long-form copy is in its own `app/credit-licensing/*/page.tsx`.
+The five ACL articles are in `app/blog/[slug]/posts-au-credit.tsx`.
+
+Editorial rules: describe Grace Advisory as providing advisory, application
+support and compliance services (never as an ACL holder), don't promise ASIC
+approval or timeframes, and have regulatory copy reviewed before publishing.
+
+## Enquiry form and analytics
+
+The contact form asks for business name, service required, business model and
+licence status (options per region in `lib/enquiry.ts`). Links such as
+`/contact?service=acl-application#enquiry` pre-select the service.
+
+Analytics use **Vercel Web Analytics** (`@vercel/analytics`). Enable it in the
+Vercel project → Analytics. Page views work on every plan; the custom events
+below need a Pro (or Enterprise) plan:
+
+| Event | When |
+|---|---|
+| `cta_click` | any element with `data-track="cta_click"` (consultation buttons) |
+| `service_card_click` | Credit Licensing service cards |
+| `enquiry_submitted` | successful contact-form submission (with `service`) |
+
+To track another button, add `data-track="<event>"` and
+`data-track-label="<label>"` — see `components/analytics-events.tsx`.
 
 ## Contact form — email setup
 

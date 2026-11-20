@@ -130,6 +130,24 @@ const AU_PROJECTS: Project[] = [
     timeline: "3–6 weeks",
     href: "/afsl/external-review",
   },
+  {
+    name: "ACL Application",
+    description: "Authorisation scoping, Responsible Managers, application evidence, lodgement and ASIC liaison.",
+    timeline: "Scoped on enquiry",
+    href: "/credit-licensing/applications",
+  },
+  {
+    name: "Credit Compliance Framework",
+    description: "Policies, procedures and responsible-lending controls tailored to your credit activities.",
+    timeline: "3–6 weeks",
+    href: "/credit-licensing/compliance-frameworks",
+  },
+  {
+    name: "Independent ACL Compliance Review",
+    description: "A review of your credit compliance framework and files, with formal report and remediation plan.",
+    timeline: "3–6 weeks",
+    href: "/credit-licensing/ongoing-compliance",
+  },
 ];
 
 /* ─── FAQs ──────────────────────────────────────────────────────────── */

@@ -6,10 +6,10 @@ import { byRegion } from "@/lib/region";
 const COPY = byRegion({
   au: {
     eyebrow: "Compliance Consulting · Australia",
-    lede: "Tailored AFSL and AML/CTF advisory — from licence application to ongoing monitoring, scaled to your business.",
+    lede: "Tailored AFSL, Australian Credit Licence and AML/CTF advisory — from licence application to ongoing monitoring, scaled to your business.",
     credentials: [
-      { credential: "Phase 1 & 2", descriptor: "reporting entities" },
-      { credential: "RG 105",      descriptor: "responsible managers" },
+      { credential: "AFSL & ACL",  descriptor: "licence applications" },
+      { credential: "RG 105 & 206", descriptor: "responsible managers" },
       { credential: "AUSTRAC",     descriptor: "independent reviews" },
       { credential: "End-to-end",  descriptor: "senior-led service" },
     ],
@@ -116,7 +116,7 @@ export function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-3 items-center">
-              <Link href="/contact" className="btn btn-primary magnetic">
+              <Link href="/contact" className="btn btn-primary magnetic" data-track="cta_click" data-track-label="home_hero_book_consultation">
                 Book a consultation
                 <ArrowRight className="arrow" />
               </Link>

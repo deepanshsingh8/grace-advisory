@@ -19,6 +19,7 @@ export const IMG = {
   about_hero:      u("1497366216548-37526070297c", 1800), // modern office interior
   pillar_afsl:     u("1454165804606-c3d57bc86b40", 1200), // pen on document
   pillar_aml:      u("1486406146926-c627a92ad1ab", 1200), // signing
+  pillar_credit:   u("1497366216548-37526070297c", 1200), // modern office interior
   contact_frame:   u("1517245386807-bb43f82c33c4", 1400), // modern building
 
   // Insights cover images (one per blog post)

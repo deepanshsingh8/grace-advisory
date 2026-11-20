@@ -23,6 +23,8 @@ const nextConfig: NextConfig = {
     // The standalone About page was folded back into the home page.
     return [
       { source: "/about", destination: "/#approach", permanent: true },
+      // Short-lived single ACL page, replaced by the Credit Licensing pillar.
+      { source: "/acl", destination: "/credit-licensing", permanent: true },
       // Pages that only exist on the other country's site → closest local page.
       ...crossRegionRedirects(REGION),
     ];

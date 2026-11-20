@@ -7,6 +7,8 @@ interface PageHeroProps {
   /** Optional featured image — turns the hero into a split layout. */
   image?: string;
   imageAlt?: string;
+  /** Optional buttons rendered under the lede. */
+  actions?: React.ReactNode;
 }
 
 /**
@@ -14,7 +16,7 @@ interface PageHeroProps {
  *   • Text-only (default) — single column on a deep navy banner with hex motif.
  *   • With image — split layout, framed photograph on the right.
  */
-export function PageHero({ eyebrow, title, lede, image, imageAlt }: PageHeroProps) {
+export function PageHero({ eyebrow, title, lede, image, imageAlt, actions }: PageHeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-navy-banner banner-rule-top text-[var(--color-ivory-50)]">
       <div
@@ -68,6 +70,7 @@ export function PageHero({ eyebrow, title, lede, image, imageAlt }: PageHeroProp
                 {lede}
               </p>
             )}
+            {actions && <div className="mt-8 flex flex-wrap gap-3">{actions}</div>}
           </div>
 
           {image && (

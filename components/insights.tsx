@@ -15,7 +15,16 @@ interface Post {
   coverAlt: string;
 }
 
+/** Order is editorial: the first three appear on the home page. */
 const AU_POSTS: Post[] = [
+  {
+    cat: "Credit Licensing", date: "20 Nov 2026",
+    title: "How to Apply for an Australian Credit Licence (ACL): A Practical Guide",
+    excerpt: "Who needs an ACL, which authorisations to choose, what ASIC expects in the application — and what starts on day one.",
+    href: "/blog/how-to-apply-for-an-australian-credit-licence",
+    cover: IMG.pillar_credit,
+    coverAlt: "Modern office interior — the setting for a well-run credit business.",
+  },
   {
     cat: "AML/CTF Reforms", date: "30 Apr 2026",
     title: "Tranche 2 Compliance Explained: What Has Changed Under AUSTRAC Reform?",
@@ -31,6 +40,38 @@ const AU_POSTS: Post[] = [
     href: "/blog/australian-financial-services-licence-afsl-application-guide",
     cover: IMG.insight_afsl,
     coverAlt: "Hands signing a contract — the AFSL application process.",
+  },
+  {
+    cat: "Credit Licensing", date: "20 Nov 2026",
+    title: "ACL vs AFSL: Which Licence Does Your Business Need?",
+    excerpt: "Credit or financial services? How the two ASIC licences differ, when you need both, and what they share.",
+    href: "/blog/acl-vs-afsl-which-licence-do-you-need",
+    cover: IMG.insight_reforms,
+    coverAlt: "Modern office building — two regulatory regimes side by side.",
+  },
+  {
+    cat: "Credit Licensing", date: "20 Nov 2026",
+    title: "Responsible Manager Requirements for an Australian Credit Licence",
+    excerpt: "What RG 206 expects of Responsible Managers — experience, qualifications, fit and proper — and the common pitfalls.",
+    href: "/blog/responsible-manager-requirements-credit-licence",
+    cover: IMG.pillar_afsl,
+    coverAlt: "Pen on document — evidencing a Responsible Manager's experience.",
+  },
+  {
+    cat: "Credit Licensing", date: "20 Nov 2026",
+    title: "Ongoing Obligations for Australian Credit Licensees",
+    excerpt: "General conduct obligations, breach reporting, dispute resolution and the annual compliance certificate — after the licence is granted.",
+    href: "/blog/ongoing-obligations-australian-credit-licensees",
+    cover: IMG.approach_frame,
+    coverAlt: "Empty boardroom — governance that continues after licensing.",
+  },
+  {
+    cat: "Credit Licensing", date: "20 Nov 2026",
+    title: "Responsible Lending Obligations Explained for Lenders and Brokers",
+    excerpt: "Reasonable inquiries, verification and unsuitability assessments — plus the best interests duty for mortgage brokers.",
+    href: "/blog/responsible-lending-obligations-explained",
+    cover: IMG.pillar_aml,
+    coverAlt: "Signing a contract — responsible lending before the signature.",
   },
   {
     cat: "AML/CTF Reforms", date: "30 Apr 2026",
@@ -71,7 +112,9 @@ const NZ_POSTS: Post[] = [
 
 const POSTS = byRegion({ au: AU_POSTS, nz: NZ_POSTS });
 
-export function Insights() {
+/** `limit` shows only the first N posts (the home page shows three). */
+export function Insights({ limit }: { limit?: number } = {}) {
+  const posts = limit ? POSTS.slice(0, limit) : POSTS;
   return (
     <section id="insights" className="relative section-pad bg-[var(--color-ivory-50)]">
       <div
@@ -90,7 +133,7 @@ export function Insights() {
         />
 
         <div className="reveal grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {POSTS.map((p) => (
+          {posts.map((p) => (
             <Link
               href={p.href}
               key={p.title}

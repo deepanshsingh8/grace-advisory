@@ -12,9 +12,13 @@ import { ArrowRight, MenuIcon, XIcon, ChevronDownIcon } from "@/components/icons
  *
  * Visible items, top to bottom of importance:
  *   • Logo
- *   • THREE primary nav items (AFSL / AML/CTF / About) — each is a dropdown
- *     disclosure that reveals the deeper service tree on hover, click, or focus
+ *   • Primary nav items (AFSL / AML/CTF / Credit Licensing on the AU site /
+ *     About) — each a dropdown disclosure that reveals the deeper service
+ *     tree on hover, click, or focus — plus flat Pricing and Insights links
  *   • A single CTA — "Book a consultation"
+ *
+ * The full desktop bar needs ~1280px. Below that (xl breakpoint) the
+ * site uses the menu button and slide-out sheet, as on mobile.
  *
  * Phone, secondary nav, and inner sub-pages live inside the dropdowns and
  * the mobile sheet, not on the top bar. This solves the "congested" feel.
@@ -73,7 +77,7 @@ export function Nav() {
       }
     >
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between gap-6 py-4">
+        <div className="flex items-center justify-between gap-6 xl:gap-4 py-4">
           {/* ── Logo ─────────────────────────────────────────────── */}
           <Link href="/" aria-label="Grace Advisory home" className="shrink-0 inline-flex items-center">
             <Image
@@ -82,14 +86,18 @@ export function Nav() {
               width={586}
               height={206}
               priority
-              className="h-[80px] w-auto sm:h-[88px]"
+              // Slightly smaller on desktop so the full menu fits beside it in the 1240px container.
+              className="h-[80px] w-auto sm:h-[88px] xl:h-[72px]"
             />
           </Link>
 
           {/* ── Primary nav (desktop) ────────────────────────────── */}
-          <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
+          <nav aria-label="Primary" className="hidden xl:flex items-center shrink-0">
             <NavMenu label={NAV.PILLAR_1.label} items={NAV.PILLAR_1.items} isActive={isActive} />
             <NavMenu label={NAV.PILLAR_2.label} items={NAV.PILLAR_2.items} isActive={isActive} />
+            {NAV.PILLAR_3 && (
+              <NavMenu label={NAV.PILLAR_3.label} items={NAV.PILLAR_3.items} isActive={isActive} wide />
+            )}
             <NavMenu label="About" items={NAV.ABOUT} isActive={isActive} />
             <Link
               href="/pricing"
@@ -112,8 +120,8 @@ export function Nav() {
             {/* Wrapper carries the responsive hide: `.btn` sets display:inline-flex
                 as an unlayered rule, which would override a `hidden` utility placed
                 directly on the Link — so the show/hide lives on this plain span. */}
-            <span className="hidden lg:inline-flex">
-              <Link href="/contact" className="btn btn-primary magnetic">
+            <span className="hidden xl:inline-flex shrink-0 whitespace-nowrap">
+              <Link href="/contact" className="btn btn-primary magnetic" data-track="cta_click" data-track-label="header_book_consultation">
                 Book a consultation
                 <ArrowRight className="arrow" />
               </Link>
@@ -124,7 +132,7 @@ export function Nav() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="lg:hidden inline-flex h-11 w-11 items-center justify-center border border-[var(--color-line)] text-[var(--color-navy-900)]"
+              className="xl:hidden inline-flex h-11 w-11 items-center justify-center border border-[var(--color-line)] text-[var(--color-navy-900)]"
             >
               {open ? <XIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
             </button>
@@ -135,11 +143,12 @@ export function Nav() {
       <style jsx>{`
         :global(.nav-link-flat) {
           position: relative;
-          padding: 10px 16px;
+          padding: 10px 11px;
+          white-space: nowrap;
           font-family: var(--font-sans);
           font-weight: 700;
           font-size: 0.78rem;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--color-ink-900);
           transition: color 200ms var(--ease-out-soft);
@@ -147,7 +156,7 @@ export function Nav() {
         :global(.nav-link-flat::after) {
           content: "";
           position: absolute;
-          left: 16px; right: 16px;
+          left: 11px; right: 11px;
           bottom: 4px;
           height: 1.5px;
           background: linear-gradient(90deg, var(--color-gold-500), var(--color-gold-200));
@@ -186,10 +195,13 @@ function NavMenu({
   label,
   items,
   isActive,
+  wide,
 }: {
   label: string;
   items: readonly { label: string; href: string }[];
   isActive: (href: string) => boolean;
+  /** Wider panel for long item labels. */
+  wide?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -230,11 +242,11 @@ function NavMenu({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className={"nav-link-flat inline-flex items-center gap-1.5" + (active ? " is-active" : "")}
+        className={"nav-link-flat inline-flex items-center gap-1.5 whitespace-nowrap" + (active ? " is-active" : "")}
         aria-current={active ? "page" : undefined}
       >
         {label}
-        <ChevronDownIcon className={"h-3 w-3 transition-transform duration-300 " + (open ? "rotate-180" : "")} />
+        <ChevronDownIcon className={"h-3 w-3 shrink-0 transition-transform duration-300 " + (open ? "rotate-180" : "")} />
       </button>
 
       <div
@@ -245,7 +257,7 @@ function NavMenu({
           (open ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-1 pointer-events-none")
         }
       >
-        <div className="min-w-[280px] bg-[var(--color-ivory-50)] border border-[var(--color-line)] shadow-[0_24px_48px_-20px_rgba(20,27,60,0.18)]">
+        <div className={(wide ? "min-w-[340px]" : "min-w-[280px]") + " bg-[var(--color-ivory-50)] border border-[var(--color-line)] shadow-[0_24px_48px_-20px_rgba(20,27,60,0.18)]"}>
           <div className="h-[3px] bg-gradient-to-r from-[var(--color-gold-500)] to-[var(--color-gold-200)]" />
           <ul className="py-2">
             {items.map((item) => {
@@ -337,7 +349,7 @@ function MobileSheet({
   return (
     <div
       className={
-        "lg:hidden fixed inset-0 z-[60] transition-[opacity,visibility] duration-300 " +
+        "xl:hidden fixed inset-0 z-[60] transition-[opacity,visibility] duration-300 " +
         (open ? "opacity-100 visible" : "opacity-0 invisible")
       }
       aria-hidden={!open}
@@ -380,13 +392,16 @@ function MobileSheet({
           <nav className="flex-1 overflow-y-auto px-6 py-6 space-y-7">
             <MobileSection title={NAV.PILLAR_1.label} items={NAV.PILLAR_1.items} onClose={onClose} isActive={isActive} />
             <MobileSection title={NAV.PILLAR_2.label} items={NAV.PILLAR_2.items} onClose={onClose} isActive={isActive} />
+            {NAV.PILLAR_3 && (
+              <MobileSection title={NAV.PILLAR_3.label} items={NAV.PILLAR_3.items} onClose={onClose} isActive={isActive} />
+            )}
             <MobileSection title="About" items={NAV.ABOUT} onClose={onClose} isActive={isActive} />
             <MobileSection title="Pricing" items={[{ label: "Retainers & Projects", href: "/pricing" }]} onClose={onClose} isActive={isActive} />
             <MobileSection title="Insights" items={[{ label: "Blog", href: "/blog" }]} onClose={onClose} isActive={isActive} />
           </nav>
 
           <div className="px-6 py-6 border-t border-[var(--color-line)] space-y-4">
-            <Link href="/contact" onClick={onClose} className="btn btn-primary w-full justify-center">
+            <Link href="/contact" onClick={onClose} className="btn btn-primary w-full justify-center" data-track="cta_click" data-track-label="mobile_menu_book_consultation">
               Book a consultation
               <ArrowRight className="arrow" />
             </Link>

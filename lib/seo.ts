@@ -1,4 +1,5 @@
 import { byRegion, LANG, REGION, SITE_URL } from "@/lib/region";
+import { CREDIT_BASE, CREDIT_SERVICES } from "@/lib/credit-licensing";
 
 /* ─── Contact details ──────────────────────────────────────────────────
    The NZ site currently uses the Australian office and phone (shown in
@@ -42,6 +43,11 @@ const AU_KNOWS_ABOUT = [
   "AFSL Compliance Policies",
   "External AFSL Compliance Review",
   "Ongoing AFSL Compliance Monitoring",
+  "Australian Credit Licence (ACL)",
+  "ACL Application",
+  "Credit Licence Responsible Managers",
+  "Responsible Lending",
+  "Credit Compliance",
   "AML/CTF Program",
   "AUSTRAC Registration",
   "Independent Review of AML/CTF Program",
@@ -83,7 +89,7 @@ export const siteSchema = {
       },
       image: `${SITE_URL}/brand/og-image.png`,
       description: byRegion({
-        au: "Boutique AFSL and AML/CTF compliance consulting for Australia's regulated firms — from licence application to ongoing monitoring.",
+        au: "Boutique AFSL, Australian Credit Licence and AML/CTF compliance consulting for Australia's regulated firms — from licence application to ongoing monitoring.",
         nz: "Boutique FMA licensing and AML/CFT compliance consulting for New Zealand's regulated firms — from FSPR registration and licence application to ongoing monitoring.",
       }),
       telephone: "+61-468-454-831",
@@ -123,7 +129,8 @@ export const siteSchema = {
 interface NavItem { label: string; href: string }
 interface NavGroup { label: string; items: readonly NavItem[] }
 
-const AU_PILLARS: { PILLAR_1: NavGroup; PILLAR_2: NavGroup } = {
+/** PILLAR_3 is the AU-only Credit Licensing menu; the NZ site has two pillars. */
+const AU_PILLARS: { PILLAR_1: NavGroup; PILLAR_2: NavGroup; PILLAR_3: NavGroup | null } = {
   PILLAR_1: {
     label: "AFSL",
     items: [
@@ -141,6 +148,13 @@ const AU_PILLARS: { PILLAR_1: NavGroup; PILLAR_2: NavGroup } = {
       { label: "AUSTRAC Registration", href: "/aml-ctf/austrac-registration" },
       { label: "Ongoing AML/CTF Compliance", href: "/aml-ctf/ongoing" },
       { label: "Independent Review", href: "/aml-ctf/independent-review" },
+    ],
+  },
+  PILLAR_3: {
+    label: "Credit Licensing",
+    items: [
+      { label: "Credit Licensing Overview", href: CREDIT_BASE },
+      ...CREDIT_SERVICES.map((s) => ({ label: s.navLabel, href: s.href })),
     ],
   },
 };
@@ -165,6 +179,7 @@ const NZ_PILLARS: typeof AU_PILLARS = {
       { label: "Independent Audit", href: "/aml-cft/independent-audit" },
     ],
   },
+  PILLAR_3: null,
 };
 
 export const NAV = {
