@@ -97,7 +97,7 @@ const AU_ADJACENT: Adjacent[] = [
   {
     title: "Credit Licence Applications",
     blurb: "Help your business obtain an Australian Credit Licence (ACL) — including responsible-lending obligations.",
-    href: "/contact",
+    href: "/acl",
   },
   {
     title: "Legal & Corporate Support",
@@ -205,7 +205,7 @@ export default function ServicesPage() {
                   {a.blurb}
                 </p>
                 <span className="inline-flex items-center gap-1.5 font-sans font-bold text-[0.7rem] tracking-[0.2em] uppercase text-[var(--color-gold-700)] group-hover:text-[var(--color-gold-600)] transition-colors">
-                  Enquire
+                  {a.href === "/contact" ? "Enquire" : "Learn more"}
                   <ArrowRight className="w-3 h-3" />
                 </span>
               </Link>

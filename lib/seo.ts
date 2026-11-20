@@ -42,6 +42,8 @@ const AU_KNOWS_ABOUT = [
   "AFSL Compliance Policies",
   "External AFSL Compliance Review",
   "Ongoing AFSL Compliance Monitoring",
+  "Australian Credit Licence (ACL)",
+  "Responsible Lending",
   "AML/CTF Program",
   "AUSTRAC Registration",
   "Independent Review of AML/CTF Program",
@@ -132,6 +134,7 @@ const AU_PILLARS: { PILLAR_1: NavGroup; PILLAR_2: NavGroup } = {
       { label: "Responsible Manager Nominations", href: "/afsl/responsible-manager" },
       { label: "External Compliance Reviews", href: "/afsl/external-review" },
       { label: "Ongoing Compliance Monitoring", href: "/afsl/ongoing-monitoring" },
+      { label: "Australian Credit Licence (ACL)", href: "/acl" },
     ],
   },
   PILLAR_2: {
