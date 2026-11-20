@@ -2,6 +2,7 @@
 
 import { sendMail } from "@/lib/mailer";
 import { IS_NZ } from "@/lib/region";
+import { SITE } from "@/lib/seo";
 
 /* ─── Types ──────────────────────────────────────────────────────────── */
 
@@ -76,7 +77,7 @@ export async function submitContact(
     console.error("[contact] mail send failed", result);
     return {
       status: "error",
-      message: "Sorry — we couldn’t send your message. Please email us directly at info@graceadvisory.com.au or call 0468 454 831.",
+      message: `Sorry — we couldn’t send your message. Please email us directly at ${SITE.email} or call ${SITE.phone}.`,
     };
   }
 
