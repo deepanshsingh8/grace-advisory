@@ -7,7 +7,7 @@ import { byRegion } from "@/lib/region";
 export const metadata: Metadata = {
   title: "Insights — Financial Services Licence & Compliance Insights",
   description: byRegion({
-    au: "Plain-English commentary on the AFSL, AML/CTF and AUSTRAC rules — Tranche 2, RG 105, the application process and more.",
+    au: "Plain-English commentary on AFSL, Australian Credit Licence and AML/CTF rules — Tranche 2, RG 105, RG 206, responsible lending, the application process and more.",
     nz: "Plain-English commentary on New Zealand's financial services rules — FMA licensing, FSPR registration, AML/CFT and more.",
   }),
   alternates: { canonical: "/blog" },

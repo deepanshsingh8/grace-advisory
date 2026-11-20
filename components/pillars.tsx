@@ -4,6 +4,7 @@ import { ArrowRight, HexFilled } from "@/components/icons";
 import { SectionHead } from "@/components/section";
 import { IMG } from "@/lib/imagery";
 import { byRegion } from "@/lib/region";
+import { CREDIT_BASE, CREDIT_PILLAR_ITEMS } from "@/lib/credit-licensing";
 
 interface PillarItem { title: string; body: string }
 interface PillarProps {
@@ -89,8 +90,20 @@ const NZ_PILLAR_2: PillarProps = {
   imageAlt: "Signing a contract — the formality of compliance, made tractable.",
 };
 
-const [PILLAR_1, PILLAR_2] = byRegion({
-  au: [AU_PILLAR_1, AU_PILLAR_2],
+const AU_PILLAR_3: PillarProps = {
+  eyebrow: "Pillar III",
+  title: "Australian Credit Licensing",
+  lede:
+    "For lenders, brokers and credit businesses — from the ASIC credit licence application through to responsible lending and ongoing ACL compliance.",
+  items: [...CREDIT_PILLAR_ITEMS],
+  href: CREDIT_BASE,
+  cta: "Explore Credit Licensing",
+  image: IMG.pillar_credit,
+  imageAlt: "Modern office interior — the setting for a well-run credit business.",
+};
+
+const PILLARS: PillarProps[] = byRegion({
+  au: [AU_PILLAR_1, AU_PILLAR_2, AU_PILLAR_3],
   nz: [NZ_PILLAR_1, NZ_PILLAR_2],
 });
 
@@ -109,33 +122,48 @@ export function Pillars() {
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
         <SectionHead
           eyebrow="Service Pillars"
-          title={<>Two regulatory regimes.<br />One advisory.</>}
+          title={byRegion({
+            au: <>Three regulatory disciplines.<br />One advisory.</>,
+            nz: <>Two regulatory regimes.<br />One advisory.</>,
+          })}
           lede={byRegion({
-            au: "AFSL, AML/CTF Program or ongoing oversight — shaped to how your business actually runs.",
+            au: "AFSL, credit licensing, AML/CTF Program or ongoing oversight — shaped to how your business actually runs.",
             nz: "FMA licensing, AML/CFT programme or ongoing oversight — shaped to how your business actually runs.",
           })}
         />
 
-        <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          <Pillar {...PILLAR_1} />
-          <Pillar {...PILLAR_2} />
+        <div
+          className={
+            "reveal grid grid-cols-1 gap-6 lg:gap-8 " +
+            (PILLARS.length === 3 ? "md:grid-cols-2 xl:grid-cols-3" : "md:grid-cols-2")
+          }
+        >
+          {PILLARS.map((p, i) => (
+            <Pillar
+              key={p.href}
+              {...p}
+              // With three cards on a two-column tablet grid, the third spans both columns.
+              className={PILLARS.length === 3 && i === 2 ? "md:col-span-2 xl:col-span-1" : undefined}
+              wideOnTablet={PILLARS.length === 3 && i === 2}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function Pillar(p: PillarProps) {
+function Pillar(p: PillarProps & { className?: string; wideOnTablet?: boolean }) {
   return (
-    <article className="has-spotlight relative bg-[var(--color-ivory-50)] border border-[var(--color-line)]
-                        hover:border-[var(--color-gold-300)] transition-[border-color] duration-200 group flex flex-col">
+    <article className={`${p.className ?? ""} has-spotlight relative bg-[var(--color-ivory-50)] border border-[var(--color-line)]
+                        hover:border-[var(--color-gold-300)] transition-[border-color] duration-200 group flex flex-col`}>
       {/* Image header */}
-      <div className="relative aspect-[16/9] overflow-hidden bg-[var(--color-navy-900)]">
+      <div className={"relative overflow-hidden bg-[var(--color-navy-900)] " + (p.wideOnTablet ? "aspect-[16/9] md:aspect-[21/7] xl:aspect-[16/9]" : "aspect-[16/9]")}>
         <Image
           src={p.image}
           alt={p.imageAlt}
           fill
-          sizes="(min-width: 768px) 540px, 100vw"
+          sizes="(min-width: 1280px) 380px, (min-width: 768px) 540px, 100vw"
           className="object-cover transition-transform duration-[1500ms] ease-[cubic-bezier(.18,.7,.2,1)] group-hover:scale-[1.05]"
         />
         {/* Brand-tinted overlay */}
@@ -162,7 +190,7 @@ function Pillar(p: PillarProps) {
 
       {/* Body */}
       <div className="p-8 lg:p-10 flex flex-col flex-1">
-        <h3 className="font-display font-semibold leading-[1.05] tracking-[-0.012em] mb-4 text-[var(--text-h3)]">{p.title}</h3>
+        <h3 className="font-display font-semibold leading-[1.05] tracking-[-0.012em] mb-4 text-[length:var(--text-h3)] text-[var(--color-navy-900)]">{p.title}</h3>
         <p className="text-[var(--color-ink-700)] mb-7 leading-[1.7]">{p.lede}</p>
 
         <ul className="border-t border-[var(--color-line)] pt-5 mb-7 space-y-3 list-none p-0">

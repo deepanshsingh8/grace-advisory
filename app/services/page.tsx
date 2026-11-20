@@ -4,13 +4,14 @@ import { CTABand } from "@/components/cta-band";
 import { PageHero } from "@/components/page-hero";
 import { ArrowRight } from "@/components/icons";
 import { byRegion } from "@/lib/region";
+import { CREDIT_BASE, CREDIT_SERVICES } from "@/lib/credit-licensing";
 
 export const metadata: Metadata = {
   ...byRegion({
     au: {
-      title: "Services — AML Compliance & AFSL Consulting Australia",
+      title: "Services — AFSL, Credit Licence & AML/CTF Compliance Consulting Australia",
       description:
-        "Comprehensive AML compliance and AFSL Australia support. Professional compliance consulting services for regulated financial services businesses.",
+        "AFSL, Australian Credit Licence (ACL) and AML/CTF compliance support — licence applications, policies, responsible managers, reviews and ongoing monitoring for regulated businesses.",
     },
     nz: {
       title: "Services — FMA Licensing & AML/CFT Consulting New Zealand",
@@ -57,6 +58,14 @@ const AU_FAMILIES: Family[] = [
       { label: "Independent Review (Part A & B)", href: "/aml-ctf/independent-review" },
     ],
   },
+  {
+    eyebrow: "Pillar III",
+    title: "Credit Licensing",
+    blurb:
+      "From the ASIC credit licence application to responsible lending and ongoing oversight — for lenders, brokers and credit businesses.",
+    href: CREDIT_BASE,
+    items: CREDIT_SERVICES.map((s) => ({ label: s.navLabel, href: s.href })),
+  },
 ];
 
 const NZ_FAMILIES: Family[] = [
@@ -95,9 +104,9 @@ interface Adjacent { title: string; blurb: string; href: string }
 
 const AU_ADJACENT: Adjacent[] = [
   {
-    title: "Credit Licence Applications",
-    blurb: "Help your business obtain an Australian Credit Licence (ACL) — including responsible-lending obligations.",
-    href: "/acl",
+    title: "Life Insurance — General Advice",
+    blurb: "A platform for advisers moving to general advice on life risk products, without the compliance burden.",
+    href: "/life-insurance",
   },
   {
     title: "Legal & Corporate Support",
@@ -143,7 +152,7 @@ export default function ServicesPage() {
       {/* Two pillars */}
       <section className="bg-[var(--color-ivory-50)] section-pad">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+          <div className={"grid grid-cols-1 gap-8 lg:gap-10 " + (FAMILIES.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-2")}>
             {FAMILIES.map((f) => (
               <article key={f.title}
                        className="relative bg-[var(--color-ivory-50)] border border-[var(--color-line)] p-7 sm:p-9 lg:p-10 flex flex-col">

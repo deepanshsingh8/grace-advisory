@@ -13,7 +13,7 @@ interface Service {
 
 const SERVICES: Service[] = [
   { num: "01.", title: "AFSL Application", body: "Australian Financial Services Licence — proof documents, RM selection, ASIC liaison.", href: "/afsl/application", Icon: HexCheck },
-  { num: "02.", title: "Credit Licence Applications", body: "End-to-end support for an Australian Credit Licence, including responsible-lending.", href: "/acl", Icon: HexLines },
+  { num: "02.", title: "Credit Licence Applications", body: "End-to-end support for an Australian Credit Licence, including responsible-lending.", href: "/credit-licensing/applications", Icon: HexLines },
   { num: "03.", title: "Compliance Services", body: "Ongoing monitoring so your business stays on top of its regulatory obligations as it grows.", href: "/afsl/ongoing-monitoring", Icon: HexCircle },
   { num: "04.", title: "AML/CTF", body: "Programs, ongoing compliance, AUSTRAC registration and independent reviews — Part A and Part B.", href: "/aml-ctf", Icon: HexShield },
   { num: "05.", title: "Legal Services", body: "Corporate and commercial legal support to complement your compliance framework.", href: "/services", Icon: HexDoc },

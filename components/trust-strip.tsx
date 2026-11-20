@@ -6,7 +6,7 @@
 import { byRegion } from "@/lib/region";
 
 const FRAMEWORKS = byRegion({
-  au: ["ASIC", "AUSTRAC", "AFCA", "FATF", "RG 105", "AML/CTF Act"],
+  au: ["ASIC", "AUSTRAC", "AFCA", "FATF", "RG 105", "National Credit Act", "AML/CTF Act"],
   nz: ["FMA", "DIA", "NZ Police FIU", "FATF", "FMC Act", "AML/CFT Act"],
 });
 

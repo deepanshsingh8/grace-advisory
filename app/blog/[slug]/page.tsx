@@ -5,6 +5,7 @@ import { PageBody } from "@/components/page-body";
 import { PageHero } from "@/components/page-hero";
 import { byRegion } from "@/lib/region";
 import { NZ_POSTS } from "./posts-nz";
+import { AU_CREDIT_POSTS } from "./posts-au-credit";
 
 /**
  * Static blog posts. We render the three articles from the original site
@@ -150,7 +151,10 @@ interface Post {
 }
 
 /** Only the current region's articles are built and served. */
-const POSTS: Record<string, Post> = byRegion<Record<string, Post>>({ au: AU_POSTS, nz: NZ_POSTS });
+const POSTS: Record<string, Post> = byRegion<Record<string, Post>>({
+  au: { ...AU_POSTS, ...AU_CREDIT_POSTS },
+  nz: NZ_POSTS,
+});
 
 export function generateStaticParams() {
   return Object.keys(POSTS).map((slug) => ({ slug }));

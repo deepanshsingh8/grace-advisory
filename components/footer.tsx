@@ -16,7 +16,14 @@ export function Footer() {
         }}
       />
       <div className="relative mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr] gap-10">
+        <div
+          className={
+            "grid grid-cols-1 sm:grid-cols-2 gap-10 " +
+            (NAV.PILLAR_3
+              ? "md:grid-cols-3 xl:grid-cols-[1.2fr_1fr_1fr_1.15fr_0.9fr_1.1fr]"
+              : "md:grid-cols-[1.2fr_1fr_1fr_1fr_1fr]")
+          }
+        >
           <div>
             <Link href="/" aria-label="Grace Advisory home" className="inline-flex">
               <Image
@@ -35,6 +42,7 @@ export function Footer() {
 
           <FootCol heading={NAV.PILLAR_1.label} items={NAV.PILLAR_1.items} />
           <FootCol heading={NAV.PILLAR_2.label} items={NAV.PILLAR_2.items} />
+          {NAV.PILLAR_3 && <FootCol heading={NAV.PILLAR_3.label} items={NAV.PILLAR_3.items} />}
           <FootCol heading="Engage" items={NAV.ENGAGE} />
 
           <div>
@@ -64,9 +72,11 @@ export function Footer() {
 }
 
 function FootCol({ heading, items }: { heading: string; items: readonly { label: string; href: string }[] }) {
+  // Headings can contain spaces ("Credit Licensing"), which an id reference can't.
+  const id = `foot-${heading.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
   return (
-    <nav aria-labelledby={`foot-${heading}`}>
-      <h4 id={`foot-${heading}`} className="font-sans font-bold text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-gold-300)] mb-4">{heading}</h4>
+    <nav aria-labelledby={id}>
+      <h4 id={id} className="font-sans font-bold text-[0.7rem] tracking-[0.22em] uppercase text-[var(--color-gold-300)] mb-4">{heading}</h4>
       <ul className="list-none p-0 m-0 space-y-2.5">
         {items.map((it) => (
           <li key={it.href}>

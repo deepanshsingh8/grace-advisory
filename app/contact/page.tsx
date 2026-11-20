@@ -6,9 +6,9 @@ import { byRegion } from "@/lib/region";
 export const metadata: Metadata = {
   ...byRegion({
     au: {
-      title: "Contact — AFSL Licence Requirements & Consultants",
+      title: "Contact — AFSL, Credit Licence & AML/CTF Compliance Consultants",
       description:
-        "Speak to a Grace Advisory specialist about AFSL or AML/CTF compliance. Brisbane-based, serving clients Australia-wide.",
+        "Speak to a Grace Advisory specialist about AFSL, Australian Credit Licence (ACL) or AML/CTF compliance. Brisbane-based, serving clients Australia-wide.",
     },
     nz: {
       title: "Contact — FMA Licensing & AML/CFT Compliance Consultants",
@@ -26,7 +26,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Speak to a compliance specialist."
         lede={byRegion({
-          au: "AFSL applications, AML/CTF Programs, ongoing oversight — we’d be glad to hear from you.",
+          au: "AFSL and credit licence applications, AML/CTF Programs, ongoing oversight — we’d be glad to hear from you.",
           nz: "Licence applications, FSPR registration, AML/CFT programmes, ongoing oversight — we’d be glad to hear from you.",
         })}
       />

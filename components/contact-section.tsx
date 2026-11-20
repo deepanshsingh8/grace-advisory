@@ -1,15 +1,17 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { useFormStatus } from "react-dom";
+import { track } from "@vercel/analytics";
 import { ArrowRight } from "@/components/icons";
 import { SITE } from "@/lib/seo";
+import { ENQUIRY, isServiceValue, type Option, type OptionGroup } from "@/lib/enquiry";
 import { submitContact, type ContactState } from "@/app/actions/contact";
 
 const INITIAL: ContactState = { status: "idle" };
 
 /** Field order — drives "focus the first invalid field" after a failed submit. */
-const FIELD_ORDER = ["name", "email", "phone", "subject", "message"] as const;
+const FIELD_ORDER = ["name", "business", "email", "phone", "service", "message"] as const;
 
 /**
  * Contact section — split: brand-tinted detail panel on the left,
@@ -20,6 +22,22 @@ const FIELD_ORDER = ["name", "email", "phone", "subject", "message"] as const;
 export function ContactSection() {
   const [state, formAction] = useActionState(submitContact, INITIAL);
   const alertRef = useRef<HTMLDivElement>(null);
+  const [service, setService] = useState("");
+
+  // Pre-select the service from ?service=… (links from service pages).
+  // Read on mount rather than with useSearchParams so the page stays static
+  // and the form still renders without JavaScript.
+  useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get("service") ?? "";
+    if (isServiceValue(fromUrl)) setService(fromUrl);
+  }, []);
+
+  // Analytics: one event per successful enquiry.
+  useEffect(() => {
+    if (state.status === "ok") {
+      track("enquiry_submitted", { service: state.service ?? "", path: window.location.pathname });
+    }
+  }, [state]);
 
   // After a failed submit, move focus to the first invalid field so keyboard
   // and screen-reader users are taken straight to what needs fixing. If the
@@ -35,7 +53,7 @@ export function ContactSection() {
   }, [state]);
 
   return (
-    <section className="relative bg-[var(--color-ivory-50)]">
+    <section id="enquiry" className="relative bg-[var(--color-ivory-50)] scroll-mt-28">
       <div
         aria-hidden
         className="absolute inset-0 pointer-events-none"
@@ -105,12 +123,27 @@ export function ContactSection() {
                   className="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none"
                 />
 
-                <Field label="Full name" name="name" autoComplete="name" error={state.errors?.name} required />
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <Field label="Full name" name="name" autoComplete="name" error={state.errors?.name} required />
+                  <Field label="Business name" name="business" autoComplete="organization" error={state.errors?.business} />
+                </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <Field label="Email" name="email" type="email" autoComplete="email" inputMode="email" error={state.errors?.email} required />
                   <Field label="Phone" name="phone" type="tel" autoComplete="tel" inputMode="tel" error={state.errors?.phone} />
                 </div>
-                <Field label="Subject" name="subject" autoComplete="off" error={state.errors?.subject} />
+                <Select
+                  label="Service required"
+                  name="service"
+                  groups={ENQUIRY.services}
+                  value={service}
+                  onChange={setService}
+                  error={state.errors?.service}
+                  required
+                />
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <Select label="Business model" name="business_model" options={ENQUIRY.businessModels} />
+                  <Select label="Licence status" name="licence_status" options={ENQUIRY.licenceStatus} />
+                </div>
                 <Field label="Your message" name="message" textarea autoComplete="off" error={state.errors?.message} required />
 
                 {state.status === "error" && state.message && (
@@ -235,6 +268,71 @@ function Field({
             className={base}
           />
         )}
+      </label>
+      {error && (
+        <p id={errorId} className="mt-2 text-[0.82rem] font-sans text-[var(--color-gold-700)]">{error}</p>
+      )}
+    </div>
+  );
+}
+
+/* ─── Select ─────────────────────────────────────────────────────────── */
+
+function Select({
+  label, name, options, groups, value, onChange, error, required,
+}: {
+  label: string;
+  name: string;
+  options?: readonly Option[];
+  groups?: readonly OptionGroup[];
+  /** Controlled value (optional — uncontrolled when omitted). */
+  value?: string;
+  onChange?: (value: string) => void;
+  error?: string;
+  required?: boolean;
+}) {
+  const id = `field-${name}`;
+  const errorId = `${id}-error`;
+  const controlled = value !== undefined;
+  return (
+    <div>
+      <label htmlFor={id} className="block">
+        <span className="block font-sans text-[0.7rem] tracking-[0.18em] uppercase text-[var(--color-ink-600)] font-bold mb-2">
+          {label}
+          {required && <span className="text-[var(--color-gold-600)] ml-1" aria-hidden>*</span>}
+          {required && <span className="sr-only"> (required)</span>}
+        </span>
+        <span className="relative block">
+          <select
+            id={id}
+            name={name}
+            required={required}
+            aria-invalid={Boolean(error)}
+            aria-describedby={error ? errorId : undefined}
+            {...(controlled
+              ? { value, onChange: (e: React.ChangeEvent<HTMLSelectElement>) => onChange?.(e.target.value) }
+              : { defaultValue: "" })}
+            className={
+              "w-full appearance-none pl-4 pr-11 py-3.5 bg-[var(--color-ivory-50)] border " +
+              "font-sans text-[var(--color-ink-900)] " +
+              "focus:outline-none focus:border-[var(--color-navy-700)] focus:shadow-[0_0_0_3px_rgba(230,182,55,0.4)] " +
+              "transition-[border-color,box-shadow] duration-200 " +
+              (error ? "border-[var(--color-gold-600)]" : "border-[var(--color-line)]")
+            }
+          >
+            <option value="">{required ? "Please choose…" : "Select (optional)"}</option>
+            {options?.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+            {groups?.map((g) => (
+              <optgroup key={g.label} label={g.label}>
+                {g.options.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
+              </optgroup>
+            ))}
+          </select>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden
+               className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--color-navy-700)]">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </span>
       </label>
       {error && (
         <p id={errorId} className="mt-2 text-[0.82rem] font-sans text-[var(--color-gold-700)]">{error}</p>

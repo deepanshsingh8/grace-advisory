@@ -13,7 +13,7 @@ import { TrustStrip } from "@/components/trust-strip";
  *   1. Hero            — the promise
  *   2. Marquee         — kinetic strip of practice areas
  *   3. TrustStrip      — the regulators we work in front of
- *   4. Pillars         — AFSL + AML/CTF service families             (No. I)
+ *   4. Pillars         — AFSL + AML/CTF (+ Credit Licensing on AU)    (No. I)
  *   5. Approach        — why Grace, principles and pull quote         (No. II)
  *   6. Results         — proof of practice                            (No. III)
  *   7. Process         — how an engagement actually runs              (No. IV)
@@ -32,7 +32,7 @@ export default function HomePage() {
       <Approach />
       <Results />
       <Process />
-      <Insights />
+      <Insights limit={3} />
       <CTABand />
     </main>
   );

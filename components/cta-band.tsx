@@ -2,7 +2,20 @@ import Link from "next/link";
 import { ArrowRight } from "@/components/icons";
 import { SITE } from "@/lib/seo";
 
-export function CTABand() {
+interface CTABandProps {
+  /** Primary button — defaults to "Book a consultation" → /contact. */
+  primary?: { label: string; href: string };
+  /** Secondary button — defaults to "Read our approach". */
+  secondary?: { label: string; href: string };
+  /** Analytics label for the primary button. */
+  trackLabel?: string;
+}
+
+export function CTABand({
+  primary = { label: "Book a consultation", href: "/contact" },
+  secondary = { label: "Read our approach", href: "/#approach" },
+  trackLabel = "cta_band_book_consultation",
+}: CTABandProps = {}) {
   return (
     <section
       id="contact"
@@ -56,11 +69,11 @@ export function CTABand() {
             </h2>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
-            <Link href="/contact" className="btn btn-primary magnetic">
-              Book a consultation
+            <Link href={primary.href} className="btn btn-primary magnetic" data-track="cta_click" data-track-label={trackLabel}>
+              {primary.label}
               <ArrowRight className="arrow" />
             </Link>
-            <Link href="/#approach" className="btn btn-outline">Read our approach</Link>
+            <Link href={secondary.href} className="btn btn-outline">{secondary.label}</Link>
             <span className="font-sans text-[rgba(241,203,107,0.85)] text-[0.72rem] tracking-[0.18em] uppercase font-bold mt-1">
               Or call us
               <strong className="ml-2 font-sans font-bold tracking-[0.04em] text-[var(--color-ivory-50)] text-[0.95rem]" style={{ textTransform: "none", letterSpacing: "0.04em" }}>{SITE.phone}</strong>

@@ -2,6 +2,7 @@
 
 import { sendMail } from "@/lib/mailer";
 import { IS_NZ } from "@/lib/region";
+import { businessModelLabel, licenceStatusLabel, serviceLabel } from "@/lib/enquiry";
 
 /* ─── Types ──────────────────────────────────────────────────────────── */
 
@@ -9,7 +10,9 @@ export interface ContactState {
   status: "idle" | "ok" | "error";
   message?: string;
   /** Per-field validation errors keyed by field name */
-  errors?: Partial<Record<"name" | "email" | "phone" | "subject" | "message", string>>;
+  errors?: Partial<Record<"name" | "business" | "email" | "phone" | "service" | "message", string>>;
+  /** Service value of a successful submission (for analytics). */
+  service?: string;
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
@@ -26,14 +29,21 @@ export async function submitContact(
     return { status: "ok", message: "Thank you. We’ll be in touch shortly." };
   }
 
-  const name    = String(formData.get("name")    ?? "").trim();
-  const email   = String(formData.get("email")   ?? "").trim();
-  const phone   = String(formData.get("phone")   ?? "").trim();
-  const subject = String(formData.get("subject") ?? "").trim();
-  const message = String(formData.get("message") ?? "").trim();
+  const field = (key: string, max = 200) => String(formData.get(key) ?? "").trim().slice(0, max);
+  const name     = field("name");
+  const business = field("business");
+  const email    = field("email");
+  const phone    = field("phone", 50);
+  const message  = String(formData.get("message") ?? "").trim();
+  // Select values are mapped back to their labels; anything unrecognised is dropped.
+  const serviceValue  = field("service", 60);
+  const service       = serviceLabel(serviceValue);
+  const businessModel = businessModelLabel(field("business_model", 60));
+  const licenceStatus = licenceStatusLabel(field("licence_status", 60));
 
   const errors: ContactState["errors"] = {};
   if (!name) errors.name = "Please enter your name.";
+  if (!service) errors.service = "Please choose the service you need.";
   if (!email) errors.email = "Please enter your email.";
   else if (!EMAIL_RE.test(email)) errors.email = "That email doesn’t look right.";
   if (!message) errors.message = "Please enter a message.";
@@ -44,16 +54,19 @@ export async function submitContact(
   }
 
   // Build the email
-  const cleanSubject = subject || "New consultation request";
   // NZ-site enquiries go to the same inbox, tagged so they stand out.
-  const emailSubject = `${IS_NZ ? "[NZ] " : ""}New consultation request — ${cleanSubject}`;
+  const who = business ? `${name} (${business})` : name;
+  const emailSubject = `${IS_NZ ? "[NZ] " : ""}New enquiry — ${service} — ${who}`;
   const text = [
     `New consultation request from the Grace Advisory ${IS_NZ ? "New Zealand " : ""}website`,
     ``,
-    `Name:    ${name}`,
-    `Email:   ${email}`,
-    phone ? `Phone:   ${phone}` : null,
-    subject ? `Subject: ${subject}` : null,
+    `Name:           ${name}`,
+    business ? `Business:       ${business}` : null,
+    `Email:          ${email}`,
+    phone ? `Phone:          ${phone}` : null,
+    `Service:        ${service}`,
+    businessModel ? `Business model: ${businessModel}` : null,
+    licenceStatus ? `Licence status: ${licenceStatus}` : null,
     ``,
     `Message:`,
     message,
@@ -61,7 +74,7 @@ export async function submitContact(
     `— Reply to this email to respond directly to ${name}.`,
   ].filter(Boolean).join("\n");
 
-  const html = renderHtml({ name, email, phone, subject, message });
+  const html = renderHtml({ name, business, email, phone, service, businessModel, licenceStatus, message });
 
   const result = await sendMail({
     subject: emailSubject,
@@ -83,12 +96,16 @@ export async function submitContact(
   return {
     status: "ok",
     message: "Thank you. Your message is on its way — we’ll be in touch shortly.",
+    service: serviceValue,
   };
 }
 
 /* ─── HTML email body ────────────────────────────────────────────────── */
 
-function renderHtml(data: { name: string; email: string; phone: string; subject: string; message: string }) {
+function renderHtml(data: {
+  name: string; business: string; email: string; phone: string;
+  service: string; businessModel: string; licenceStatus: string; message: string;
+}) {
   const esc = (s: string) =>
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
@@ -108,9 +125,12 @@ function renderHtml(data: { name: string; email: string; phone: string; subject:
     <table role="presentation" style="width:100%;border-collapse:collapse;padding:0;">
       <tbody>
         ${row("Name",    esc(data.name))}
+        ${data.business ? row("Business", esc(data.business)) : ""}
         ${row("Email",   `<a href="mailto:${esc(data.email)}" style="color:#1E2A56;">${esc(data.email)}</a>`)}
         ${data.phone   ? row("Phone",   `<a href="tel:${esc(data.phone)}" style="color:#1E2A56;">${esc(data.phone)}</a>`) : ""}
-        ${data.subject ? row("Subject", esc(data.subject)) : ""}
+        ${row("Service", esc(data.service))}
+        ${data.businessModel ? row("Business model", esc(data.businessModel)) : ""}
+        ${data.licenceStatus ? row("Licence status", esc(data.licenceStatus)) : ""}
       </tbody>
     </table>
 
@@ -130,7 +150,7 @@ function renderHtml(data: { name: string; email: string; phone: string; subject:
 function row(label: string, value: string) {
   return `
         <tr>
-          <td style="padding:14px 28px;border-top:1px solid #EFEAD8;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#4A5170;font-weight:bold;width:96px;vertical-align:top;">${label}</td>
+          <td style="padding:14px 28px;border-top:1px solid #EFEAD8;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:#4A5170;font-weight:bold;width:120px;vertical-align:top;">${label}</td>
           <td style="padding:14px 28px 14px 0;border-top:1px solid #EFEAD8;font-size:15px;color:#1A1F33;">${value}</td>
         </tr>`;
 }

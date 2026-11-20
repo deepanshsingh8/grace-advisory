@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { EB_Garamond, Lato } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { siteSchema } from "@/lib/seo";
 import { byRegion, LANG, REGION, SITE_URLS } from "@/lib/region";
 import "./globals.css";
@@ -9,6 +10,7 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { InteractiveLayer } from "@/components/interactive-layer";
 import { DoodleField } from "@/components/doodle-field";
+import { AnalyticsEvents } from "@/components/analytics-events";
 
 const ebGaramond = EB_Garamond({
   subsets: ["latin"],
@@ -35,14 +37,19 @@ export const viewport: Viewport = {
 const AU_METADATA: Metadata = {
   metadataBase: new URL(SITE_URLS.au),
   title: {
-    default: "Grace Advisory — AFSL & AML/CTF Compliance Consulting · Australia",
+    default: "Grace Advisory — AFSL, Credit Licence & AML/CTF Compliance Consulting · Australia",
     template: "%s · Grace Advisory",
   },
   description:
-    "Boutique AFSL and AML/CTF compliance consulting in Australia. Tailored advisory from licence application to ongoing monitoring — for Phase 1 & 2 reporting entities and Tranche 2 firms.",
+    "Boutique AFSL, Australian Credit Licence (ACL) and AML/CTF compliance consulting in Australia. Tailored advisory from licence application to ongoing monitoring — for financial services firms, credit businesses and AML/CTF reporting entities.",
   keywords: [
     "AFSL compliance",
     "AFSL application",
+    "Australian credit licence application",
+    "ACL compliance consultant",
+    "ASIC credit licence",
+    "responsible manager credit licence",
+    "responsible lending",
     "AML/CTF compliance",
     "AUSTRAC registration",
     "Tranche 2 reforms",
@@ -69,9 +76,9 @@ const AU_METADATA: Metadata = {
     locale: "en_AU",
     url: "https://graceadvisory.com.au/",
     siteName: "Grace Advisory",
-    title: "Grace Advisory — AFSL & AML/CTF Compliance Consulting · Australia",
+    title: "Grace Advisory — AFSL, Credit Licence & AML/CTF Compliance Consulting · Australia",
     description:
-      "Boutique AFSL and AML/CTF advisory for Australia's regulated firms — from licence application to ongoing monitoring.",
+      "Boutique AFSL, Australian Credit Licence and AML/CTF advisory for Australia's regulated firms — from licence application to ongoing monitoring.",
     images: [
       {
         url: "/brand/og-image.png",
@@ -83,9 +90,9 @@ const AU_METADATA: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grace Advisory — AFSL & AML/CTF Compliance Consulting",
+    title: "Grace Advisory — AFSL, Credit Licence & AML/CTF Compliance Consulting",
     description:
-      "Boutique AFSL and AML/CTF advisory for Australia's regulated firms.",
+      "Boutique AFSL, Australian Credit Licence and AML/CTF advisory for Australia's regulated firms.",
     images: ["/brand/og-image.png"],
   },
   robots: {
@@ -198,6 +205,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <InteractiveLayer />
         <DoodleField />
+        <AnalyticsEvents />
+        <Analytics />
         <Script
           id="ld-org"
           type="application/ld+json"

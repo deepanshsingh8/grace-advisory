@@ -65,6 +65,7 @@ export default function NotFound() {
               au: [
                 { label: "AFSL", href: "/afsl" },
                 { label: "AML/CTF", href: "/aml-ctf" },
+                { label: "Credit Licensing", href: "/credit-licensing" },
               ],
               nz: [
                 { label: "Licensing", href: "/licensing" },
