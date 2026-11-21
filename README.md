@@ -32,8 +32,8 @@ npm run build:nz     # production build of the NZ site
 
 - `lib/region.ts` — the switch (`REGION`, `byRegion({ au, nz })`, site URLs).
 - `lib/seo.ts` — contact details, menus, logo, JSON-LD for each region.
-  **When the NZ office is set up, update the `NZ_SITE` block** (phone, email,
-  address, NZBN).
+  The NZ site lists the Dunedin office (139 Moray Place); **update the
+  `NZ_SITE` block** when an NZ phone, email or NZBN is available.
 - `lib/pricing.ts` — retainer tiers, projects and FAQs (AUD vs NZD/GST 15%).
 - `lib/routes.ts` — which pages belong to which country, and where AU links
   redirect on the NZ site (e.g. `/afsl` → `/licensing`) and vice versa.

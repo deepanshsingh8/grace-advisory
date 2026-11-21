@@ -2,9 +2,9 @@ import { byRegion, LANG, REGION, SITE_URL } from "@/lib/region";
 import { CREDIT_BASE, CREDIT_SERVICES } from "@/lib/credit-licensing";
 
 /* ─── Contact details ──────────────────────────────────────────────────
-   The NZ site currently uses the Australian office and phone (shown in
-   international format) until a New Zealand office is set up. When it is,
-   update the `nz` block — phone, email, address and NZBN. */
+   The NZ site has its own Dunedin office address. It still uses the
+   Australian phone (shown in international format), email and ABN until
+   NZ equivalents are set up — update the `nz` block when they are. */
 const AU_SITE = {
   phone: "0468 454 831",
   phoneTel: "+61468454831",
@@ -12,6 +12,15 @@ const AU_SITE = {
   address: {
     line1: "52 Petrel Crescent",
     line2: "Worongary QLD 4213",
+    /** schema.org PostalAddress used in the JSON-LD graph below. */
+    schema: {
+      streetAddress: "52 Petrel Crescent",
+      addressLocality: "Worongary",
+      addressRegion: "QLD",
+      postalCode: "4213",
+      addressCountry: "AU",
+    },
+    geo: { latitude: -27.481, longitude: 153.011 },
   },
   /** Business identifier shown in the footer / contact panel. */
   businessIdLabel: "ABN",
@@ -23,8 +32,16 @@ const NZ_SITE: typeof AU_SITE = {
   phoneTel: "+61468454831",
   email: "info@graceadvisory.com.au",
   address: {
-    line1: "52 Petrel Crescent",
-    line2: "Worongary QLD 4213, Australia",
+    line1: "139 Moray Place",
+    line2: "Dunedin 9016, New Zealand",
+    schema: {
+      streetAddress: "139 Moray Place",
+      addressLocality: "Dunedin",
+      addressRegion: "Otago",
+      postalCode: "9016",
+      addressCountry: "NZ",
+    },
+    geo: { latitude: -45.8742, longitude: 170.5027 },
   },
   businessIdLabel: "ABN",
   businessId: "89 661 414 197",
@@ -95,15 +112,8 @@ export const siteSchema = {
       telephone: "+61-468-454-831",
       email: SITE.email,
       priceRange: "$$$",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "52 Petrel Crescent",
-        addressLocality: "Worongary",
-        addressRegion: "QLD",
-        postalCode: "4213",
-        addressCountry: "AU",
-      },
-      geo: { "@type": "GeoCoordinates", latitude: -27.481, longitude: 153.011 },
+      address: { "@type": "PostalAddress", ...SITE.address.schema },
+      geo: { "@type": "GeoCoordinates", ...SITE.address.geo },
       areaServed: { "@type": "Country", name: byRegion({ au: "Australia", nz: "New Zealand" }) },
       identifier: [{ "@type": "PropertyValue", name: "ABN", value: "89 661 414 197" }],
       knowsAbout: byRegion({ au: AU_KNOWS_ABOUT, nz: NZ_KNOWS_ABOUT }),
